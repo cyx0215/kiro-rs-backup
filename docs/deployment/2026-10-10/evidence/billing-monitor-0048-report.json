@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-10T16:50:24.702362+00:00",
+  "window_start": "2026-10-10T16:34:19.343648+00:00",
+  "window_end": "2026-10-10T16:48:47.898486+00:00",
+  "window_basis": "[since, until): trace finish time / Sub2API created_at; totals are snapshots, not increments",
+  "test_server": {
+    "available": true,
+    "trace_count": 1,
+    "statuses": {
+      "success": 1
+    },
+    "kiro_credits_all_test_traffic": "0.02567449",
+    "tokens": {
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0
+    },
+    "usage_sources": {
+      "none": 1
+    },
+    "truncated": false,
+    "container": {
+      "image": "sha256:ba74e53a06cf097c587f658ae6222047b404f9045f1c9e08f67c55bdbfdc359a",
+      "status": "running",
+      "restarts": 0
+    },
+    "diagnostic_reason_counts_in_log_tail": {},
+    "diagnostics_available": true
+  },
+  "sub2api": {
+    "account_id": 94,
+    "available": true,
+    "complete": false,
+    "usage_count": 1,
+    "formula_checked_rows": 1,
+    "independent_price_checked_rows": 0,
+    "user_usd": "0.04582368",
+    "account_usd": "0.02727600",
+    "rows": [
+      {
+        "id": 418645,
+        "time": "2026-10-10T16:44:11.957629+00:00",
+        "model": "claude-opus-5-5",
+        "group_id": 49,
+        "tokens": {
+          "input_tokens": 6814,
+          "output_tokens": 1,
+          "cache_creation_tokens": 0,
+          "cache_read_tokens": 0
+        },
+        "cost_components_usd": {
+          "input_cost": "0.02725600",
+          "output_cost": "0.00002000",
+          "cache_creation_cost": "0.00000000",
+          "cache_read_cost": "0.00000000"
+        },
+        "derived_usd_per_million": {
+          "input_tokens": "4.00000000",
+          "output_tokens": "20.00000000",
+          "cache_creation_tokens": null,
+          "cache_read_tokens": null
+        },
+        "pricing_check": "derived_rates_only",
+        "total_usd": "0.02727600",
+        "user_multiplier": "1.68",
+        "account_multiplier": "1",
+        "account_base_source": "total_cost",
+        "user_usd": "0.04582368",
+        "account_usd": "0.02727600",
+        "formula_issues": []
+      }
+    ]
+  },
+  "reconciliation": {
+    "unique_pairs": 1,
+    "ambiguous_usage_rows": 0,
+    "unpaired_usage_rows": 0,
+    "unpaired_success_traces": 0,
+    "input_mismatches": 0,
+    "pairs": [
+      {
+        "sub2api_id": 418645,
+        "trace_ref": "bd189b5946bd799a",
+        "model": "claude-opus-5-5",
+        "finished_at": "2026-10-10T16:44:11.928738+00:00",
+        "time_delta_seconds": 0.029,
+        "confidence": "inferred_four_tokens",
+        "trace_tokens": {
+          "input_tokens": 6814,
+          "output_tokens": 1,
+          "cache_creation_tokens": 0,
+          "cache_read_tokens": 0
+        },
+        "sub2api_tokens": {
+          "input_tokens": 6814,
+          "output_tokens": 1,
+          "cache_creation_tokens": 0,
+          "cache_read_tokens": 0
+        },
+        "token_mismatch": false
+      }
+    ],
+    "no_shared_request_id": true
+  },
+  "alerts": [
+    {
+      "kind": "coverage",
+      "detail": "Sub2API pagination or offline data is incomplete"
+    }
+  ],
+  "source_errors": {},
+  "boundaries": [
+    "Credits cover all test-server traces; USD covers only the selected Sub2API account.",
+    "Simulated cache usage is not an upstream cache measurement; USD is not Kiro credits.",
+    "No shared request ID: pairs are inferred using model, finish time and token counts; ambiguous rows remain unpaired.",
+    "Derived unit prices describe recorded costs; only supplied dated price rules independently check unit prices.",
+    "Account USD applies its own base cost and multiplier; it is not verified against upstream cash costs.",
+    "Diagnostics cover at most 5000 log lines and 50 recent cache events, not every request.",
+    "Success covers finalized Kiro traces; Sub2API errors before reaching Kiro and active requests are not observed."
+  ],
+  "new_alerts": [
+    {
+      "kind": "coverage",
+      "detail": "Sub2API pagination or offline data is incomplete"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "observed_at": "2026-10-10T09:51:31.807697+00:00",
+  "account_id": 94,
+  "account_name": "kiro-billing-test-20261010",
+  "server_count": 42,
+  "server_statuses": {
+    "success": 42
+  },
+  "server_credits": 79.81354207751244,
+  "delta_since_saved_snapshot": {
+    "count": 1,
+    "credits": 0.025674491210608608
+  },
+  "sub2api": {
+    "filtered_count": 43,
+    "user_usd_rounded": 107.1011,
+    "account_usd_rounded": 63.7653,
+    "includes_earlier_test_calls": true
+  },
+  "sample": {
+    "server_start_beijing": "2026-10-10 17:43:43",
+    "sub2api_time_beijing": "2026-10-10 17:43:51",
+    "model": "claude-opus-5-5",
+    "input": 6814,
+    "output": 1,
+    "cache_creation": 0,
+    "cache_read": 0,
+    "credits": 0.025674491210613604,
+    "ui_user_usd": 0.045824,
+    "ui_account_usd": 0.027276,
+    "calculated_account_usd": 0.027276,
+    "calculated_user_usd": 0.04582368
+  },
+  "validation_boundary": "Visible new synchronous request matches server tokens and prior effective prices ($4 input/$20 output per million), 1.68 multiplier at UI precision. Rate tooltip not re-observed; no shared request ID verified. Server scope differs from filtered Sub2API lifetime count; no request bodies or credentials collected.",
+  "notification": "none; one new successful request, existing cache classification concern unchanged."
+}

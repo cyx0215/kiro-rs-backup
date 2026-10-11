@@ -1,0 +1,15 @@
+{
+  "observed_at": "2026-10-10T10:17:36.733183+00:00",
+  "started_at": "2026-10-10T10:16:48.772180195Z",
+  "image": "sha256:82285dd99f821e3ac6dd77678f10800544e24268a51f536b18d5e24afcd11465",
+  "previous_image": "sha256:5ad4e546f051e5ee734ed24e3b5cb0c163da1be0646a06d5ef5902147f66be8e",
+  "archive_sha256": "41bdc21ee263ba052149f079aef39c5d4de18c204a76758b999383b614492d6f",
+  "status": "running",
+  "restart_count": 0,
+  "diagnostics_enabled": true,
+  "admin_http": 200,
+  "unauthenticated_models_http": 401,
+  "production_image": "sha256:fd6f06cc18427faf6aa4b1088c2ce443088efca3ca67d2f23644bf48cd8a0256",
+  "production_status": "running",
+  "deployment_note": "Idle checks passed. Initial health probe hit startup RemoteDisconnected; independently verified healthy after startup. Probe retry handling fixed in source and server helper. No inference request sent."
+}

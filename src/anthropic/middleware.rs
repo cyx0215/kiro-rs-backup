@@ -50,6 +50,7 @@ pub struct AppState {
     pub usage_aggregator: Option<SharedAggregator>,
     /// 中转层缓存计量（基于 cache_control 断点的内存缓存）
     pub cache_meter: Option<SharedCacheMeter>,
+    pub sub2api_usage_compat: bool,
     /// 请求链路追踪存储（SQLite，可选）
     pub trace_store: Option<SharedTraceStore>,
 }
@@ -69,6 +70,7 @@ impl AppState {
             usage_recorder: None,
             usage_aggregator: None,
             cache_meter: None,
+            sub2api_usage_compat: false,
             trace_store: None,
         }
     }

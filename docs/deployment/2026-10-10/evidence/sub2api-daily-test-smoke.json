@@ -1,0 +1,27 @@
+{
+  "tested_at_utc": "2026-10-10T07:52:53Z",
+  "endpoint": "https://02acc.itssx.com/v1/messages",
+  "model": "claude-sonnet-4-20250514",
+  "requests": [
+    {
+      "sequence": 1,
+      "message_stop": true,
+      "status": 200,
+      "start_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.017516580514096186,
+        "input_tokens": 4103,
+        "output_tokens": 2
+      }
+    }
+  ]
+}

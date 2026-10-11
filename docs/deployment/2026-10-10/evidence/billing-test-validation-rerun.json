@@ -1,0 +1,82 @@
+{
+  "sub2apiUsageCompat": true,
+  "requests": [
+    {
+      "sequence": 1,
+      "message_stop": true,
+      "status": 200,
+      "start_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "final_usage": {
+        "cache_creation_input_tokens": 5529,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.028306515406301823,
+        "input_tokens": 0,
+        "output_tokens": 52
+      },
+      "sub2api_positive_only_parser_usage": {
+        "cache_creation_input_tokens": 5529,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 52
+      }
+    },
+    {
+      "sequence": 2,
+      "message_stop": true,
+      "status": 200,
+      "start_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5520,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.02349825671641791,
+        "input_tokens": 0,
+        "output_tokens": 103
+      },
+      "sub2api_positive_only_parser_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5520,
+        "input_tokens": 0,
+        "output_tokens": 103
+      }
+    }
+  ],
+  "unauthenticated_status": 401,
+  "models_status": 200,
+  "model": "claude-sonnet-4",
+  "trace_usage": [
+    {
+      "model": "claude-sonnet-4",
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 103,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 5520,
+      "credits": 0.02349825671641791,
+      "usage_source": "simulated"
+    },
+    {
+      "model": "claude-sonnet-4",
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 52,
+      "cache_creation_tokens": 5529,
+      "cache_read_tokens": 0,
+      "credits": 0.028306515406301823,
+      "usage_source": "simulated"
+    }
+  ]
+}

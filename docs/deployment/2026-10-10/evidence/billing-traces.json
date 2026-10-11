@@ -1,0 +1,90 @@
+{
+  "captured_at": "2026-10-09T20:58:47.658476+00:00",
+  "scope": "whitelisted request metrics only; no bodies, tokens, keys, emails, IPs or session identifiers",
+  "records": [
+    {
+      "ts": "2026-10-09T20:51:21.879075384+00:00",
+      "model": "claude-sonnet-5",
+      "final_status": "success",
+      "is_stream": 0,
+      "total_attempts": 1,
+      "input_tokens": 84,
+      "output_tokens": 8,
+      "cache_creation_tokens": 31,
+      "cache_read_tokens": 70231,
+      "credits": 0.2897219597180763,
+      "usage_source": "simulated",
+      "duration_ms": 1777
+    },
+    {
+      "ts": "2026-10-09T20:51:24.484583471+00:00",
+      "model": "claude-opus-5-5",
+      "final_status": "success",
+      "is_stream": 1,
+      "total_attempts": 1,
+      "input_tokens": 3697,
+      "output_tokens": 11,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 178146,
+      "credits": 0.6140913263681591,
+      "usage_source": "simulated",
+      "duration_ms": 2942
+    },
+    {
+      "ts": "2026-10-09T20:51:25.696926073+00:00",
+      "model": "claude-opus-5-5",
+      "final_status": "success",
+      "is_stream": 1,
+      "total_attempts": 1,
+      "input_tokens": 0,
+      "output_tokens": 22,
+      "cache_creation_tokens": 9012,
+      "cache_read_tokens": 177367,
+      "credits": 0.778988432504146,
+      "usage_source": "simulated",
+      "duration_ms": 3443
+    },
+    {
+      "ts": "2026-10-09T20:51:30.501635978+00:00",
+      "model": "claude-sonnet-5",
+      "final_status": "success",
+      "is_stream": 0,
+      "total_attempts": 1,
+      "input_tokens": 84,
+      "output_tokens": 8,
+      "cache_creation_tokens": 359,
+      "cache_read_tokens": 70427,
+      "credits": 0.2918642648590381,
+      "usage_source": "simulated",
+      "duration_ms": 1637
+    },
+    {
+      "ts": "2026-10-09T20:51:35.231804774+00:00",
+      "model": "claude-opus-5-5",
+      "final_status": "success",
+      "is_stream": 1,
+      "total_attempts": 1,
+      "input_tokens": 0,
+      "output_tokens": 6541,
+      "cache_creation_tokens": 13282,
+      "cache_read_tokens": 183222,
+      "credits": 3.580042105804311,
+      "usage_source": "simulated",
+      "duration_ms": 151755
+    },
+    {
+      "ts": "2026-10-09T20:51:59.730524097+00:00",
+      "model": "claude-opus-5-5",
+      "final_status": "success",
+      "is_stream": 1,
+      "total_attempts": 1,
+      "input_tokens": 4023,
+      "output_tokens": 10,
+      "cache_creation_tokens": 9087,
+      "cache_read_tokens": 177373,
+      "credits": 0.6442649180762855,
+      "usage_source": "simulated",
+      "duration_ms": 2902
+    }
+  ]
+}

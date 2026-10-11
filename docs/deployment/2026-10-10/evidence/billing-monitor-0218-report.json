@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-10T18:19:58.749133+00:00",
+  "window_start": "2026-10-10T18:04:18.389000+00:00",
+  "window_end": "2026-10-10T18:18:47.403106+00:00",
+  "window_basis": "[since, until): trace finish time / Sub2API created_at; totals are snapshots, not increments",
+  "test_server": {
+    "available": true,
+    "trace_count": 1,
+    "statuses": {
+      "interrupted": 1
+    },
+    "kiro_credits_all_test_traffic": "0.00000000",
+    "tokens": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0
+    },
+    "usage_sources": {
+      "unknown": 1
+    },
+    "truncated": false,
+    "container": {
+      "image": "sha256:ba74e53a06cf097c587f658ae6222047b404f9045f1c9e08f67c55bdbfdc359a",
+      "status": "running",
+      "restarts": 0
+    },
+    "diagnostic_reason_counts_in_log_tail": {},
+    "diagnostics_available": true
+  },
+  "sub2api": {
+    "account_id": 94,
+    "available": true,
+    "complete": false,
+    "usage_count": 0,
+    "formula_checked_rows": 0,
+    "independent_price_checked_rows": 0,
+    "user_usd": "0.00000000",
+    "account_usd": "0.00000000",
+    "rows": []
+  },
+  "reconciliation": {
+    "unique_pairs": 0,
+    "ambiguous_usage_rows": 0,
+    "unpaired_usage_rows": 0,
+    "unpaired_success_traces": 0,
+    "input_mismatches": 0,
+    "pairs": [],
+    "no_shared_request_id": true
+  },
+  "alerts": [
+    {
+      "kind": "coverage",
+      "detail": "Sub2API pagination or offline data is incomplete"
+    }
+  ],
+  "source_errors": {},
+  "boundaries": [
+    "Credits cover all test-server traces; USD covers only the selected Sub2API account.",
+    "Simulated cache usage is not an upstream cache measurement; USD is not Kiro credits.",
+    "No shared request ID: pairs are inferred using model, finish time and token counts; ambiguous rows remain unpaired.",
+    "Derived unit prices describe recorded costs; only supplied dated price rules independently check unit prices.",
+    "Account USD applies its own base cost and multiplier; it is not verified against upstream cash costs.",
+    "Diagnostics cover at most 5000 log lines and 50 recent cache events, not every request.",
+    "Success covers finalized Kiro traces; Sub2API errors before reaching Kiro and active requests are not observed."
+  ],
+  "new_alerts": [
+    {
+      "kind": "coverage",
+      "detail": "Sub2API pagination or offline data is incomplete"
+    }
+  ]
+}

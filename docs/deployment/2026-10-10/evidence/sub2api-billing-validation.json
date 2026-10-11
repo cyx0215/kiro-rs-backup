@@ -1,0 +1,66 @@
+{
+  "tested_at_utc": "2026-10-10T06:45:11Z",
+  "endpoint": "https://02acc.itssx.com/v1/messages",
+  "model": "claude-sonnet-4-20250514",
+  "billing_verification": {
+    "source": "Sub2API v0.2.15 admin usage UI tooltips, 2026-10-10 14:45 Beijing requests",
+    "account_id": 94,
+    "group": "kiro-billing-test-20261010",
+    "user_multiplier": 1.0,
+    "account_multiplier": 1.0,
+    "output_price_usd_per_million": 15.0,
+    "effective_cache_write_price_usd_per_million": 3.75,
+    "effective_cache_read_price_usd_per_million": 0.3,
+    "write_price_basis": "0.02076000 USD / 5536 tokens",
+    "read_price_basis": "0.00165870 USD / 5529 tokens",
+    "request_1_user_charge_usd": 0.021255,
+    "request_2_user_charge_usd": 0.0026187,
+    "total_user_charge_usd": 0.0238737,
+    "four_token_fields_match_kiro_trace": true,
+    "trace_usage_source": "simulated",
+    "trace_status": "success",
+    "scope": "two complete Sonnet 4 streams; no New API or interrupted-stream verification"
+  },
+  "requests": [
+    {
+      "sequence": 1,
+      "message_stop": true,
+      "status": 200,
+      "start_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "final_usage": {
+        "cache_creation_input_tokens": 5536,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.026439396119402984,
+        "input_tokens": 0,
+        "output_tokens": 33
+      }
+    },
+    {
+      "sequence": 2,
+      "message_stop": true,
+      "status": 200,
+      "start_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5529,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.01933314446102819,
+        "input_tokens": 0,
+        "output_tokens": 64
+      }
+    }
+  ]
+}

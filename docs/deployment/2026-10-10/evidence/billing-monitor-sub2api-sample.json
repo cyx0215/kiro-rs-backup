@@ -1,0 +1,19 @@
+{
+  "observed_at": "2026-10-10T17:05:00+08:00",
+  "account_id": 94,
+  "sub2api_time": "2026-10-10T17:00:44+08:00",
+  "trace_start_time": "2026-10-10T09:00:01.457322372+00:00",
+  "matching_boundary": "Matched by model and exact four token values; no shared request ID verified",
+  "model": "claude-opus-5-5",
+  "input_tokens": 0,
+  "output_tokens": 1135,
+  "cache_creation_tokens": 603439,
+  "cache_read_tokens": 9396,
+  "effective_usd_per_million": {"output": 20, "cache_creation": 5, "cache_read": 0.2},
+  "base_usd": 3.0417742,
+  "group_multiplier": 1.68,
+  "account_multiplier": 1,
+  "user_usd": 5.110180656,
+  "kiro_credits": 2.7996543598673305,
+  "usage_source": "simulated"
+}

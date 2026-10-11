@@ -1,0 +1,1080 @@
+{
+  "observed_at": "2026-10-10T12:09:10.875533+00:00",
+  "since": "2026-10-10T16:40:00+08:00",
+  "scope": "test server traces; not necessarily one Sub2API account",
+  "count": 74,
+  "statuses": {
+    "success": 71,
+    "interrupted": 2,
+    "error": 1
+  },
+  "credits": 94.86170456200664,
+  "latest_ts_epoch": 1791634084,
+  "latest": [
+    {
+      "ts": "2026-10-10T12:08:04.040442768+00:00",
+      "ts_epoch": 1791634084,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 951,
+      "cache_creation_tokens": 31811,
+      "cache_read_tokens": 37829,
+      "credits": 0.5776649220563848,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:08:01.476449139+00:00",
+      "ts_epoch": 1791634081,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 81,
+      "output_tokens": 8,
+      "cache_creation_tokens": 228,
+      "cache_read_tokens": 60040,
+      "credits": 0.1491438834328358,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:07:51.324046436+00:00",
+      "ts_epoch": 1791634071,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 289,
+      "cache_creation_tokens": 30587,
+      "cache_read_tokens": 37618,
+      "credits": 0.7343104374792704,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:07:43.599428930+00:00",
+      "ts_epoch": 1791634063,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 182,
+      "cache_creation_tokens": 18745,
+      "cache_read_tokens": 36077,
+      "credits": 0.4298101210613599,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:07:41.410569093+00:00",
+      "ts_epoch": 1791634061,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 81,
+      "output_tokens": 8,
+      "cache_creation_tokens": 116,
+      "cache_read_tokens": 59831,
+      "credits": 0.14222348542288557,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:07:33.081372270+00:00",
+      "ts_epoch": 1791634053,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 131,
+      "cache_creation_tokens": 14537,
+      "cache_read_tokens": 35442,
+      "credits": 0.27288980630182424,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:07:29.366585843+00:00",
+      "ts_epoch": 1791634049,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 80,
+      "output_tokens": 8,
+      "cache_creation_tokens": 96,
+      "cache_read_tokens": 59697,
+      "credits": 0.13886030134328356,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:07:24.612486534+00:00",
+      "ts_epoch": 1791634044,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 128,
+      "cache_creation_tokens": 13201,
+      "cache_read_tokens": 35200,
+      "credits": 0.2698585330016584,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:07:10.366427990+00:00",
+      "ts_epoch": 1791634030,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 80,
+      "output_tokens": 8,
+      "cache_creation_tokens": 74,
+      "cache_read_tokens": 59579,
+      "credits": 0.13586361809286898,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:07:06.698295870+00:00",
+      "ts_epoch": 1791634026,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 48,
+      "cache_creation_tokens": 11557,
+      "cache_read_tokens": 34944,
+      "credits": 0.22749776019900497,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:06:51.384443743+00:00",
+      "ts_epoch": 1791634011,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 80,
+      "output_tokens": 8,
+      "cache_creation_tokens": 59538,
+      "cache_read_tokens": 0,
+      "credits": 0.24577807912106137,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:06:44.568322204+00:00",
+      "ts_epoch": 1791634004,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 49,
+      "cache_creation_tokens": 45194,
+      "cache_read_tokens": 0,
+      "credits": 0.5944544066334991,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:06:44.827868760+00:00",
+      "ts_epoch": 1791634004,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 7851,
+      "output_tokens": 12,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "credits": 0.06325092736318408,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-10T12:05:43.814523608+00:00",
+      "ts_epoch": 1791633943,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 94,
+      "output_tokens": 60,
+      "cache_creation_tokens": 22382,
+      "cache_read_tokens": 37555,
+      "credits": 0.22396514494195685,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:03:44.207612492+00:00",
+      "ts_epoch": 1791633824,
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "credits": 0.025674491210613604,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-10T12:02:34.246796923+00:00",
+      "ts_epoch": 1791633754,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 19,
+      "cache_creation_tokens": 22350,
+      "cache_read_tokens": 37535,
+      "credits": 0.21652932338308453,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:01:30.020929526+00:00",
+      "ts_epoch": 1791633690,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 223,
+      "cache_creation_tokens": 59639,
+      "cache_read_tokens": 0,
+      "credits": 0.810599903150912,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T11:56:21.313342855+00:00",
+      "ts_epoch": 1791633381,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 636,
+      "output_tokens": 5184,
+      "cache_creation_tokens": 634730,
+      "cache_read_tokens": 0,
+      "credits": 9.507367936981758,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T11:53:41.903279429+00:00",
+      "ts_epoch": 1791633221,
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "credits": 0.025674491210613604,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-10T11:43:43.635964878+00:00",
+      "ts_epoch": 1791632623,
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "credits": 0.025674491210613604,
+      "usage_source": "none"
+    }
+  ],
+  "diagnostics": [
+    {
+      "kind": "cache",
+      "time": "2026-10-10T10:22:14.508533Z",
+      "alias": 1,
+      "previous_age_secs": null,
+      "common_blocks": 0,
+      "changed_kind": "none",
+      "previous_deepest": null,
+      "previous_tokens": null,
+      "reason": "first_observation",
+      "blocks": 1753,
+      "breakpoints": [
+        83,
+        84,
+        1749
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        1730
+      ],
+      "prompt_estimate": 1689528,
+      "read_estimate": 0,
+      "covered_estimate": 1687837
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T10:23:54.539556Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T10:34:11.843381Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T10:53:54.775194Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:03:52.675939Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:14:01.735318Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:23:48.599870Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:33:45.094352Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:43:50.719801Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:53:48.937222Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T11:56:21.307459Z",
+      "alias": 1,
+      "previous_age_secs": 5647,
+      "common_blocks": 1753,
+      "changed_kind": "none",
+      "previous_deepest": 1749,
+      "previous_tokens": 1687837,
+      "reason": "previous_entry_missing",
+      "blocks": 1753,
+      "breakpoints": [
+        83,
+        84,
+        1749
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        1730
+      ],
+      "prompt_estimate": 1689528,
+      "read_estimate": 0,
+      "covered_estimate": 1687837
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:58:03.841725Z",
+      "percentage": 64.05500030517578,
+      "window_size": 1000000,
+      "context_tokens": 640550
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T11:58:03.942779Z",
+      "provider_usage": false,
+      "context_tokens": 640550,
+      "fallback_input": 133542,
+      "input": 636,
+      "output": 5184,
+      "cache_write": 634730,
+      "cache_read": 0,
+      "prompt_estimate": 1689528,
+      "covered_estimate": 1687837,
+      "read_estimate": 0
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:01:30.019607Z",
+      "alias": 1,
+      "previous_age_secs": 309,
+      "common_blocks": 82,
+      "changed_kind": "system",
+      "previous_deepest": 1749,
+      "previous_tokens": 1687837,
+      "reason": "previous_prefix_changed",
+      "blocks": 98,
+      "breakpoints": [
+        83,
+        84,
+        97
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        78
+      ],
+      "prompt_estimate": 40797,
+      "read_estimate": 0,
+      "covered_estimate": 40797
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:01:37.492324Z",
+      "percentage": 5.986299991607666,
+      "window_size": 1000000,
+      "context_tokens": 59862
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:01:37.496781Z",
+      "provider_usage": false,
+      "context_tokens": 59862,
+      "fallback_input": 48657,
+      "input": 0,
+      "output": 223,
+      "cache_write": 59639,
+      "cache_read": 0,
+      "prompt_estimate": 40797,
+      "covered_estimate": 40797,
+      "read_estimate": 0
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:02:34.245880Z",
+      "alias": 1,
+      "previous_age_secs": 64,
+      "common_blocks": 97,
+      "changed_kind": "message_other",
+      "previous_deepest": 97,
+      "previous_tokens": 40797,
+      "reason": "previous_prefix_changed",
+      "blocks": 101,
+      "breakpoints": [
+        83,
+        84,
+        100
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        81
+      ],
+      "prompt_estimate": 40996,
+      "read_estimate": 25696,
+      "covered_estimate": 40996
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:02:42.172319Z",
+      "percentage": 5.990400314331055,
+      "window_size": 1000000,
+      "context_tokens": 59904
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:02:42.211176Z",
+      "provider_usage": false,
+      "context_tokens": 59904,
+      "fallback_input": 48999,
+      "input": 0,
+      "output": 19,
+      "cache_write": 22350,
+      "cache_read": 37535,
+      "prompt_estimate": 40996,
+      "covered_estimate": 40996,
+      "read_estimate": 25696
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:03:46.848193Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:05:43.813923Z",
+      "alias": 1,
+      "previous_age_secs": 189,
+      "common_blocks": 100,
+      "changed_kind": "message_other",
+      "previous_deepest": 100,
+      "previous_tokens": 40996,
+      "reason": "previous_prefix_changed",
+      "blocks": 103,
+      "breakpoints": [
+        83,
+        84,
+        101
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        82
+      ],
+      "prompt_estimate": 41074,
+      "read_estimate": 25696,
+      "covered_estimate": 41010
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:05:50.022483Z",
+      "percentage": 6.009199619293213,
+      "window_size": 1000000,
+      "context_tokens": 60091
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:05:50.044514Z",
+      "provider_usage": false,
+      "context_tokens": 60091,
+      "fallback_input": 49125,
+      "input": 94,
+      "output": 60,
+      "cache_write": 22382,
+      "cache_read": 37555,
+      "prompt_estimate": 41074,
+      "covered_estimate": 41010,
+      "read_estimate": 25696
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:06:44.568015Z",
+      "alias": 2,
+      "previous_age_secs": null,
+      "common_blocks": 0,
+      "changed_kind": "none",
+      "previous_deepest": null,
+      "previous_tokens": null,
+      "reason": "first_observation",
+      "blocks": 69,
+      "breakpoints": [
+        59,
+        60,
+        68
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        49
+      ],
+      "prompt_estimate": 30825,
+      "read_estimate": 0,
+      "covered_estimate": 30825
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:06:48.646941Z",
+      "percentage": 4.5243000984191895,
+      "window_size": 1000000,
+      "context_tokens": 45243
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:06:48.647180Z",
+      "provider_usage": false,
+      "context_tokens": 45243,
+      "fallback_input": 35826,
+      "input": 0,
+      "output": 49,
+      "cache_write": 45194,
+      "cache_read": 0,
+      "prompt_estimate": 30825,
+      "covered_estimate": 30825,
+      "read_estimate": 0
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:06:51.384188Z",
+      "alias": 3,
+      "previous_age_secs": null,
+      "common_blocks": 0,
+      "changed_kind": "none",
+      "previous_deepest": null,
+      "previous_tokens": null,
+      "reason": "first_observation",
+      "blocks": 9,
+      "breakpoints": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38566,
+      "read_estimate": 0,
+      "covered_estimate": 38514
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:06:52.354858Z",
+      "percentage": 0.786300003528595,
+      "window_size": 1000000,
+      "context_tokens": 7863
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:06:52.420168Z",
+      "provider_usage": false,
+      "context_tokens": 7863,
+      "fallback_input": 1071,
+      "input": 7851,
+      "output": 12,
+      "cache_write": 0,
+      "cache_read": 0,
+      "prompt_estimate": 860,
+      "covered_estimate": 0,
+      "read_estimate": 0
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:06:52.879494Z",
+      "percentage": 5.962699890136719,
+      "window_size": 1000000,
+      "context_tokens": 59626
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:06.697564Z",
+      "alias": 2,
+      "previous_age_secs": 22,
+      "common_blocks": 68,
+      "changed_kind": "message_other",
+      "previous_deepest": 68,
+      "previous_tokens": 30825,
+      "reason": "previous_prefix_changed",
+      "blocks": 75,
+      "breakpoints": [
+        59,
+        60,
+        74
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        53
+      ],
+      "prompt_estimate": 31558,
+      "read_estimate": 23715,
+      "covered_estimate": 31558
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:09.816912Z",
+      "percentage": 4.654999732971191,
+      "window_size": 1000000,
+      "context_tokens": 46549
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:07:09.817839Z",
+      "provider_usage": false,
+      "context_tokens": 46549,
+      "fallback_input": 35844,
+      "input": 0,
+      "output": 48,
+      "cache_write": 11557,
+      "cache_read": 34944,
+      "prompt_estimate": 31558,
+      "covered_estimate": 31558,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:10.365862Z",
+      "alias": 3,
+      "previous_age_secs": 19,
+      "common_blocks": 7,
+      "changed_kind": "message_text",
+      "previous_deepest": 6,
+      "previous_tokens": 38514,
+      "reason": "previous_prefix_available",
+      "blocks": 10,
+      "breakpoints": [
+        1,
+        3,
+        6,
+        7
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38614,
+      "read_estimate": 38514,
+      "covered_estimate": 38562
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:11.937648Z",
+      "percentage": 5.9741997718811035,
+      "window_size": 1000000,
+      "context_tokens": 59741
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:24.612020Z",
+      "alias": 2,
+      "previous_age_secs": 18,
+      "common_blocks": 74,
+      "changed_kind": "message_other",
+      "previous_deepest": 74,
+      "previous_tokens": 31558,
+      "reason": "previous_prefix_changed",
+      "blocks": 78,
+      "breakpoints": [
+        59,
+        60,
+        77
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        56
+      ],
+      "prompt_estimate": 32609,
+      "read_estimate": 23715,
+      "covered_estimate": 32609
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:28.853393Z",
+      "percentage": 4.85290002822876,
+      "window_size": 1000000,
+      "context_tokens": 48529
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:07:28.860596Z",
+      "provider_usage": false,
+      "context_tokens": 48529,
+      "fallback_input": 35862,
+      "input": 0,
+      "output": 128,
+      "cache_write": 13201,
+      "cache_read": 35200,
+      "prompt_estimate": 32609,
+      "covered_estimate": 32609,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:29.366211Z",
+      "alias": 3,
+      "previous_age_secs": 19,
+      "common_blocks": 8,
+      "changed_kind": "message_text",
+      "previous_deepest": 7,
+      "previous_tokens": 38562,
+      "reason": "previous_prefix_available",
+      "blocks": 11,
+      "breakpoints": [
+        1,
+        3,
+        7,
+        8
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38676,
+      "read_estimate": 38562,
+      "covered_estimate": 38624
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:31.520318Z",
+      "percentage": 5.988100051879883,
+      "window_size": 1000000,
+      "context_tokens": 59881
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:33.080974Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 77,
+      "changed_kind": "message_other",
+      "previous_deepest": 77,
+      "previous_tokens": 32609,
+      "reason": "previous_prefix_changed",
+      "blocks": 82,
+      "breakpoints": [
+        59,
+        60,
+        81
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        60
+      ],
+      "prompt_estimate": 33442,
+      "read_estimate": 23715,
+      "covered_estimate": 33442
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:40.761950Z",
+      "percentage": 5.011099815368652,
+      "window_size": 1000000,
+      "context_tokens": 50110
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:07:40.771753Z",
+      "provider_usage": false,
+      "context_tokens": 50110,
+      "fallback_input": 35880,
+      "input": 0,
+      "output": 131,
+      "cache_write": 14537,
+      "cache_read": 35442,
+      "prompt_estimate": 33442,
+      "covered_estimate": 33442,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:41.410016Z",
+      "alias": 3,
+      "previous_age_secs": 12,
+      "common_blocks": 9,
+      "changed_kind": "message_text",
+      "previous_deepest": 8,
+      "previous_tokens": 38624,
+      "reason": "previous_prefix_available",
+      "blocks": 12,
+      "breakpoints": [
+        1,
+        3,
+        8,
+        9
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38751,
+      "read_estimate": 38624,
+      "covered_estimate": 38699
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:42.794614Z",
+      "percentage": 6.003699779510498,
+      "window_size": 1000000,
+      "context_tokens": 60036
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:43.598635Z",
+      "alias": 2,
+      "previous_age_secs": 10,
+      "common_blocks": 81,
+      "changed_kind": "message_other",
+      "previous_deepest": 81,
+      "previous_tokens": 33442,
+      "reason": "previous_prefix_changed",
+      "blocks": 86,
+      "breakpoints": [
+        59,
+        60,
+        85
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        64
+      ],
+      "prompt_estimate": 36037,
+      "read_estimate": 23715,
+      "covered_estimate": 36037
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:50.194612Z",
+      "percentage": 5.500400066375732,
+      "window_size": 1000000,
+      "context_tokens": 55004
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:07:50.198353Z",
+      "provider_usage": false,
+      "context_tokens": 55004,
+      "fallback_input": 35898,
+      "input": 0,
+      "output": 182,
+      "cache_write": 18745,
+      "cache_read": 36077,
+      "prompt_estimate": 36037,
+      "covered_estimate": 36037,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:51.323176Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 85,
+      "changed_kind": "message_other",
+      "previous_deepest": 85,
+      "previous_tokens": 36037,
+      "reason": "previous_prefix_changed",
+      "blocks": 92,
+      "breakpoints": [
+        59,
+        60,
+        91
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        68
+      ],
+      "prompt_estimate": 42997,
+      "read_estimate": 23715,
+      "covered_estimate": 42997
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:08:00.872424Z",
+      "percentage": 6.849499702453613,
+      "window_size": 1000000,
+      "context_tokens": 68494
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:08:00.872499Z",
+      "provider_usage": false,
+      "context_tokens": 68494,
+      "fallback_input": 35970,
+      "input": 0,
+      "output": 289,
+      "cache_write": 30587,
+      "cache_read": 37618,
+      "prompt_estimate": 42997,
+      "covered_estimate": 42997,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:08:01.476293Z",
+      "alias": 3,
+      "previous_age_secs": 20,
+      "common_blocks": 10,
+      "changed_kind": "message_text",
+      "previous_deepest": 9,
+      "previous_tokens": 38699,
+      "reason": "previous_prefix_available",
+      "blocks": 14,
+      "breakpoints": [
+        1,
+        3,
+        10,
+        11
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38898,
+      "read_estimate": 38699,
+      "covered_estimate": 38846
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:08:03.149786Z",
+      "percentage": 6.035799980163574,
+      "window_size": 1000000,
+      "context_tokens": 60357
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:08:04.039799Z",
+      "alias": 2,
+      "previous_age_secs": 13,
+      "common_blocks": 91,
+      "changed_kind": "message_other",
+      "previous_deepest": 91,
+      "previous_tokens": 42997,
+      "reason": "previous_prefix_changed",
+      "blocks": 96,
+      "breakpoints": [
+        59,
+        60,
+        95
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        74
+      ],
+      "prompt_estimate": 43657,
+      "read_estimate": 23715,
+      "covered_estimate": 43657
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:08:22.949045Z",
+      "percentage": 7.059100151062012,
+      "window_size": 1000000,
+      "context_tokens": 70591
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:08:22.956859Z",
+      "provider_usage": false,
+      "context_tokens": 70591,
+      "fallback_input": 35988,
+      "input": 0,
+      "output": 951,
+      "cache_write": 31811,
+      "cache_read": 37829,
+      "prompt_estimate": 43657,
+      "covered_estimate": 43657,
+      "read_estimate": 23715
+    }
+  ],
+  "sub2api": {
+    "account_id": 94,
+    "count": 72,
+    "user_usd": 115.9857,
+    "account_usd": 69.0538,
+    "latest_opus_user_usd": 0.311877,
+    "latest_opus_base_usd": 0.185641,
+    "computed_user_usd": 0.311876544,
+    "rate_boundary": "Previously verified rates; not reopened this round."
+  },
+  "finding": "Alias2 has six consecutive changes precisely at prior deepest breakpoint at8-22 second intervals, unchanged prefix before it; all old positions within lookup windows. Earliest hit remains23715 estimated tokens. Alias3 Sonnet has five successive prior-prefix-available results. Cannot identify content/role/representation change from message_other; exact field unknown. No code or configuration changed."
+}

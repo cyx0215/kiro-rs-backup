@@ -1,0 +1,214 @@
+{
+  "captured_at": "2026-10-09T03:28:13.319339+08:00",
+  "server": "107.174.53.6",
+  "containers": [
+    {
+      "name": "kiro-rs",
+      "image": "ghcr.io/hank9999/kiro-rs:latest",
+      "image_id": "sha256:b9d89803f7ff1d74501fdf3bc843540935d3417a3c2baf1848fc15aff7ef3268",
+      "status": "exited",
+      "restart_count": 0,
+      "restart_policy": {
+        "Name": "unless-stopped",
+        "MaximumRetryCount": 0
+      },
+      "ports": {
+        "8990/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8990"
+          }
+        ]
+      },
+      "mounts": [
+        {
+          "source": "/opt/kiro-rs/config",
+          "destination": "/app/config",
+          "writable": true
+        }
+      ]
+    },
+    {
+      "name": "kiro-rs-zyphrzero-test",
+      "image": "zyphrzero/kiro-rs@sha256:fd6f06cc18427faf6aa4b1088c2ce443088efca3ca67d2f23644bf48cd8a0256",
+      "image_id": "sha256:fd6f06cc18427faf6aa4b1088c2ce443088efca3ca67d2f23644bf48cd8a0256",
+      "status": "running",
+      "restart_count": 0,
+      "restart_policy": {
+        "Name": "unless-stopped",
+        "MaximumRetryCount": 0
+      },
+      "ports": {
+        "8990/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8992"
+          }
+        ]
+      },
+      "mounts": [
+        {
+          "source": "/home/deploy/kiro-zyphrzero-test/data",
+          "destination": "/app/config",
+          "writable": true
+        }
+      ]
+    },
+    {
+      "name": "kiro-rs-public",
+      "image": "caddy:2",
+      "image_id": "sha256:f2a1290d0463aad60660d4ec134943f183ee2a5f6c3eb7bf32dd984f2f020772",
+      "status": "running",
+      "restart_count": 0,
+      "restart_policy": {
+        "Name": "unless-stopped",
+        "MaximumRetryCount": 0
+      },
+      "ports": {},
+      "mounts": [
+        {
+          "source": "/etc/letsencrypt",
+          "destination": "/etc/letsencrypt",
+          "writable": false
+        },
+        {
+          "source": "/opt/kiro-rs/Caddyfile",
+          "destination": "/etc/caddy/Caddyfile",
+          "writable": false
+        }
+      ]
+    }
+  ],
+  "caddy_upstreams": [
+    "reverse_proxy 127.0.0.1:8992",
+    "reverse_proxy 127.0.0.1:8992 {"
+  ],
+  "config": {
+    "host": "0.0.0.0",
+    "port": 8990,
+    "region": "us-east-1",
+    "tlsBackend": "rustls",
+    "updateAutoApply": false,
+    "cacheMeteringEnabled": true,
+    "traceEnabled": true
+  },
+  "proxy": {
+    "authentication_configured": true,
+    "test_exit_code": 0,
+    "observed_exit_ip": "198.63.254.19"
+  },
+  "http_checks": [
+    {
+      "url": "https://107.174.53.6/v1/models",
+      "authenticated": true,
+      "status": 200
+    },
+    {
+      "url": "https://107.174.53.6/v1/models",
+      "authenticated": false,
+      "status": 401
+    },
+    {
+      "url": "https://107.174.53.6/admin",
+      "authenticated": false,
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:8992/api/admin/credentials",
+      "authenticated": true,
+      "status": 200
+    }
+  ],
+  "tls": {
+    "verified": true,
+    "not_after": "Oct 15 02:01:14 2026 GMT",
+    "sha256": "e0ecab02f4913a0cc4a30226b53de7411e3a0ce04232c2d1f47c30d431d44e60"
+  },
+  "recent_traces": [
+    {
+      "ts": "2026-10-08T19:26:08.598615574+00:00",
+      "model": "claude-opus-5-5",
+      "final_status": "success",
+      "duration_ms": 4592,
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-08T19:25:31.517089108+00:00",
+      "model": "claude-sonnet-5-5",
+      "final_status": "success",
+      "duration_ms": 881,
+      "input_tokens": 6,
+      "output_tokens": 7,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 2194,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-08T19:25:30.258582323+00:00",
+      "model": "claude-sonnet-5-5",
+      "final_status": "success",
+      "duration_ms": 1230,
+      "input_tokens": 6,
+      "output_tokens": 7,
+      "cache_creation_tokens": 2194,
+      "cache_read_tokens": 0,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-08T19:19:09.623643744+00:00",
+      "model": "claude-sonnet-5-5",
+      "final_status": "success",
+      "duration_ms": 3258,
+      "input_tokens": 3,
+      "output_tokens": 24,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 2131,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-08T19:19:08.366830817+00:00",
+      "model": "claude-sonnet-5-5",
+      "final_status": "success",
+      "duration_ms": 1213,
+      "input_tokens": 3,
+      "output_tokens": 1,
+      "cache_creation_tokens": 2144,
+      "cache_read_tokens": 0,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-08T19:04:02.103686351+00:00",
+      "model": "claude-sonnet-4-5",
+      "final_status": "success",
+      "duration_ms": 1431,
+      "input_tokens": 4104,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-08T19:03:22.579882844+00:00",
+      "model": "claude-sonnet-5-5",
+      "final_status": "success",
+      "duration_ms": 3517,
+      "input_tokens": 4,
+      "output_tokens": 38,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 2155,
+      "usage_source": "simulated"
+    }
+  ],
+  "backup_directory": "/home/deploy/kiro-zyphrzero-test/backups/cutover-20261008T191605Z",
+  "original_api_key_preserved": true,
+  "limitations": [
+    "Observed cache source is simulated.",
+    "Sub2API billing on separate distribution server not verified.",
+    "Proxy check is a connectivity test, not a packet-level audit.",
+    "cutover-validation.json is root-only; traces collected instead."
+  ]
+}

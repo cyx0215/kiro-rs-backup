@@ -310,6 +310,7 @@ async fn main() {
         Some(usage_aggregator.clone()),
         Some(cache_meter.clone()),
         trace_store.clone(),
+        config.sub2api_usage_compat,
     );
 
     // 构建 Admin API 路由（配置了非空 adminApiKey 时启用）

@@ -1408,6 +1408,7 @@ pub struct StreamContext {
     pub message_id: String,
     /// 输入 tokens（估算值）
     pub input_tokens: i32,
+    pub sub2api_usage_compat: bool,
     /// 从 contextUsageEvent 计算的实际输入 tokens
     pub context_input_tokens: Option<i32>,
     /// 上游 metadataEvent.tokenUsage 的精确最终快照。
@@ -1545,6 +1546,7 @@ impl StreamContext {
             text_block_index: None,
             strip_thinking_leading_newline: false,
             cache_usage: super::cache_metering::CacheUsage::default(),
+            sub2api_usage_compat: false,
             credits: 0.0,
             metering: None,
             repeat_guard_last_line: String::new(),
@@ -1569,8 +1571,8 @@ impl StreamContext {
                 "stop_reason": null,
                 "stop_sequence": null,
                 "usage": {
-                    "input_tokens": self.input_tokens,
-                    "output_tokens": 1,
+                    "input_tokens": if self.sub2api_usage_compat { 0 } else { self.input_tokens },
+                    "output_tokens": if self.sub2api_usage_compat { 0 } else { 1 },
                     "cache_creation_input_tokens": 0,
                     "cache_read_input_tokens": 0
                 }
@@ -1645,6 +1647,13 @@ impl StreamContext {
                 let actual_input_tokens =
                     (context_usage.context_usage_percentage * (window_size as f64) / 100.0) as i32;
                 self.context_input_tokens = Some(actual_input_tokens);
+                if super::cache_metering::billing_diagnostics_enabled() {
+                    tracing::info!(
+                        percentage = context_usage.context_usage_percentage,
+                        window_size, context_tokens = actual_input_tokens,
+                        "billing_context_diagnostic"
+                    );
+                }
                 // 上下文使用量达到 100% 时，设置 stop_reason 为 model_context_window_exceeded
                 if context_usage.context_usage_percentage >= 100.0 {
                     self.state_manager
@@ -2607,6 +2616,19 @@ impl StreamContext {
         // 精确 metadata 真值优先；缺失时才使用 contextUsage/估算回退。
         let (final_input_tokens, cache_creation, cache_read) = self.resolved_usage();
         let final_output_tokens = self.resolved_output_tokens();
+        if super::cache_metering::billing_diagnostics_enabled() {
+            tracing::info!(
+                provider_usage = self.provider_token_usage.is_some(),
+                context_tokens = ?self.context_input_tokens,
+                fallback_input = self.input_tokens,
+                input = final_input_tokens, output = final_output_tokens,
+                cache_write = cache_creation, cache_read,
+                prompt_estimate = self.cache_usage.prompt_total_est,
+                covered_estimate = self.cache_usage.cache_covered_est,
+                read_estimate = self.cache_usage.cache_read,
+                "billing_usage_diagnostic"
+            );
+        }
 
         // 生成最终事件（message_delta + message_stop）
         events.extend(self.state_manager.generate_final_events(
@@ -2790,6 +2812,98 @@ pub fn estimate_tokens(text: &str) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn sub2api_usage_compat_reconciles_final_zero_and_positive_input() {
+        use crate::anthropic::cache_metering::CacheUsage;
+
+        for compat in [false, true] {
+            for cached in [false, true] {
+                for provider in [false, true] {
+                    let mut ctx = StreamContext::new_with_thinking(
+                        "test-model",
+                        100,
+                        false,
+                        HashMap::new(),
+                        test_known_tools(),
+                    );
+                    ctx.sub2api_usage_compat = compat;
+                    ctx.output_tokens = 9;
+                    if cached {
+                        ctx.cache_usage = CacheUsage {
+                            cache_read: 100,
+                            cache_covered_est: 100,
+                            prompt_total_est: 100,
+                        };
+                    }
+                    if provider {
+                        ctx.provider_token_usage = Some(TokenUsage {
+                            uncached_input_tokens: if cached { 0 } else { 7 },
+                            output_tokens: 11,
+                            cache_read_input_tokens: if cached { 80 } else { 0 },
+                            cache_write_input_tokens: if cached { 20 } else { 0 },
+                        });
+                    }
+                    let start = ctx.create_message_start_event();
+                    let mut downstream_input = start["message"]["usage"]["input_tokens"]
+                        .as_i64()
+                        .unwrap();
+                    assert_eq!(downstream_input, if compat { 0 } else { 100 });
+                    let expected = ctx.resolved_usage();
+                    let events = ctx.generate_final_events();
+                    let usage = &events
+                        .iter()
+                        .find(|e| e.event == "message_delta")
+                        .unwrap()
+                        .data["usage"];
+                    let final_input = usage["input_tokens"].as_i64().unwrap();
+                    // Sub2API only replaces its initial input when the final input is positive.
+                    if final_input > 0 {
+                        downstream_input = final_input;
+                    }
+                    assert_eq!(final_input, i64::from(expected.0));
+                    assert_eq!(usage["cache_creation_input_tokens"], json!(expected.1));
+                    assert_eq!(usage["cache_read_input_tokens"], json!(expected.2));
+                    assert_eq!(
+                        usage["output_tokens"],
+                        json!(if provider { 11 } else { 9 })
+                    );
+                    if compat || !cached {
+                        assert_eq!(downstream_input, final_input);
+                    } else {
+                        assert_eq!(downstream_input, 100);
+                        assert_eq!(final_input, 0);
+                    }
+                    assert_eq!(ctx.input_tokens, 100, "keep the internal fallback estimate");
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn buffered_stream_starts_with_final_zero_input() {
+        let mut ctx = BufferedStreamContext::new(
+            "test-model",
+            100,
+            false,
+            HashMap::new(),
+            test_known_tools(),
+        );
+        ctx.set_cache_usage(crate::anthropic::cache_metering::CacheUsage {
+            cache_read: 100,
+            cache_covered_est: 100,
+            prompt_total_est: 100,
+        });
+        let events = ctx.finish_and_get_all_events();
+        let start = &events
+            .iter()
+            .find(|e| e.event == "message_start")
+            .unwrap()
+            .data;
+        assert_eq!(start["message"]["usage"]["input_tokens"], json!(0));
+        assert_eq!(start["message"]["usage"]["cache_read_input_tokens"], json!(100));
+        assert_eq!(ctx.final_usage().0, 0);
+    }
 
     // ---- ToolJsonAccumulator: 流式半截 / 非法工具调用 JSON ----
 

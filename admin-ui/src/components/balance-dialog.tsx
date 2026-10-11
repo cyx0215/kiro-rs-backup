@@ -33,7 +33,7 @@ export function BalanceDialog({ credentialId, open, onOpenChange }: BalanceDialo
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })
-    return num < 0 ? `-$${formatted}` : `$${formatted}`
+    return `${num < 0 ? '-' : ''}${formatted} credits`
   }
 
   return (
@@ -82,8 +82,8 @@ export function BalanceDialog({ credentialId, open, onOpenChange }: BalanceDialo
             {/* 使用进度 */}
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span>已使用: ${formatNumber(balance.currentUsage)}</span>
-                <span>限额: ${formatNumber(balance.usageLimit)}</span>
+                <span>已使用: {formatNumber(balance.currentUsage)} credits</span>
+                <span>限额: {formatNumber(balance.usageLimit)} credits</span>
               </div>
               <Progress value={balance.usagePercentage} />
               <div className="text-center text-sm text-muted-foreground">

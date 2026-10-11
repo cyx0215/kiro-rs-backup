@@ -1,0 +1,193 @@
+{
+  "schema_version": 2,
+  "observed_at": "2026-10-10T19:06:54.944775+00:00",
+  "since": "2026-10-10T16:40:00+08:00",
+  "until": "2026-10-10T19:03:47.978257+00:00",
+  "scope": "All test-server completed traces; not necessarily one Sub2API account",
+  "window_basis": "Trace completion time in [since,until); snapshots must not be added across overlapping windows",
+  "cumulative_test_server": {
+    "count": 450,
+    "statuses": {
+      "success": 445,
+      "interrupted": 4,
+      "error": 1
+    },
+    "kiro_credits": "266.37624578"
+  },
+  "post_fix_test_server": {
+    "since": "2026-10-10T22:58:45+08:00",
+    "basis": "Started after deployment and completed before until",
+    "count": 81,
+    "statuses": {
+      "success": 79,
+      "interrupted": 2
+    },
+    "kiro_credits": "41.29789410"
+  },
+  "latest_trace_finish": "2026-10-10T19:03:45.927286+00:00",
+  "container_status": {
+    "test": {
+      "image": "sha256:ba74e53a06cf097c587f658ae6222047b404f9045f1c9e08f67c55bdbfdc359a",
+      "status": "running",
+      "restarts": 0
+    },
+    "production": {
+      "image": "sha256:fd6f06cc18427faf6aa4b1088c2ce443088efca3ca67d2f23644bf48cd8a0256",
+      "status": "running",
+      "restarts": 0
+    },
+    "verified_on_this_pass": true
+  },
+  "sub2api": {
+    "account_id": 94,
+    "observed_at": "2026-10-10T19:05:55.131Z",
+    "date_filter": [
+      "2026-10-10",
+      "2026-10-11"
+    ],
+    "count": 446,
+    "user_usd": "268.952833764",
+    "account_usd": "160.10563",
+    "standard_usd": "160.10563",
+    "total_tokens": 54204245,
+    "input_tokens": 445938,
+    "output_tokens": 85961,
+    "cache_creation_tokens": 31384688,
+    "cache_read_tokens": 22287658,
+    "error_requests": {
+      "count": 2,
+      "latest_time": "2026-10-10T22:58:44+08:00",
+      "latest_status": 502,
+      "previous_time": "2026-10-10T18:25:01+08:00",
+      "no_errors_after_fix_in_visible_list": true
+    },
+    "largest_observed_usage_id": 418852,
+    "sample_count": 2,
+    "complete_row_export": false,
+    "formula_checked_rows": 2,
+    "sample_user_usd": "0.09164736",
+    "sample_account_usd": "0.05455200",
+    "sample_all_four_tokens_match": true,
+    "pricing_check": "derived_rates_only",
+    "user_multiplier": "1.68",
+    "account_multiplier": "1",
+    "sample_file": "billing-monitor-0303-sub2api-sample.json",
+    "sample_note": "Two new first-page usage records retained; full account export and independent historical pricing check not performed."
+  },
+  "incremental_window": {
+    "since": "2026-10-10T18:48:51.767922+00:00",
+    "until": "2026-10-10T19:03:47.978257+00:00",
+    "test_server": {
+      "available": true,
+      "trace_count": 2,
+      "statuses": {
+        "success": 2
+      },
+      "kiro_credits_all_test_traffic": "0.05134898",
+      "tokens": {
+        "input_tokens": 13628,
+        "output_tokens": 2,
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "usage_sources": {
+        "none": 2
+      },
+      "truncated": false,
+      "container": {
+        "image": "sha256:ba74e53a06cf097c587f658ae6222047b404f9045f1c9e08f67c55bdbfdc359a",
+        "status": "running",
+        "restarts": 0
+      },
+      "diagnostic_reason_counts_in_log_tail": {},
+      "diagnostics_available": true
+    },
+    "reconciliation": {
+      "unique_pairs": 2,
+      "ambiguous_usage_rows": 0,
+      "unpaired_usage_rows": 0,
+      "unpaired_success_traces": 0,
+      "input_mismatches": 0,
+      "no_shared_request_id": true
+    },
+    "max_pair_time_delta_seconds": "0.019",
+    "report_file": "billing-monitor-0303-report.json"
+  },
+  "cache_evidence": [],
+  "cache_assessment": "No new cache diagnostic. Both new short successful Opus calls used 6814 input and one output token; these do not provide long-session cache evidence.",
+  "fix_deployed": true,
+  "monitor_assessment": "No newly actionable anomaly. Both new calls succeeded with HTTP 200 and uniquely match account-94 bills by completion time, model and all four token classes. Recorded fee components and multipliers pass. No new interruption, 429 or downstream error; two existing downstream 502 records unchanged.",
+  "change_from_previous": {
+    "previous_baseline": "billing-monitor-0248.json",
+    "since": "2026-10-10T18:48:51.767922+00:00",
+    "until": "2026-10-10T19:03:47.978257+00:00",
+    "new_completed_traces": 2,
+    "statuses": {
+      "success": 2
+    },
+    "kiro_credits": "0.05134898",
+    "new_account_usage_ids": [
+      418852,
+      418846
+    ],
+    "new_errors": 0,
+    "new_interrupted": 0,
+    "new_429_attempts": 0,
+    "current_consecutive_failure_count": 0,
+    "basis": "Non-overlapping completion-time delta"
+  },
+  "deduplication": {
+    "latest_observed_usage_id": 418852,
+    "sample_usage_ids": [
+      418852,
+      418846
+    ],
+    "known_error_times": [
+      "2026-10-10T22:58:44+08:00",
+      "2026-10-10T18:25:01+08:00"
+    ],
+    "known_transient_trace_refs": [
+      "42e106db8a404acd",
+      "688b8186debe2000"
+    ],
+    "new_actionable_alerts": [],
+    "known_coverage_limitation": "Only two newest rows sampled; CLI full pagination authentication not configured; no new access blocker."
+  },
+  "boundaries": [
+    "Credits cover all test-server traces; USD covers only the selected Sub2API account.",
+    "Simulated cache usage is not an upstream cache measurement; USD is not Kiro credits.",
+    "No shared request ID: pairs are inferred using model, finish time and token counts; ambiguous rows remain unpaired.",
+    "Derived unit prices describe recorded costs; only supplied dated price rules independently check unit prices.",
+    "Account USD applies its own base cost and multiplier; it is not verified against upstream cash costs.",
+    "Diagnostics cover at most 5000 log lines and 50 recent cache events, not every request.",
+    "Success covers finalized Kiro traces; Sub2API errors before reaching Kiro and active requests are not observed.",
+    "Only first-page rows after prior high-water ID were retained; this is not a full account history export.",
+    "At midnight the visible UI date filter was refreshed to 2026-10-10 through 2026-10-11. Account totals and test-server totals have different scopes and were not forced equal.",
+    "No inference requests, online configuration changes, credential extraction or raw-log persistence in this pass."
+  ],
+  "count": 450,
+  "statuses": {
+    "success": 445,
+    "interrupted": 4,
+    "error": 1
+  },
+  "credits": "266.37624578",
+  "latest_ts_epoch": 1791659025.927286,
+  "transient_interruption": {
+    "ref": "42e106db8a404acd",
+    "start": "2026-10-10T18:13:42.916784+00:00",
+    "finish": "2026-10-10T18:14:12.786784+00:00",
+    "duration_ms": 29870,
+    "error_type": "abandoned_before_headers",
+    "attempt_http_statuses": [],
+    "token_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "kiro_credits": "0.0",
+    "next_observed_success_finish": "2026-10-10T18:23:53.130282+00:00",
+    "assessment": "The previously recorded isolated interruption was followed by a successful request; root cause remains unconfirmed."
+  }
+}

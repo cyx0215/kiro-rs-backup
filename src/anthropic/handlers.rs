@@ -965,6 +965,7 @@ pub async fn post_messages(
             cache_usage,
             tracer,
             key_ctx.group.clone(),
+            state.sub2api_usage_compat,
         )
         .await
     } else {
@@ -1011,6 +1012,7 @@ async fn handle_stream_request(
     cache_usage: super::cache_metering::CacheUsage,
     tracer: std::sync::Arc<RequestTracer>,
     group: Option<String>,
+    sub2api_usage_compat: bool,
 ) -> Response {
     // 调用 Kiro API（支持多凭据故障转移）
     let call_result = match provider
@@ -1044,6 +1046,7 @@ async fn handle_stream_request(
         known_tool_names,
     );
     ctx.cache_usage = cache_usage;
+    ctx.sub2api_usage_compat = sub2api_usage_compat;
 
     // 生成初始事件
     let initial_events = ctx.generate_initial_events();
@@ -1511,6 +1514,13 @@ pub(crate) async fn execute_non_stream_request(
                                 (context_usage.context_usage_percentage * (window_size as f64)
                                     / 100.0) as i32;
                             context_input_tokens = Some(actual_input_tokens);
+                            if super::cache_metering::billing_diagnostics_enabled() {
+                                tracing::info!(
+                                    percentage = context_usage.context_usage_percentage,
+                                    window_size, context_tokens = actual_input_tokens,
+                                    "billing_context_diagnostic"
+                                );
+                            }
                             // 上下文使用量达到 100% 时，设置 stop_reason 为 model_context_window_exceeded
                             if context_usage.context_usage_percentage >= 100.0 {
                                 stop_reason = "model_context_window_exceeded".to_string();

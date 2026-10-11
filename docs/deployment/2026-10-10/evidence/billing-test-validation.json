@@ -1,0 +1,82 @@
+{
+  "sub2apiUsageCompat": true,
+  "requests": [
+    {
+      "sequence": 1,
+      "message_stop": true,
+      "status": 200,
+      "start_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "final_usage": {
+        "cache_creation_input_tokens": 5545,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.023423280348258708,
+        "input_tokens": 0,
+        "output_tokens": 2
+      },
+      "sub2api_positive_only_parser_usage": {
+        "cache_creation_input_tokens": 5545,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 2
+      }
+    },
+    {
+      "sequence": 2,
+      "message_stop": true,
+      "status": 200,
+      "start_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5529,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.018184147976782753,
+        "input_tokens": 0,
+        "output_tokens": 56
+      },
+      "sub2api_positive_only_parser_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5529,
+        "input_tokens": 0,
+        "output_tokens": 56
+      }
+    }
+  ],
+  "unauthenticated_status": 401,
+  "models_status": 200,
+  "model": "claude-sonnet-4",
+  "trace_usage": [
+    {
+      "model": "claude-sonnet-4",
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 56,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 5529,
+      "credits": 0.018184147976782753,
+      "usage_source": "simulated"
+    },
+    {
+      "model": "claude-sonnet-4",
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 2,
+      "cache_creation_tokens": 5545,
+      "cache_read_tokens": 0,
+      "credits": 0.023423280348258708,
+      "usage_source": "simulated"
+    }
+  ]
+}

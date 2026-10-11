@@ -1,0 +1,5 @@
+services:
+  billing-test:
+    image: kiro-rs:billing-diag2-20261010
+    environment:
+      KIRO_BILLING_DIAGNOSTICS: "1"

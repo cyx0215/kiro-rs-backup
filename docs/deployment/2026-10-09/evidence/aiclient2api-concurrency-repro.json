@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-09T07:13:40.943Z",
+  "commit": "4c4c774930c85f3760e9c89a1ef481f74eac4d00",
+  "node": "v24.19.0",
+  "sourceHashes": {
+    "acquire": "b49a6e5e1a6a6ac5fd75e063c81d2853252c96e0dcfa4dc848dae356f87a0236",
+    "release": "115283144da12d6a49fc371c7b63d8d323bb49c1773e898bc579a62b501f0066",
+    "select": "52440c8f78964c16766d687a5b47ee5f037b3f79469127922e64bbaf8b9a6e8c",
+    "throttle": "e9ef8c15a69516d8e7b7bb0deb0b4110f0e89c8e19db6b1e5b0e8ab7d09008c5",
+    "stream": "f5e08e1d8607202e491560fcca5fc7d56a7ef38402870db6151b65a40b0f9420",
+    "wrapper": "b7f1bc8c2487b26863d07632001be6729b9ce248a745d75563008b3349931954"
+  },
+  "scope": "Unchanged source methods in VM with fake provider selection and fake network; not a full app or upstream integration test",
+  "poolHandoffRace": {
+    "concurrencyLimit": 1,
+    "observedActiveCount": 2,
+    "reproduced": true
+  },
+  "networkRetry": {
+    "throttleDisabled": {
+      "minIntervalMs": 0,
+      "requests": 2,
+      "builds": 2,
+      "completed": true,
+      "content": "ok"
+    },
+    "throttleEnabled": {
+      "minIntervalMs": 1,
+      "requests": 1,
+      "builds": 2,
+      "completed": false
+    },
+    "deadlockReproduced": true
+  },
+  "wrapperCancellation": {
+    "cleanedAfterClientCancellation": false,
+    "cleanedAfterExplicitInnerReturn": true,
+    "reproduced": true
+  },
+  "assertionsPassed": true
+}

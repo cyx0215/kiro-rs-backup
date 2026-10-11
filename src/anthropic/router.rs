@@ -68,6 +68,7 @@ pub fn create_router(
         usage_aggregator,
         cache_meter,
         trace_store,
+        false,
     )
 }
 
@@ -82,8 +83,10 @@ pub fn create_router_with_shared_provider(
     usage_aggregator: Option<SharedAggregator>,
     cache_meter: Option<SharedCacheMeter>,
     trace_store: Option<SharedTraceStore>,
+    sub2api_usage_compat: bool,
 ) -> Router {
     let mut state = AppState::new(extract_thinking, tool_compatibility_mode);
+    state.sub2api_usage_compat = sub2api_usage_compat;
     if let Some(provider) = kiro_provider {
         state = state.with_shared_kiro_provider(provider);
     }

@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-10-10T17:16:44+08:00",
+  "account_id": 94,
+  "server_count_since_1640": 35,
+  "server_success_count": 35,
+  "previous_baseline_count": 31,
+  "new_completed_records": 4,
+  "credits_total": 65.13779623240465,
+  "credits_previous": 56.803802944179104,
+  "sub2api_filtered_count": 36,
+  "latest_sub2api_time": "2026-10-10T17:13:45+08:00",
+  "sample": {
+    "sub2api_time": "2026-10-10T17:13:34+08:00",
+    "trace_start_time": "2026-10-10T09:12:57.173596022+00:00",
+    "model": "claude-opus-5-5",
+    "input_tokens": 24,
+    "output_tokens": 54,
+    "cache_creation_tokens": 619968,
+    "cache_read_tokens": 9588,
+    "usd_per_million": {"input": 4, "output": 20, "cache_creation": 5, "cache_read": 0.2},
+    "base_usd": 3.1029336,
+    "multiplier": 1.68,
+    "user_usd_display": 5.21292845,
+    "credits": 2.211685884577114,
+    "usage_source": "simulated",
+    "four_token_fields_match": true,
+    "usd_formula_matches_display_rounding": true
+  },
+  "new_alert": false,
+  "known_unresolved_issue": "Repeated roughly 600k simulated cache writes; already notified, no new causal finding",
+  "limits": "Server traces and Sub2API counts have different time/scope; no shared request ID. Sub2API pre-upstream errors not inspected this round. No inference or configuration changes."
+}

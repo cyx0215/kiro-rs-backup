@@ -1,0 +1,456 @@
+{
+  "observed_at": "2026-10-10T14:07:49.923385+00:00",
+  "since": "2026-10-10T16:40:00+08:00",
+  "scope": "test server traces; not necessarily one Sub2API account",
+  "count": 340,
+  "statuses": {
+    "success": 337,
+    "interrupted": 2,
+    "error": 1
+  },
+  "credits": 210.36349061127697,
+  "latest_ts_epoch": 1791641024,
+  "latest": [
+    {
+      "ts": "2026-10-10T14:03:44.087667164+00:00",
+      "ts_epoch": 1791641024,
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "credits": 0.025674491210613604,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-10T13:54:07.372347258+00:00",
+      "ts_epoch": 1791640447,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 36,
+      "output_tokens": 60,
+      "cache_creation_tokens": 123838,
+      "cache_read_tokens": 14372,
+      "credits": 0.514036992703151,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:53:43.304650551+00:00",
+      "ts_epoch": 1791640423,
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "credits": 0.025674491210613604,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-10T13:50:47.558529812+00:00",
+      "ts_epoch": 1791640247,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 726,
+      "cache_creation_tokens": 123055,
+      "cache_read_tokens": 14318,
+      "credits": 0.7246048905472638,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:50:43.811127234+00:00",
+      "ts_epoch": 1791640243,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 88,
+      "output_tokens": 8,
+      "cache_creation_tokens": 1782,
+      "cache_read_tokens": 94838,
+      "credits": 0.39770151195688225,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:50:19.042943678+00:00",
+      "ts_epoch": 1791640219,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 473,
+      "cache_creation_tokens": 122271,
+      "cache_read_tokens": 14263,
+      "credits": 0.733405960199005,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:50:10.344077822+00:00",
+      "ts_epoch": 1791640210,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 134,
+      "cache_creation_tokens": 120087,
+      "cache_read_tokens": 14080,
+      "credits": 0.5444689058043118,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:49:14.532754368+00:00",
+      "ts_epoch": 1791640154,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 582,
+      "cache_creation_tokens": 119485,
+      "cache_read_tokens": 14053,
+      "credits": 0.8592585542288557,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:48:59.942363020+00:00",
+      "ts_epoch": 1791640139,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 168,
+      "cache_creation_tokens": 88202,
+      "cache_read_tokens": 40967,
+      "credits": 0.5678047900497512,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:48:57.065552100+00:00",
+      "ts_epoch": 1791640137,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 88,
+      "output_tokens": 8,
+      "cache_creation_tokens": 154,
+      "cache_read_tokens": 94245,
+      "credits": 0.3886038834328358,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:48:46.148018683+00:00",
+      "ts_epoch": 1791640126,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 159,
+      "cache_creation_tokens": 87826,
+      "cache_read_tokens": 40958,
+      "credits": 0.5836848742951907,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:48:42.396667623+00:00",
+      "ts_epoch": 1791640122,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 88,
+      "output_tokens": 8,
+      "cache_creation_tokens": 301,
+      "cache_read_tokens": 93887,
+      "credits": 0.3877436844278607,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:48:30.355261085+00:00",
+      "ts_epoch": 1791640110,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 292,
+      "cache_creation_tokens": 86723,
+      "cache_read_tokens": 40943,
+      "credits": 0.639108127694859,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:48:21.157565561+00:00",
+      "ts_epoch": 1791640101,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 88,
+      "output_tokens": 8,
+      "cache_creation_tokens": 93805,
+      "cache_read_tokens": 0,
+      "credits": 0.3861707491044776,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:47:56.258989007+00:00",
+      "ts_epoch": 1791640076,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 1046,
+      "cache_creation_tokens": 84884,
+      "cache_read_tokens": 41039,
+      "credits": 0.8761033973466001,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:44:26.838087814+00:00",
+      "ts_epoch": 1791639866,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 76,
+      "cache_creation_tokens": 83835,
+      "cache_read_tokens": 40752,
+      "credits": 0.4707368182421227,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:43:42.251320593+00:00",
+      "ts_epoch": 1791639822,
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "credits": 0.025674491210613604,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-10T13:39:50.033927686+00:00",
+      "ts_epoch": 1791639590,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 49,
+      "cache_creation_tokens": 83574,
+      "cache_read_tokens": 40738,
+      "credits": 0.4708284301824211,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:39:46.399488165+00:00",
+      "ts_epoch": 1791639586,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 87,
+      "output_tokens": 8,
+      "cache_creation_tokens": 368,
+      "cache_read_tokens": 91244,
+      "credits": 0.3771837175953566,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T13:39:34.445254791+00:00",
+      "ts_epoch": 1791639574,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 364,
+      "cache_creation_tokens": 82806,
+      "cache_read_tokens": 40992,
+      "credits": 0.5960856298507463,
+      "usage_source": "simulated"
+    }
+  ],
+  "container_status": {
+    "observed_at": "2026-10-10T14:07:50.617932+00:00",
+    "containers": [
+      {
+        "name": "kiro-rs-billing-test-20261010",
+        "image": "sha256:671f73b4199a44c47dd4b62a08e2b9f9c1e852cd2df5fc1bee118ad2131bdfbd",
+        "status": "running",
+        "restarts": 0
+      },
+      {
+        "name": "kiro-rs-zyphrzero-test",
+        "image": "sha256:fd6f06cc18427faf6aa4b1088c2ce443088efca3ca67d2f23644bf48cd8a0256",
+        "status": "running",
+        "restarts": 0
+      }
+    ]
+  },
+  "sub2api": {
+    "account_id": 94,
+    "filter": "kiro-billing-test-20261010",
+    "range": "near 24 hours",
+    "count": 338,
+    "user_usd": 239.0006,
+    "account_usd": 142.2769,
+    "samples": [
+      {
+        "trace_ts": "2026-10-10T13:54:07.372347258+00:00",
+        "billing_time_beijing": "2026-10-10 21:54:11",
+        "model": "claude-opus-5-5",
+        "status": "success",
+        "input": 36,
+        "output": 60,
+        "write": 123838,
+        "read": 14372,
+        "usage_source": "simulated",
+        "fee_details": {
+          "input_usd": 0.000144,
+          "output_usd": 0.0012,
+          "write_usd": 0.61919,
+          "read_usd": 0.0028744
+        },
+        "rates_usd_per_million": {
+          "input": 4,
+          "output": 20,
+          "write": 5,
+          "read": 0.2
+        },
+        "user_multiplier": 1.68,
+        "account_multiplier": 1,
+        "account_usd": 0.6234084,
+        "user_usd": 1.04732611,
+        "calculated_account_usd": 0.6234084,
+        "calculated_user_usd": 1.047326112,
+        "formula_matches": true
+      },
+      {
+        "trace_ts": "2026-10-10T14:03:44.087667164+00:00",
+        "billing_time_beijing": "2026-10-10 22:03:45",
+        "model": "claude-opus-5-5",
+        "status": "success",
+        "input": 6814,
+        "output": 1,
+        "write": 0,
+        "read": 0,
+        "usage_source": "none",
+        "fee_details": {
+          "input_usd": 0.027256,
+          "output_usd": 0.00002,
+          "write_usd": 0,
+          "read_usd": 0
+        },
+        "rates_usd_per_million": {
+          "input": 4,
+          "output": 20,
+          "write": 5,
+          "read": 0.2
+        },
+        "user_multiplier": 1.68,
+        "account_multiplier": 1,
+        "account_usd": 0.027276,
+        "user_usd": 0.04582368,
+        "calculated_account_usd": 0.027276,
+        "calculated_user_usd": 0.04582368,
+        "formula_matches": true
+      }
+    ],
+    "rate_boundary": "Long and short Opus token/fee tooltips reopened. Input/output prices shown directly; cache prices derived from exact nonzero token counts and cost components of long sample."
+  },
+  "change_from_previous": {
+    "previous_observed_at": "2026-10-10T21:52:52.817535+08:00",
+    "previous_trace_count": 337,
+    "new_trace_count": 3,
+    "new_error_count": 0,
+    "new_interrupted_count": 0,
+    "delta_kiro_credits": 0.5653859751243999,
+    "sub2api_new_rows": 3
+  },
+  "diagnostics": [
+    {
+      "kind": "context",
+      "time": "2026-10-10T13:53:46.073411Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T13:54:07.370428Z",
+      "alias": 2,
+      "previous_age_secs": 200,
+      "common_blocks": 364,
+      "changed_kind": "message_other",
+      "previous_deepest": 364,
+      "previous_tokens": 246539,
+      "reason": "previous_prefix_changed",
+      "blocks": 368,
+      "breakpoints": [
+        83,
+        84,
+        366
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        341
+      ],
+      "prompt_estimate": 247180,
+      "read_estimate": 25696,
+      "covered_estimate": 247116,
+      "previous_kind": "text",
+      "current_kind": "string",
+      "previous_role": "other",
+      "current_role": "other",
+      "previous_source": "explicit",
+      "content_equal": false,
+      "normalized_equal": true,
+      "text_equal": true,
+      "previous_bytes": 192,
+      "current_bytes": 192,
+      "changed_fields": 3,
+      "top_level_auto": false,
+      "explicit_breakpoints": [
+        83,
+        84,
+        366
+      ]
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T13:54:11.342669Z",
+      "percentage": 13.83060073852539,
+      "window_size": 1000000,
+      "context_tokens": 138306
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T13:54:11.347655Z",
+      "provider_usage": false,
+      "context_tokens": 138306,
+      "fallback_input": 56160,
+      "input": 36,
+      "output": 60,
+      "cache_write": 123838,
+      "cache_read": 14372,
+      "prompt_estimate": 247180,
+      "covered_estimate": 247116,
+      "read_estimate": 25696
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T14:03:45.884775Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    }
+  ],
+  "diagnostic_since": "2026-10-10T13:52:52+00:00",
+  "fix_deployed": false,
+  "monitor_assessment": "3 added traces all success, no new failure/interruption. One more known identical text/object-string signature mismatch; two short calls. Both inspected bills match exact four tokens and USD arithmetic. No new actionable finding; no notification. User requested deployment wait remains in effect even if service appears idle.",
+  "already_notified_root_cause": "Equivalent text object/string cache-key mismatch; fix passed794 tests and is staged, not deployed. Wait until user says ready.",
+  "boundaries": "Trace scope is all test-server calls; Sub2API filter is account94. Match by time/model/exact token values, no shared request ID; concurrency2. Cache usage simulated; Kiro credits independent of USD. No inference requests or online configuration changes. Pre-upstream errors not fully covered by server trace success."
+}

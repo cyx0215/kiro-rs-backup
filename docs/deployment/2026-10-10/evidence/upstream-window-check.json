@@ -1,0 +1,9 @@
+{
+  "observed_at": "2026-10-10T12:56:54.984197+00:00",
+  "source": "test server GET /api/admin/credentials/2/models backed by Kiro ListAvailableModels",
+  "model_id": "claude-opus-5.5",
+  "max_input_tokens": 1000000,
+  "max_output_tokens": 128000,
+  "configured_window": 1000000,
+  "boundary": "Confirms current declared model limit agrees with configured window; does not independently establish per-request exact tokens or provider context percentage semantics. No inference request."
+}

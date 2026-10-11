@@ -39,3 +39,6 @@
 /.local-test/
 /aab822_*.json
 /jac0991_*.json
+
+# 临时杂物目录，不入库
+/tmp/

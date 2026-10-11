@@ -1,0 +1,4349 @@
+{
+  "observed_at": "2026-10-10T12:35:39.622016+00:00",
+  "since": "2026-10-10T16:40:00+08:00",
+  "scope": "test server traces; not necessarily one Sub2API account",
+  "count": 150,
+  "statuses": {
+    "success": 147,
+    "interrupted": 2,
+    "error": 1
+  },
+  "credits": 119.47717167895523,
+  "latest_ts_epoch": 1791635625,
+  "latest": [
+    {
+      "ts": "2026-10-10T12:33:45.548075189+00:00",
+      "ts_epoch": 1791635625,
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 6814,
+      "output_tokens": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "credits": 0.025674491210613604,
+      "usage_source": "none"
+    },
+    {
+      "ts": "2026-10-10T12:30:52.213306411+00:00",
+      "ts_epoch": 1791635452,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 281,
+      "cache_creation_tokens": 1256,
+      "cache_read_tokens": 99246,
+      "credits": 0.7048467018242123,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:30:46.012869892+00:00",
+      "ts_epoch": 1791635446,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 79,
+      "cache_creation_tokens": 891,
+      "cache_read_tokens": 97657,
+      "credits": 0.3915329333333334,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:30:42.295196963+00:00",
+      "ts_epoch": 1791635442,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 83,
+      "output_tokens": 8,
+      "cache_creation_tokens": 68753,
+      "cache_read_tokens": 0,
+      "credits": 0.28353671925373136,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:30:37.316718261+00:00",
+      "ts_epoch": 1791635437,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 98,
+      "cache_creation_tokens": 534,
+      "cache_read_tokens": 97305,
+      "credits": 0.374556688225539,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:30:28.130451362+00:00",
+      "ts_epoch": 1791635428,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 37,
+      "cache_creation_tokens": 435,
+      "cache_read_tokens": 97205,
+      "credits": 0.39196784941956886,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:30:08.287046879+00:00",
+      "ts_epoch": 1791635408,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 528,
+      "cache_creation_tokens": 18,
+      "cache_read_tokens": 97064,
+      "credits": 0.5840915883913764,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:28:45.733589254+00:00",
+      "ts_epoch": 1791635325,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 44,
+      "output_tokens": 115,
+      "cache_creation_tokens": 80421,
+      "cache_read_tokens": 16186,
+      "credits": 0.3846097107794362,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:25:25.124103828+00:00",
+      "ts_epoch": 1791635125,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 516,
+      "cache_creation_tokens": 79868,
+      "cache_read_tokens": 16130,
+      "credits": 0.4931935150912107,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:25:22.762256676+00:00",
+      "ts_epoch": 1791635122,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 83,
+      "output_tokens": 8,
+      "cache_creation_tokens": 643,
+      "cache_read_tokens": 67800,
+      "credits": 0.28226690167495855,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:25:18.224254299+00:00",
+      "ts_epoch": 1791635118,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 10,
+      "cache_creation_tokens": 79610,
+      "cache_read_tokens": 16094,
+      "credits": 0.34760955389718073,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:25:10.724144240+00:00",
+      "ts_epoch": 1791635110,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 201,
+      "cache_creation_tokens": 79306,
+      "cache_read_tokens": 16071,
+      "credits": 0.4362464391376451,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:25:00.536837436+00:00",
+      "ts_epoch": 1791635100,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 233,
+      "cache_creation_tokens": 78826,
+      "cache_read_tokens": 16019,
+      "credits": 0.4512894325041461,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:24:51.814136990+00:00",
+      "ts_epoch": 1791635091,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 112,
+      "cache_creation_tokens": 78415,
+      "cache_read_tokens": 15968,
+      "credits": 0.4234594932006634,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:24:47.898421655+00:00",
+      "ts_epoch": 1791635087,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 82,
+      "output_tokens": 8,
+      "cache_creation_tokens": 150,
+      "cache_read_tokens": 67340,
+      "credits": 0.2783591404809287,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:24:39.029477186+00:00",
+      "ts_epoch": 1791635079,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 260,
+      "cache_creation_tokens": 76970,
+      "cache_read_tokens": 15797,
+      "credits": 0.4351868533996683,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:24:30.723992056+00:00",
+      "ts_epoch": 1791635070,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 137,
+      "cache_creation_tokens": 76312,
+      "cache_read_tokens": 15722,
+      "credits": 0.4446456693200664,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:24:27.013655717+00:00",
+      "ts_epoch": 1791635067,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 17,
+      "cache_creation_tokens": 51636,
+      "cache_read_tokens": 38299,
+      "credits": 0.3796319273631842,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:24:24.464277316+00:00",
+      "ts_epoch": 1791635064,
+      "model": "claude-sonnet-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "input_tokens": 82,
+      "output_tokens": 8,
+      "cache_creation_tokens": 106,
+      "cache_read_tokens": 67187,
+      "credits": 0.2775521918905473,
+      "usage_source": "simulated"
+    },
+    {
+      "ts": "2026-10-10T12:24:14.907716529+00:00",
+      "ts_epoch": 1791635054,
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "input_tokens": 0,
+      "output_tokens": 278,
+      "cache_creation_tokens": 49805,
+      "cache_read_tokens": 38397,
+      "credits": 0.44825133963515745,
+      "usage_source": "simulated"
+    }
+  ],
+  "diagnostics": [
+    {
+      "kind": "cache",
+      "time": "2026-10-10T10:22:14.508533Z",
+      "alias": 1,
+      "previous_age_secs": null,
+      "common_blocks": 0,
+      "changed_kind": "none",
+      "previous_deepest": null,
+      "previous_tokens": null,
+      "reason": "first_observation",
+      "blocks": 1753,
+      "breakpoints": [
+        83,
+        84,
+        1749
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        1730
+      ],
+      "prompt_estimate": 1689528,
+      "read_estimate": 0,
+      "covered_estimate": 1687837
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T10:23:54.539556Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T10:34:11.843381Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T10:53:54.775194Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:03:52.675939Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:14:01.735318Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:23:48.599870Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:33:45.094352Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:43:50.719801Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:53:48.937222Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T11:56:21.307459Z",
+      "alias": 1,
+      "previous_age_secs": 5647,
+      "common_blocks": 1753,
+      "changed_kind": "none",
+      "previous_deepest": 1749,
+      "previous_tokens": 1687837,
+      "reason": "previous_entry_missing",
+      "blocks": 1753,
+      "breakpoints": [
+        83,
+        84,
+        1749
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        1730
+      ],
+      "prompt_estimate": 1689528,
+      "read_estimate": 0,
+      "covered_estimate": 1687837
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T11:58:03.841725Z",
+      "percentage": 64.05500030517578,
+      "window_size": 1000000,
+      "context_tokens": 640550
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T11:58:03.942779Z",
+      "provider_usage": false,
+      "context_tokens": 640550,
+      "fallback_input": 133542,
+      "input": 636,
+      "output": 5184,
+      "cache_write": 634730,
+      "cache_read": 0,
+      "prompt_estimate": 1689528,
+      "covered_estimate": 1687837,
+      "read_estimate": 0
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:01:30.019607Z",
+      "alias": 1,
+      "previous_age_secs": 309,
+      "common_blocks": 82,
+      "changed_kind": "system",
+      "previous_deepest": 1749,
+      "previous_tokens": 1687837,
+      "reason": "previous_prefix_changed",
+      "blocks": 98,
+      "breakpoints": [
+        83,
+        84,
+        97
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        78
+      ],
+      "prompt_estimate": 40797,
+      "read_estimate": 0,
+      "covered_estimate": 40797
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:01:37.492324Z",
+      "percentage": 5.986299991607666,
+      "window_size": 1000000,
+      "context_tokens": 59862
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:01:37.496781Z",
+      "provider_usage": false,
+      "context_tokens": 59862,
+      "fallback_input": 48657,
+      "input": 0,
+      "output": 223,
+      "cache_write": 59639,
+      "cache_read": 0,
+      "prompt_estimate": 40797,
+      "covered_estimate": 40797,
+      "read_estimate": 0
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:02:34.245880Z",
+      "alias": 1,
+      "previous_age_secs": 64,
+      "common_blocks": 97,
+      "changed_kind": "message_other",
+      "previous_deepest": 97,
+      "previous_tokens": 40797,
+      "reason": "previous_prefix_changed",
+      "blocks": 101,
+      "breakpoints": [
+        83,
+        84,
+        100
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        81
+      ],
+      "prompt_estimate": 40996,
+      "read_estimate": 25696,
+      "covered_estimate": 40996
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:02:42.172319Z",
+      "percentage": 5.990400314331055,
+      "window_size": 1000000,
+      "context_tokens": 59904
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:02:42.211176Z",
+      "provider_usage": false,
+      "context_tokens": 59904,
+      "fallback_input": 48999,
+      "input": 0,
+      "output": 19,
+      "cache_write": 22350,
+      "cache_read": 37535,
+      "prompt_estimate": 40996,
+      "covered_estimate": 40996,
+      "read_estimate": 25696
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:03:46.848193Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:05:43.813923Z",
+      "alias": 1,
+      "previous_age_secs": 189,
+      "common_blocks": 100,
+      "changed_kind": "message_other",
+      "previous_deepest": 100,
+      "previous_tokens": 40996,
+      "reason": "previous_prefix_changed",
+      "blocks": 103,
+      "breakpoints": [
+        83,
+        84,
+        101
+      ],
+      "lookback_starts": [
+        64,
+        65,
+        82
+      ],
+      "prompt_estimate": 41074,
+      "read_estimate": 25696,
+      "covered_estimate": 41010
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:05:50.022483Z",
+      "percentage": 6.009199619293213,
+      "window_size": 1000000,
+      "context_tokens": 60091
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:05:50.044514Z",
+      "provider_usage": false,
+      "context_tokens": 60091,
+      "fallback_input": 49125,
+      "input": 94,
+      "output": 60,
+      "cache_write": 22382,
+      "cache_read": 37555,
+      "prompt_estimate": 41074,
+      "covered_estimate": 41010,
+      "read_estimate": 25696
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:06:44.568015Z",
+      "alias": 2,
+      "previous_age_secs": null,
+      "common_blocks": 0,
+      "changed_kind": "none",
+      "previous_deepest": null,
+      "previous_tokens": null,
+      "reason": "first_observation",
+      "blocks": 69,
+      "breakpoints": [
+        59,
+        60,
+        68
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        49
+      ],
+      "prompt_estimate": 30825,
+      "read_estimate": 0,
+      "covered_estimate": 30825
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:06:48.646941Z",
+      "percentage": 4.5243000984191895,
+      "window_size": 1000000,
+      "context_tokens": 45243
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:06:48.647180Z",
+      "provider_usage": false,
+      "context_tokens": 45243,
+      "fallback_input": 35826,
+      "input": 0,
+      "output": 49,
+      "cache_write": 45194,
+      "cache_read": 0,
+      "prompt_estimate": 30825,
+      "covered_estimate": 30825,
+      "read_estimate": 0
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:06:51.384188Z",
+      "alias": 3,
+      "previous_age_secs": null,
+      "common_blocks": 0,
+      "changed_kind": "none",
+      "previous_deepest": null,
+      "previous_tokens": null,
+      "reason": "first_observation",
+      "blocks": 9,
+      "breakpoints": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38566,
+      "read_estimate": 0,
+      "covered_estimate": 38514
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:06:52.354858Z",
+      "percentage": 0.786300003528595,
+      "window_size": 1000000,
+      "context_tokens": 7863
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:06:52.420168Z",
+      "provider_usage": false,
+      "context_tokens": 7863,
+      "fallback_input": 1071,
+      "input": 7851,
+      "output": 12,
+      "cache_write": 0,
+      "cache_read": 0,
+      "prompt_estimate": 860,
+      "covered_estimate": 0,
+      "read_estimate": 0
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:06:52.879494Z",
+      "percentage": 5.962699890136719,
+      "window_size": 1000000,
+      "context_tokens": 59626
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:06.697564Z",
+      "alias": 2,
+      "previous_age_secs": 22,
+      "common_blocks": 68,
+      "changed_kind": "message_other",
+      "previous_deepest": 68,
+      "previous_tokens": 30825,
+      "reason": "previous_prefix_changed",
+      "blocks": 75,
+      "breakpoints": [
+        59,
+        60,
+        74
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        53
+      ],
+      "prompt_estimate": 31558,
+      "read_estimate": 23715,
+      "covered_estimate": 31558
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:09.816912Z",
+      "percentage": 4.654999732971191,
+      "window_size": 1000000,
+      "context_tokens": 46549
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:07:09.817839Z",
+      "provider_usage": false,
+      "context_tokens": 46549,
+      "fallback_input": 35844,
+      "input": 0,
+      "output": 48,
+      "cache_write": 11557,
+      "cache_read": 34944,
+      "prompt_estimate": 31558,
+      "covered_estimate": 31558,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:10.365862Z",
+      "alias": 3,
+      "previous_age_secs": 19,
+      "common_blocks": 7,
+      "changed_kind": "message_text",
+      "previous_deepest": 6,
+      "previous_tokens": 38514,
+      "reason": "previous_prefix_available",
+      "blocks": 10,
+      "breakpoints": [
+        1,
+        3,
+        6,
+        7
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38614,
+      "read_estimate": 38514,
+      "covered_estimate": 38562
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:11.937648Z",
+      "percentage": 5.9741997718811035,
+      "window_size": 1000000,
+      "context_tokens": 59741
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:24.612020Z",
+      "alias": 2,
+      "previous_age_secs": 18,
+      "common_blocks": 74,
+      "changed_kind": "message_other",
+      "previous_deepest": 74,
+      "previous_tokens": 31558,
+      "reason": "previous_prefix_changed",
+      "blocks": 78,
+      "breakpoints": [
+        59,
+        60,
+        77
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        56
+      ],
+      "prompt_estimate": 32609,
+      "read_estimate": 23715,
+      "covered_estimate": 32609
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:28.853393Z",
+      "percentage": 4.85290002822876,
+      "window_size": 1000000,
+      "context_tokens": 48529
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:07:28.860596Z",
+      "provider_usage": false,
+      "context_tokens": 48529,
+      "fallback_input": 35862,
+      "input": 0,
+      "output": 128,
+      "cache_write": 13201,
+      "cache_read": 35200,
+      "prompt_estimate": 32609,
+      "covered_estimate": 32609,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:29.366211Z",
+      "alias": 3,
+      "previous_age_secs": 19,
+      "common_blocks": 8,
+      "changed_kind": "message_text",
+      "previous_deepest": 7,
+      "previous_tokens": 38562,
+      "reason": "previous_prefix_available",
+      "blocks": 11,
+      "breakpoints": [
+        1,
+        3,
+        7,
+        8
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38676,
+      "read_estimate": 38562,
+      "covered_estimate": 38624
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:31.520318Z",
+      "percentage": 5.988100051879883,
+      "window_size": 1000000,
+      "context_tokens": 59881
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:33.080974Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 77,
+      "changed_kind": "message_other",
+      "previous_deepest": 77,
+      "previous_tokens": 32609,
+      "reason": "previous_prefix_changed",
+      "blocks": 82,
+      "breakpoints": [
+        59,
+        60,
+        81
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        60
+      ],
+      "prompt_estimate": 33442,
+      "read_estimate": 23715,
+      "covered_estimate": 33442
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:40.761950Z",
+      "percentage": 5.011099815368652,
+      "window_size": 1000000,
+      "context_tokens": 50110
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:07:40.771753Z",
+      "provider_usage": false,
+      "context_tokens": 50110,
+      "fallback_input": 35880,
+      "input": 0,
+      "output": 131,
+      "cache_write": 14537,
+      "cache_read": 35442,
+      "prompt_estimate": 33442,
+      "covered_estimate": 33442,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:41.410016Z",
+      "alias": 3,
+      "previous_age_secs": 12,
+      "common_blocks": 9,
+      "changed_kind": "message_text",
+      "previous_deepest": 8,
+      "previous_tokens": 38624,
+      "reason": "previous_prefix_available",
+      "blocks": 12,
+      "breakpoints": [
+        1,
+        3,
+        8,
+        9
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38751,
+      "read_estimate": 38624,
+      "covered_estimate": 38699
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:42.794614Z",
+      "percentage": 6.003699779510498,
+      "window_size": 1000000,
+      "context_tokens": 60036
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:43.598635Z",
+      "alias": 2,
+      "previous_age_secs": 10,
+      "common_blocks": 81,
+      "changed_kind": "message_other",
+      "previous_deepest": 81,
+      "previous_tokens": 33442,
+      "reason": "previous_prefix_changed",
+      "blocks": 86,
+      "breakpoints": [
+        59,
+        60,
+        85
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        64
+      ],
+      "prompt_estimate": 36037,
+      "read_estimate": 23715,
+      "covered_estimate": 36037
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:07:50.194612Z",
+      "percentage": 5.500400066375732,
+      "window_size": 1000000,
+      "context_tokens": 55004
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:07:50.198353Z",
+      "provider_usage": false,
+      "context_tokens": 55004,
+      "fallback_input": 35898,
+      "input": 0,
+      "output": 182,
+      "cache_write": 18745,
+      "cache_read": 36077,
+      "prompt_estimate": 36037,
+      "covered_estimate": 36037,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:07:51.323176Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 85,
+      "changed_kind": "message_other",
+      "previous_deepest": 85,
+      "previous_tokens": 36037,
+      "reason": "previous_prefix_changed",
+      "blocks": 92,
+      "breakpoints": [
+        59,
+        60,
+        91
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        68
+      ],
+      "prompt_estimate": 42997,
+      "read_estimate": 23715,
+      "covered_estimate": 42997
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:08:00.872424Z",
+      "percentage": 6.849499702453613,
+      "window_size": 1000000,
+      "context_tokens": 68494
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:08:00.872499Z",
+      "provider_usage": false,
+      "context_tokens": 68494,
+      "fallback_input": 35970,
+      "input": 0,
+      "output": 289,
+      "cache_write": 30587,
+      "cache_read": 37618,
+      "prompt_estimate": 42997,
+      "covered_estimate": 42997,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:08:01.476293Z",
+      "alias": 3,
+      "previous_age_secs": 20,
+      "common_blocks": 10,
+      "changed_kind": "message_text",
+      "previous_deepest": 9,
+      "previous_tokens": 38699,
+      "reason": "previous_prefix_available",
+      "blocks": 14,
+      "breakpoints": [
+        1,
+        3,
+        10,
+        11
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 38898,
+      "read_estimate": 38699,
+      "covered_estimate": 38846
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:08:03.149786Z",
+      "percentage": 6.035799980163574,
+      "window_size": 1000000,
+      "context_tokens": 60357
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:08:04.039799Z",
+      "alias": 2,
+      "previous_age_secs": 13,
+      "common_blocks": 91,
+      "changed_kind": "message_other",
+      "previous_deepest": 91,
+      "previous_tokens": 42997,
+      "reason": "previous_prefix_changed",
+      "blocks": 96,
+      "breakpoints": [
+        59,
+        60,
+        95
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        74
+      ],
+      "prompt_estimate": 43657,
+      "read_estimate": 23715,
+      "covered_estimate": 43657
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:08:22.949045Z",
+      "percentage": 7.059100151062012,
+      "window_size": 1000000,
+      "context_tokens": 70591
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:08:22.956859Z",
+      "provider_usage": false,
+      "context_tokens": 70591,
+      "fallback_input": 35988,
+      "input": 0,
+      "output": 951,
+      "cache_write": 31811,
+      "cache_read": 37829,
+      "prompt_estimate": 43657,
+      "covered_estimate": 43657,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:10:00.342747Z",
+      "alias": 2,
+      "previous_age_secs": 116,
+      "common_blocks": 95,
+      "changed_kind": "message_other",
+      "previous_deepest": 95,
+      "previous_tokens": 43657,
+      "reason": "previous_prefix_changed",
+      "blocks": 100,
+      "breakpoints": [
+        59,
+        60,
+        99
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        78
+      ],
+      "prompt_estimate": 44454,
+      "read_estimate": 23715,
+      "covered_estimate": 44454
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:10:15.636284Z",
+      "percentage": 7.0920000076293945,
+      "window_size": 1000000,
+      "context_tokens": 70920
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:10:15.641663Z",
+      "provider_usage": false,
+      "context_tokens": 70920,
+      "fallback_input": 36903,
+      "input": 0,
+      "output": 132,
+      "cache_write": 33025,
+      "cache_read": 37763,
+      "prompt_estimate": 44454,
+      "covered_estimate": 44454,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:10:16.452823Z",
+      "alias": 2,
+      "previous_age_secs": 16,
+      "common_blocks": 99,
+      "changed_kind": "message_other",
+      "previous_deepest": 99,
+      "previous_tokens": 44454,
+      "reason": "previous_prefix_changed",
+      "blocks": 104,
+      "breakpoints": [
+        59,
+        60,
+        103
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        82
+      ],
+      "prompt_estimate": 44769,
+      "read_estimate": 23715,
+      "covered_estimate": 44769
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:10:24.505553Z",
+      "percentage": 7.157599925994873,
+      "window_size": 1000000,
+      "context_tokens": 71575
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:10:24.510883Z",
+      "provider_usage": false,
+      "context_tokens": 71575,
+      "fallback_input": 36921,
+      "input": 0,
+      "output": 205,
+      "cache_write": 33564,
+      "cache_read": 37806,
+      "prompt_estimate": 44769,
+      "covered_estimate": 44769,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:10:25.121223Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 103,
+      "changed_kind": "message_other",
+      "previous_deepest": 103,
+      "previous_tokens": 44769,
+      "reason": "previous_prefix_changed",
+      "blocks": 108,
+      "breakpoints": [
+        59,
+        60,
+        107
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        86
+      ],
+      "prompt_estimate": 45056,
+      "read_estimate": 23715,
+      "covered_estimate": 45056
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:10:28.037873Z",
+      "percentage": 7.170200347900391,
+      "window_size": 1000000,
+      "context_tokens": 71702
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:10:28.044387Z",
+      "provider_usage": false,
+      "context_tokens": 71702,
+      "fallback_input": 36939,
+      "input": 0,
+      "output": 68,
+      "cache_write": 33930,
+      "cache_read": 37704,
+      "prompt_estimate": 45056,
+      "covered_estimate": 45056,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:10:28.520717Z",
+      "alias": 3,
+      "previous_age_secs": 147,
+      "common_blocks": 12,
+      "changed_kind": "message_text",
+      "previous_deepest": 11,
+      "previous_tokens": 38846,
+      "reason": "previous_prefix_available",
+      "blocks": 16,
+      "breakpoints": [
+        1,
+        3,
+        12,
+        13
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 39086,
+      "read_estimate": 38846,
+      "covered_estimate": 39034
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:10:30.422737Z",
+      "percentage": 6.073899745941162,
+      "window_size": 1000000,
+      "context_tokens": 60738
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:10:30.866211Z",
+      "alias": 3,
+      "previous_age_secs": 2,
+      "common_blocks": 15,
+      "changed_kind": "message_text",
+      "previous_deepest": 13,
+      "previous_tokens": 39034,
+      "reason": "previous_prefix_available",
+      "blocks": 16,
+      "breakpoints": [
+        1,
+        3,
+        12,
+        13
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 39144,
+      "read_estimate": 39034,
+      "covered_estimate": 39034
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:10:37.291223Z",
+      "percentage": 6.125100135803223,
+      "window_size": 1000000,
+      "context_tokens": 61251
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:10:38.430495Z",
+      "alias": 2,
+      "previous_age_secs": 13,
+      "common_blocks": 107,
+      "changed_kind": "message_other",
+      "previous_deepest": 107,
+      "previous_tokens": 45056,
+      "reason": "previous_prefix_changed",
+      "blocks": 112,
+      "breakpoints": [
+        59,
+        60,
+        111
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        92
+      ],
+      "prompt_estimate": 45372,
+      "read_estimate": 23715,
+      "covered_estimate": 45372
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:10:47.122323Z",
+      "percentage": 7.257200241088867,
+      "window_size": 1000000,
+      "context_tokens": 72572
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:10:47.129219Z",
+      "provider_usage": false,
+      "context_tokens": 72572,
+      "fallback_input": 37074,
+      "input": 0,
+      "output": 259,
+      "cache_write": 34517,
+      "cache_read": 37796,
+      "prompt_estimate": 45372,
+      "covered_estimate": 45372,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:13:36.346224Z",
+      "alias": 2,
+      "previous_age_secs": 178,
+      "common_blocks": 111,
+      "changed_kind": "message_other",
+      "previous_deepest": 111,
+      "previous_tokens": 45372,
+      "reason": "previous_prefix_changed",
+      "blocks": 116,
+      "breakpoints": [
+        59,
+        60,
+        115
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        96
+      ],
+      "prompt_estimate": 45718,
+      "read_estimate": 23715,
+      "covered_estimate": 45718
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:13:44.355074Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:13:44.610582Z",
+      "percentage": 7.35230016708374,
+      "window_size": 1000000,
+      "context_tokens": 73523
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:13:44.610678Z",
+      "provider_usage": false,
+      "context_tokens": 73523,
+      "fallback_input": 37092,
+      "input": 0,
+      "output": 176,
+      "cache_write": 35300,
+      "cache_read": 38047,
+      "prompt_estimate": 45718,
+      "covered_estimate": 45718,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:13:45.198834Z",
+      "alias": 3,
+      "previous_age_secs": 195,
+      "common_blocks": 14,
+      "changed_kind": "message_text",
+      "previous_deepest": 13,
+      "previous_tokens": 39034,
+      "reason": "previous_prefix_available",
+      "blocks": 18,
+      "breakpoints": [
+        1,
+        3,
+        14,
+        15
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 39328,
+      "read_estimate": 39034,
+      "covered_estimate": 39276
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:13:46.672618Z",
+      "percentage": 6.119500160217285,
+      "window_size": 1000000,
+      "context_tokens": 61195
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:13:47.518031Z",
+      "alias": 3,
+      "previous_age_secs": 2,
+      "common_blocks": 17,
+      "changed_kind": "message_text",
+      "previous_deepest": 15,
+      "previous_tokens": 39276,
+      "reason": "previous_prefix_available",
+      "blocks": 18,
+      "breakpoints": [
+        1,
+        3,
+        14,
+        15
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 39386,
+      "read_estimate": 39276,
+      "covered_estimate": 39276
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:13:50.816317Z",
+      "percentage": 6.139400005340576,
+      "window_size": 1000000,
+      "context_tokens": 61394
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:14:46.914419Z",
+      "alias": 2,
+      "previous_age_secs": 70,
+      "common_blocks": 115,
+      "changed_kind": "message_other",
+      "previous_deepest": 115,
+      "previous_tokens": 45718,
+      "reason": "previous_prefix_changed",
+      "blocks": 120,
+      "breakpoints": [
+        59,
+        60,
+        119
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        100
+      ],
+      "prompt_estimate": 47734,
+      "read_estimate": 23715,
+      "covered_estimate": 47734
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:14:58.986827Z",
+      "percentage": 7.703900337219238,
+      "window_size": 1000000,
+      "context_tokens": 77039
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:14:58.989330Z",
+      "provider_usage": false,
+      "context_tokens": 77039,
+      "fallback_input": 37110,
+      "input": 0,
+      "output": 431,
+      "cache_write": 38548,
+      "cache_read": 38060,
+      "prompt_estimate": 47734,
+      "covered_estimate": 47734,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:14:59.594803Z",
+      "alias": 3,
+      "previous_age_secs": 72,
+      "common_blocks": 16,
+      "changed_kind": "message_text",
+      "previous_deepest": 15,
+      "previous_tokens": 39276,
+      "reason": "previous_prefix_available",
+      "blocks": 19,
+      "breakpoints": [
+        1,
+        3,
+        15,
+        16
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 39692,
+      "read_estimate": 39276,
+      "covered_estimate": 39640
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:15:01.015532Z",
+      "percentage": 6.188499927520752,
+      "window_size": 1000000,
+      "context_tokens": 61884
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:15:02.612468Z",
+      "alias": 2,
+      "previous_age_secs": 16,
+      "common_blocks": 119,
+      "changed_kind": "message_other",
+      "previous_deepest": 119,
+      "previous_tokens": 47734,
+      "reason": "previous_prefix_changed",
+      "blocks": 124,
+      "breakpoints": [
+        59,
+        60,
+        123
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        104
+      ],
+      "prompt_estimate": 48389,
+      "read_estimate": 23715,
+      "covered_estimate": 48389
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:15:09.210665Z",
+      "percentage": 7.757899761199951,
+      "window_size": 1000000,
+      "context_tokens": 77578
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:15:09.215877Z",
+      "provider_usage": false,
+      "context_tokens": 77578,
+      "fallback_input": 37128,
+      "input": 0,
+      "output": 125,
+      "cache_write": 39494,
+      "cache_read": 37959,
+      "prompt_estimate": 48389,
+      "covered_estimate": 48389,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:15:10.110938Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 123,
+      "changed_kind": "message_other",
+      "previous_deepest": 123,
+      "previous_tokens": 48389,
+      "reason": "previous_prefix_changed",
+      "blocks": 128,
+      "breakpoints": [
+        59,
+        60,
+        127
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        108
+      ],
+      "prompt_estimate": 48573,
+      "read_estimate": 23715,
+      "covered_estimate": 48573
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:15:12.487857Z",
+      "percentage": 7.766600131988525,
+      "window_size": 1000000,
+      "context_tokens": 77666
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:15:12.491912Z",
+      "provider_usage": false,
+      "context_tokens": 77666,
+      "fallback_input": 37146,
+      "input": 0,
+      "output": 26,
+      "cache_write": 39733,
+      "cache_read": 37907,
+      "prompt_estimate": 48573,
+      "covered_estimate": 48573,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:15:13.375078Z",
+      "alias": 2,
+      "previous_age_secs": 3,
+      "common_blocks": 127,
+      "changed_kind": "message_other",
+      "previous_deepest": 127,
+      "previous_tokens": 48573,
+      "reason": "previous_prefix_changed",
+      "blocks": 131,
+      "breakpoints": [
+        59,
+        60,
+        130
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        111
+      ],
+      "prompt_estimate": 48836,
+      "read_estimate": 23715,
+      "covered_estimate": 48836
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:15:32.084265Z",
+      "percentage": 7.931099891662598,
+      "window_size": 1000000,
+      "context_tokens": 79310
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:15:32.085675Z",
+      "provider_usage": false,
+      "context_tokens": 79310,
+      "fallback_input": 37164,
+      "input": 0,
+      "output": 614,
+      "cache_write": 40481,
+      "cache_read": 38215,
+      "prompt_estimate": 48836,
+      "covered_estimate": 48836,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:15:32.874703Z",
+      "alias": 3,
+      "previous_age_secs": 33,
+      "common_blocks": 17,
+      "changed_kind": "message_text",
+      "previous_deepest": 16,
+      "previous_tokens": 39640,
+      "reason": "previous_prefix_available",
+      "blocks": 21,
+      "breakpoints": [
+        1,
+        3,
+        17,
+        18
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 40134,
+      "read_estimate": 39640,
+      "covered_estimate": 40082
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:15:34.297853Z",
+      "percentage": 6.27970027923584,
+      "window_size": 1000000,
+      "context_tokens": 62797
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:15:34.781674Z",
+      "alias": 2,
+      "previous_age_secs": 21,
+      "common_blocks": 0,
+      "changed_kind": "tool_definition",
+      "previous_deepest": 130,
+      "previous_tokens": 48836,
+      "reason": "previous_prefix_changed",
+      "blocks": 48,
+      "breakpoints": [
+        42,
+        43,
+        47
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        28
+      ],
+      "prompt_estimate": 16098,
+      "read_estimate": 0,
+      "covered_estimate": 16098
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:15:34.971525Z",
+      "alias": 2,
+      "previous_age_secs": 0,
+      "common_blocks": 0,
+      "changed_kind": "tool_definition",
+      "previous_deepest": 47,
+      "previous_tokens": 16098,
+      "reason": "previous_prefix_changed",
+      "blocks": 135,
+      "breakpoints": [
+        59,
+        60,
+        134
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        115
+      ],
+      "prompt_estimate": 49790,
+      "read_estimate": 23715,
+      "covered_estimate": 49790
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:15:46.203511Z",
+      "percentage": 8.016700744628906,
+      "window_size": 1000000,
+      "context_tokens": 80167
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:15:46.211704Z",
+      "provider_usage": false,
+      "context_tokens": 80167,
+      "fallback_input": 37236,
+      "input": 0,
+      "output": 416,
+      "cache_write": 41766,
+      "cache_read": 37985,
+      "prompt_estimate": 49790,
+      "covered_estimate": 49790,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:16:04.719125Z",
+      "alias": 2,
+      "previous_age_secs": 30,
+      "common_blocks": 0,
+      "changed_kind": "tool_definition",
+      "previous_deepest": 134,
+      "previous_tokens": 49790,
+      "reason": "previous_prefix_changed",
+      "blocks": 49,
+      "breakpoints": [
+        42,
+        43
+      ],
+      "lookback_starts": [
+        23,
+        24
+      ],
+      "prompt_estimate": 16225,
+      "read_estimate": 13336,
+      "covered_estimate": 13336
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:16:05.981753Z",
+      "percentage": 2.4630000591278076,
+      "window_size": 1000000,
+      "context_tokens": 24630
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:16:06.029434Z",
+      "provider_usage": false,
+      "context_tokens": 24630,
+      "fallback_input": 19020,
+      "input": 0,
+      "output": 90,
+      "cache_write": 24540,
+      "cache_read": 0,
+      "prompt_estimate": 16098,
+      "covered_estimate": 16098,
+      "read_estimate": 0
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:16:06.540894Z",
+      "percentage": 2.4646999835968018,
+      "window_size": 1000000,
+      "context_tokens": 24646
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:16:06.548346Z",
+      "provider_usage": false,
+      "context_tokens": 24646,
+      "fallback_input": 19186,
+      "input": 4386,
+      "output": 14,
+      "cache_write": 0,
+      "cache_read": 20246,
+      "prompt_estimate": 16225,
+      "covered_estimate": 13336,
+      "read_estimate": 13336
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:16:06.694644Z",
+      "alias": 2,
+      "previous_age_secs": 2,
+      "common_blocks": 46,
+      "changed_kind": "message_text",
+      "previous_deepest": 43,
+      "previous_tokens": 13336,
+      "reason": "previous_prefix_available",
+      "blocks": 52,
+      "breakpoints": [
+        42,
+        43,
+        51
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        32
+      ],
+      "prompt_estimate": 17942,
+      "read_estimate": 13336,
+      "covered_estimate": 17942
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:16:20.395704Z",
+      "percentage": 2.798799991607666,
+      "window_size": 1000000,
+      "context_tokens": 27987
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:16:20.433544Z",
+      "provider_usage": false,
+      "context_tokens": 27987,
+      "fallback_input": 19277,
+      "input": 0,
+      "output": 81,
+      "cache_write": 7164,
+      "cache_read": 20742,
+      "prompt_estimate": 17942,
+      "covered_estimate": 17942,
+      "read_estimate": 13336
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:16:21.255958Z",
+      "alias": 2,
+      "previous_age_secs": 15,
+      "common_blocks": 51,
+      "changed_kind": "message_other",
+      "previous_deepest": 51,
+      "previous_tokens": 17942,
+      "reason": "previous_prefix_changed",
+      "blocks": 59,
+      "breakpoints": [
+        42,
+        43,
+        58
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        35
+      ],
+      "prompt_estimate": 22446,
+      "read_estimate": 13336,
+      "covered_estimate": 22446
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:16:26.945985Z",
+      "percentage": 3.656399965286255,
+      "window_size": 1000000,
+      "context_tokens": 36563
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:16:26.949394Z",
+      "provider_usage": false,
+      "context_tokens": 36563,
+      "fallback_input": 19295,
+      "input": 0,
+      "output": 132,
+      "cache_write": 14786,
+      "cache_read": 21645,
+      "prompt_estimate": 22446,
+      "covered_estimate": 22446,
+      "read_estimate": 13336
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:16:37.005430Z",
+      "alias": 2,
+      "previous_age_secs": 16,
+      "common_blocks": 58,
+      "changed_kind": "message_other",
+      "previous_deepest": 58,
+      "previous_tokens": 22446,
+      "reason": "previous_prefix_changed",
+      "blocks": 62,
+      "breakpoints": [
+        42,
+        43,
+        59
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        36
+      ],
+      "prompt_estimate": 23682,
+      "read_estimate": 13336,
+      "covered_estimate": 22535
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:16:41.218758Z",
+      "percentage": 3.855799913406372,
+      "window_size": 1000000,
+      "context_tokens": 38557
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:16:41.244678Z",
+      "provider_usage": false,
+      "context_tokens": 38557,
+      "fallback_input": 19487,
+      "input": 1867,
+      "output": 9,
+      "cache_write": 14974,
+      "cache_read": 21707,
+      "prompt_estimate": 23682,
+      "covered_estimate": 22535,
+      "read_estimate": 13336
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:16:47.809975Z",
+      "alias": 2,
+      "previous_age_secs": 10,
+      "common_blocks": 60,
+      "changed_kind": "message_tool_use",
+      "previous_deepest": 59,
+      "previous_tokens": 22535,
+      "reason": "previous_prefix_available",
+      "blocks": 64,
+      "breakpoints": [
+        42,
+        43,
+        63
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        38
+      ],
+      "prompt_estimate": 23739,
+      "read_estimate": 22535,
+      "covered_estimate": 23739
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:16:56.992855Z",
+      "percentage": 3.883399724960327,
+      "window_size": 1000000,
+      "context_tokens": 38833
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:16:57.020642Z",
+      "provider_usage": false,
+      "context_tokens": 38833,
+      "fallback_input": 19313,
+      "input": 0,
+      "output": 69,
+      "cache_write": 1966,
+      "cache_read": 36798,
+      "prompt_estimate": 23739,
+      "covered_estimate": 23739,
+      "read_estimate": 22535
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:16:57.632151Z",
+      "alias": 2,
+      "previous_age_secs": 10,
+      "common_blocks": 63,
+      "changed_kind": "message_other",
+      "previous_deepest": 63,
+      "previous_tokens": 23739,
+      "reason": "previous_prefix_changed",
+      "blocks": 67,
+      "breakpoints": [
+        42,
+        43,
+        66
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        41
+      ],
+      "prompt_estimate": 24297,
+      "read_estimate": 22535,
+      "covered_estimate": 24297
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:01.621539Z",
+      "percentage": 3.981100082397461,
+      "window_size": 1000000,
+      "context_tokens": 39811
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:01.629020Z",
+      "provider_usage": false,
+      "context_tokens": 39811,
+      "fallback_input": 19331,
+      "input": 0,
+      "output": 128,
+      "cache_write": 2878,
+      "cache_read": 36805,
+      "prompt_estimate": 24297,
+      "covered_estimate": 24297,
+      "read_estimate": 22535
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:02.245165Z",
+      "alias": 2,
+      "previous_age_secs": 5,
+      "common_blocks": 66,
+      "changed_kind": "message_other",
+      "previous_deepest": 66,
+      "previous_tokens": 24297,
+      "reason": "previous_prefix_changed",
+      "blocks": 73,
+      "breakpoints": [
+        42,
+        43,
+        72
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        45
+      ],
+      "prompt_estimate": 27974,
+      "read_estimate": 22535,
+      "covered_estimate": 27974
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:06.455438Z",
+      "percentage": 4.546200275421143,
+      "window_size": 1000000,
+      "context_tokens": 45462
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:06.460543Z",
+      "provider_usage": false,
+      "context_tokens": 45462,
+      "fallback_input": 19349,
+      "input": 0,
+      "output": 111,
+      "cache_write": 8818,
+      "cache_read": 36533,
+      "prompt_estimate": 27974,
+      "covered_estimate": 27974,
+      "read_estimate": 22535
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:11.801709Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 72,
+      "changed_kind": "message_text",
+      "previous_deepest": 72,
+      "previous_tokens": 27974,
+      "reason": "previous_prefix_changed",
+      "blocks": 74,
+      "breakpoints": [
+        42,
+        43,
+        69
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        43
+      ],
+      "prompt_estimate": 28119,
+      "read_estimate": 22535,
+      "covered_estimate": 24461
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:12.423548Z",
+      "alias": 2,
+      "previous_age_secs": 1,
+      "common_blocks": 72,
+      "changed_kind": "message_other",
+      "previous_deepest": 69,
+      "previous_tokens": 24461,
+      "reason": "previous_prefix_available",
+      "blocks": 77,
+      "breakpoints": [
+        42,
+        43,
+        76
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        49
+      ],
+      "prompt_estimate": 28821,
+      "read_estimate": 24461,
+      "covered_estimate": 28821
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:13.768981Z",
+      "percentage": 4.55049991607666,
+      "window_size": 1000000,
+      "context_tokens": 45504
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:13.770598Z",
+      "provider_usage": false,
+      "context_tokens": 45504,
+      "fallback_input": 19537,
+      "input": 5918,
+      "output": 10,
+      "cache_write": 3116,
+      "cache_read": 36460,
+      "prompt_estimate": 28119,
+      "covered_estimate": 24461,
+      "read_estimate": 22535
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:15.879761Z",
+      "percentage": 4.676599979400635,
+      "window_size": 1000000,
+      "context_tokens": 46765
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:15.889654Z",
+      "provider_usage": false,
+      "context_tokens": 46765,
+      "fallback_input": 19367,
+      "input": 0,
+      "output": 47,
+      "cache_write": 7067,
+      "cache_read": 39651,
+      "prompt_estimate": 28821,
+      "covered_estimate": 28821,
+      "read_estimate": 24461
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:16.799168Z",
+      "alias": 2,
+      "previous_age_secs": 4,
+      "common_blocks": 76,
+      "changed_kind": "message_other",
+      "previous_deepest": 76,
+      "previous_tokens": 28821,
+      "reason": "previous_prefix_changed",
+      "blocks": 82,
+      "breakpoints": [
+        42,
+        43,
+        81
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        52
+      ],
+      "prompt_estimate": 31515,
+      "read_estimate": 24461,
+      "covered_estimate": 31515
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:21.943485Z",
+      "percentage": 5.135900020599365,
+      "window_size": 1000000,
+      "context_tokens": 51359
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:21.946530Z",
+      "provider_usage": false,
+      "context_tokens": 51359,
+      "fallback_input": 19385,
+      "input": 0,
+      "output": 189,
+      "cache_write": 11453,
+      "cache_read": 39717,
+      "prompt_estimate": 31515,
+      "covered_estimate": 31515,
+      "read_estimate": 24461
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:22.480700Z",
+      "alias": 3,
+      "previous_age_secs": 110,
+      "common_blocks": 1,
+      "changed_kind": "system",
+      "previous_deepest": 18,
+      "previous_tokens": 40082,
+      "reason": "previous_prefix_changed",
+      "blocks": 9,
+      "breakpoints": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 39617,
+      "read_estimate": 0,
+      "covered_estimate": 39565
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:25.136238Z",
+      "percentage": 6.176400184631348,
+      "window_size": 1000000,
+      "context_tokens": 61764
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:27.516227Z",
+      "alias": 2,
+      "previous_age_secs": 11,
+      "common_blocks": 81,
+      "changed_kind": "message_other",
+      "previous_deepest": 81,
+      "previous_tokens": 31515,
+      "reason": "previous_prefix_changed",
+      "blocks": 86,
+      "breakpoints": [
+        42,
+        43,
+        85
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        61
+      ],
+      "prompt_estimate": 33320,
+      "read_estimate": 24461,
+      "covered_estimate": 33320
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:34.006709Z",
+      "percentage": 5.514099597930908,
+      "window_size": 1000000,
+      "context_tokens": 55140
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:34.015879Z",
+      "provider_usage": false,
+      "context_tokens": 55140,
+      "fallback_input": 19403,
+      "input": 0,
+      "output": 163,
+      "cache_write": 14617,
+      "cache_read": 40360,
+      "prompt_estimate": 33320,
+      "covered_estimate": 33320,
+      "read_estimate": 24461
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:34.694141Z",
+      "alias": 3,
+      "previous_age_secs": 12,
+      "common_blocks": 7,
+      "changed_kind": "message_text",
+      "previous_deepest": 6,
+      "previous_tokens": 39565,
+      "reason": "previous_prefix_available",
+      "blocks": 10,
+      "breakpoints": [
+        1,
+        3,
+        6,
+        7
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 39744,
+      "read_estimate": 39565,
+      "covered_estimate": 39692
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:39.232851Z",
+      "percentage": 6.203000068664551,
+      "window_size": 1000000,
+      "context_tokens": 62030
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:44.225338Z",
+      "alias": 2,
+      "previous_age_secs": 17,
+      "common_blocks": 85,
+      "changed_kind": "message_text",
+      "previous_deepest": 85,
+      "previous_tokens": 33320,
+      "reason": "previous_prefix_changed",
+      "blocks": 87,
+      "breakpoints": [
+        42,
+        43,
+        83
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        58
+      ],
+      "prompt_estimate": 33466,
+      "read_estimate": 24461,
+      "covered_estimate": 31715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:45.819338Z",
+      "alias": 2,
+      "previous_age_secs": 1,
+      "common_blocks": 85,
+      "changed_kind": "message_other",
+      "previous_deepest": 83,
+      "previous_tokens": 31715,
+      "reason": "previous_prefix_available",
+      "blocks": 90,
+      "breakpoints": [
+        42,
+        43,
+        89
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        66
+      ],
+      "prompt_estimate": 34005,
+      "read_estimate": 31715,
+      "covered_estimate": 34005
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:45.908263Z",
+      "percentage": 5.507299900054932,
+      "window_size": 1000000,
+      "context_tokens": 55072
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:45.920442Z",
+      "provider_usage": false,
+      "context_tokens": 55072,
+      "fallback_input": 19592,
+      "input": 2881,
+      "output": 10,
+      "cache_write": 11935,
+      "cache_read": 40246,
+      "prompt_estimate": 33466,
+      "covered_estimate": 31715,
+      "read_estimate": 24461
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:51.085857Z",
+      "percentage": 5.625500202178955,
+      "window_size": 1000000,
+      "context_tokens": 56255
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:51.087033Z",
+      "provider_usage": false,
+      "context_tokens": 56255,
+      "fallback_input": 19421,
+      "input": 0,
+      "output": 139,
+      "cache_write": 3779,
+      "cache_read": 52337,
+      "prompt_estimate": 34005,
+      "covered_estimate": 34005,
+      "read_estimate": 31715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:51.759005Z",
+      "alias": 2,
+      "previous_age_secs": 6,
+      "common_blocks": 89,
+      "changed_kind": "message_other",
+      "previous_deepest": 89,
+      "previous_tokens": 34005,
+      "reason": "previous_prefix_changed",
+      "blocks": 94,
+      "breakpoints": [
+        42,
+        43,
+        93
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        72
+      ],
+      "prompt_estimate": 35207,
+      "read_estimate": 31715,
+      "covered_estimate": 35207
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:17:56.621247Z",
+      "percentage": 5.798900127410889,
+      "window_size": 1000000,
+      "context_tokens": 57989
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:17:56.622533Z",
+      "provider_usage": false,
+      "context_tokens": 57989,
+      "fallback_input": 19439,
+      "input": 0,
+      "output": 179,
+      "cache_write": 5734,
+      "cache_read": 52076,
+      "prompt_estimate": 35207,
+      "covered_estimate": 35207,
+      "read_estimate": 31715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:17:57.307455Z",
+      "alias": 2,
+      "previous_age_secs": 6,
+      "common_blocks": 93,
+      "changed_kind": "message_other",
+      "previous_deepest": 93,
+      "previous_tokens": 35207,
+      "reason": "previous_prefix_changed",
+      "blocks": 98,
+      "breakpoints": [
+        42,
+        43,
+        97
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        76
+      ],
+      "prompt_estimate": 36653,
+      "read_estimate": 31715,
+      "covered_estimate": 36653
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:03.261552Z",
+      "percentage": 6.00540018081665,
+      "window_size": 1000000,
+      "context_tokens": 60054
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:18:03.265338Z",
+      "provider_usage": false,
+      "context_tokens": 60054,
+      "fallback_input": 19457,
+      "input": 0,
+      "output": 125,
+      "cache_write": 8074,
+      "cache_read": 51855,
+      "prompt_estimate": 36653,
+      "covered_estimate": 36653,
+      "read_estimate": 31715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:03.675278Z",
+      "alias": 3,
+      "previous_age_secs": 29,
+      "common_blocks": 8,
+      "changed_kind": "message_text",
+      "previous_deepest": 7,
+      "previous_tokens": 39692,
+      "reason": "previous_prefix_available",
+      "blocks": 12,
+      "breakpoints": [
+        1,
+        3,
+        8,
+        9
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 39966,
+      "read_estimate": 39692,
+      "covered_estimate": 39914
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:06.569507Z",
+      "percentage": 6.248899936676025,
+      "window_size": 1000000,
+      "context_tokens": 62488
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:07.305553Z",
+      "alias": 2,
+      "previous_age_secs": 10,
+      "common_blocks": 97,
+      "changed_kind": "message_other",
+      "previous_deepest": 97,
+      "previous_tokens": 36653,
+      "reason": "previous_prefix_changed",
+      "blocks": 103,
+      "breakpoints": [
+        42,
+        43,
+        102
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        83
+      ],
+      "prompt_estimate": 38725,
+      "read_estimate": 31715,
+      "covered_estimate": 38725
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:12.272658Z",
+      "percentage": 6.339900016784668,
+      "window_size": 1000000,
+      "context_tokens": 63399
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:18:12.278338Z",
+      "provider_usage": false,
+      "context_tokens": 63399,
+      "fallback_input": 19512,
+      "input": 0,
+      "output": 218,
+      "cache_write": 11437,
+      "cache_read": 51744,
+      "prompt_estimate": 38725,
+      "covered_estimate": 38725,
+      "read_estimate": 31715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:12.719721Z",
+      "alias": 3,
+      "previous_age_secs": 9,
+      "common_blocks": 10,
+      "changed_kind": "message_text",
+      "previous_deepest": 9,
+      "previous_tokens": 39914,
+      "reason": "previous_prefix_available",
+      "blocks": 13,
+      "breakpoints": [
+        1,
+        3,
+        9,
+        10
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 40112,
+      "read_estimate": 39914,
+      "covered_estimate": 40060
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:15.311002Z",
+      "percentage": 6.279599666595459,
+      "window_size": 1000000,
+      "context_tokens": 62795
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:16.375041Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 102,
+      "changed_kind": "message_text",
+      "previous_deepest": 102,
+      "previous_tokens": 38725,
+      "reason": "previous_prefix_changed",
+      "blocks": 104,
+      "breakpoints": [
+        42,
+        43,
+        100
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        81
+      ],
+      "prompt_estimate": 38870,
+      "read_estimate": 31715,
+      "covered_estimate": 36791
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:16.544178Z",
+      "alias": 2,
+      "previous_age_secs": 0,
+      "common_blocks": 102,
+      "changed_kind": "message_other",
+      "previous_deepest": 100,
+      "previous_tokens": 36791,
+      "reason": "previous_prefix_available",
+      "blocks": 107,
+      "breakpoints": [
+        42,
+        43,
+        106
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        87
+      ],
+      "prompt_estimate": 39198,
+      "read_estimate": 36791,
+      "covered_estimate": 39198
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:18.225435Z",
+      "percentage": 6.327600002288818,
+      "window_size": 1000000,
+      "context_tokens": 63276
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:18:18.229490Z",
+      "provider_usage": false,
+      "context_tokens": 63276,
+      "fallback_input": 19701,
+      "input": 3384,
+      "output": 9,
+      "cache_write": 8262,
+      "cache_read": 51621,
+      "prompt_estimate": 38870,
+      "covered_estimate": 36791,
+      "read_estimate": 31715
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:20.080809Z",
+      "percentage": 6.398099899291992,
+      "window_size": 1000000,
+      "context_tokens": 63980
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:18:20.090915Z",
+      "provider_usage": false,
+      "context_tokens": 63980,
+      "fallback_input": 19530,
+      "input": 0,
+      "output": 93,
+      "cache_write": 3923,
+      "cache_read": 59964,
+      "prompt_estimate": 39198,
+      "covered_estimate": 39198,
+      "read_estimate": 36791
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:20.533553Z",
+      "alias": 3,
+      "previous_age_secs": 8,
+      "common_blocks": 11,
+      "changed_kind": "message_text",
+      "previous_deepest": 10,
+      "previous_tokens": 40060,
+      "reason": "previous_prefix_available",
+      "blocks": 14,
+      "breakpoints": [
+        1,
+        3,
+        10,
+        11
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 40204,
+      "read_estimate": 40060,
+      "covered_estimate": 40152
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:23.262556Z",
+      "percentage": 6.298500061035156,
+      "window_size": 1000000,
+      "context_tokens": 62985
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:24.520984Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 106,
+      "changed_kind": "message_other",
+      "previous_deepest": 106,
+      "previous_tokens": 39198,
+      "reason": "previous_prefix_changed",
+      "blocks": 110,
+      "breakpoints": [
+        42,
+        43,
+        109
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        90
+      ],
+      "prompt_estimate": 40388,
+      "read_estimate": 36791,
+      "covered_estimate": 40388
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:31.263868Z",
+      "percentage": 6.6529998779296875,
+      "window_size": 1000000,
+      "context_tokens": 66529
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:18:31.268662Z",
+      "provider_usage": false,
+      "context_tokens": 66529,
+      "fallback_input": 19548,
+      "input": 0,
+      "output": 211,
+      "cache_write": 5906,
+      "cache_read": 60412,
+      "prompt_estimate": 40388,
+      "covered_estimate": 40388,
+      "read_estimate": 36791
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:32.330962Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 109,
+      "changed_kind": "message_other",
+      "previous_deepest": 109,
+      "previous_tokens": 40388,
+      "reason": "previous_prefix_changed",
+      "blocks": 116,
+      "breakpoints": [
+        42,
+        43,
+        115
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        94
+      ],
+      "prompt_estimate": 42128,
+      "read_estimate": 36791,
+      "covered_estimate": 42128
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:36.704692Z",
+      "percentage": 6.984599590301514,
+      "window_size": 1000000,
+      "context_tokens": 69845
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:18:36.708149Z",
+      "provider_usage": false,
+      "context_tokens": 69845,
+      "fallback_input": 19596,
+      "input": 0,
+      "output": 145,
+      "cache_write": 8830,
+      "cache_read": 60870,
+      "prompt_estimate": 42128,
+      "covered_estimate": 42128,
+      "read_estimate": 36791
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:37.102951Z",
+      "alias": 3,
+      "previous_age_secs": 17,
+      "common_blocks": 12,
+      "changed_kind": "message_text",
+      "previous_deepest": 11,
+      "previous_tokens": 40152,
+      "reason": "previous_prefix_available",
+      "blocks": 16,
+      "breakpoints": [
+        1,
+        3,
+        12,
+        13
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 40499,
+      "read_estimate": 40152,
+      "covered_estimate": 40447
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:39.513183Z",
+      "percentage": 6.367000102996826,
+      "window_size": 1000000,
+      "context_tokens": 63670
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:40.300896Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 115,
+      "changed_kind": "message_other",
+      "previous_deepest": 115,
+      "previous_tokens": 42128,
+      "reason": "previous_prefix_changed",
+      "blocks": 120,
+      "breakpoints": [
+        42,
+        43,
+        119
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        98
+      ],
+      "prompt_estimate": 43049,
+      "read_estimate": 36791,
+      "covered_estimate": 43049
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:48.778467Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 119,
+      "changed_kind": "message_text",
+      "previous_deepest": 119,
+      "previous_tokens": 43049,
+      "reason": "previous_prefix_changed",
+      "blocks": 121,
+      "breakpoints": [
+        42,
+        43,
+        117
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        96
+      ],
+      "prompt_estimate": 43193,
+      "read_estimate": 36791,
+      "covered_estimate": 42290
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:50.756441Z",
+      "percentage": 7.155899524688721,
+      "window_size": 1000000,
+      "context_tokens": 71558
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:18:50.768017Z",
+      "provider_usage": false,
+      "context_tokens": 71558,
+      "fallback_input": 19802,
+      "input": 1496,
+      "output": 15,
+      "cache_write": 9108,
+      "cache_read": 60939,
+      "prompt_estimate": 43193,
+      "covered_estimate": 42290,
+      "read_estimate": 36791
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:18:51.599437Z",
+      "percentage": 7.185299873352051,
+      "window_size": 1000000,
+      "context_tokens": 71852
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:18:51.709261Z",
+      "provider_usage": false,
+      "context_tokens": 71852,
+      "fallback_input": 19614,
+      "input": 0,
+      "output": 281,
+      "cache_write": 10404,
+      "cache_read": 61167,
+      "prompt_estimate": 43049,
+      "covered_estimate": 43049,
+      "read_estimate": 36791
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:18:52.511002Z",
+      "alias": 2,
+      "previous_age_secs": 4,
+      "common_blocks": 119,
+      "changed_kind": "message_other",
+      "previous_deepest": 117,
+      "previous_tokens": 42290,
+      "reason": "previous_prefix_available",
+      "blocks": 124,
+      "breakpoints": [
+        42,
+        43,
+        123
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        102
+      ],
+      "prompt_estimate": 43961,
+      "read_estimate": 42290,
+      "covered_estimate": 43961
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:19:21.559439Z",
+      "alias": 2,
+      "previous_age_secs": 29,
+      "common_blocks": 123,
+      "changed_kind": "message_text",
+      "previous_deepest": 123,
+      "previous_tokens": 43961,
+      "reason": "previous_prefix_changed",
+      "blocks": 125,
+      "breakpoints": [
+        42,
+        43,
+        121
+      ],
+      "lookback_starts": [
+        23,
+        24,
+        100
+      ],
+      "prompt_estimate": 44110,
+      "read_estimate": 42290,
+      "covered_estimate": 43341
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:19:24.990534Z",
+      "percentage": 7.544399738311768,
+      "window_size": 1000000,
+      "context_tokens": 75443
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:19:24.991826Z",
+      "provider_usage": false,
+      "context_tokens": 75443,
+      "fallback_input": 19632,
+      "input": 0,
+      "output": 1240,
+      "cache_write": 2821,
+      "cache_read": 71382,
+      "prompt_estimate": 43961,
+      "covered_estimate": 43961,
+      "read_estimate": 42290
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:19:25.446494Z",
+      "alias": 3,
+      "previous_age_secs": 48,
+      "common_blocks": 14,
+      "changed_kind": "message_text",
+      "previous_deepest": 13,
+      "previous_tokens": 40447,
+      "reason": "previous_prefix_available",
+      "blocks": 18,
+      "breakpoints": [
+        1,
+        3,
+        14,
+        15
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prompt_estimate": 41904,
+      "read_estimate": 40447,
+      "covered_estimate": 41852
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:19:25.849611Z",
+      "percentage": 7.303599834442139,
+      "window_size": 1000000,
+      "context_tokens": 73035
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:19:25.871435Z",
+      "provider_usage": false,
+      "context_tokens": 73035,
+      "fallback_input": 19826,
+      "input": 1273,
+      "output": 11,
+      "cache_write": 1740,
+      "cache_read": 70011,
+      "prompt_estimate": 44110,
+      "covered_estimate": 43341,
+      "read_estimate": 42290
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:19:28.905411Z",
+      "percentage": 6.661400318145752,
+      "window_size": 1000000,
+      "context_tokens": 66614
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:19:29.968371Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 0,
+      "changed_kind": "tool_definition",
+      "previous_deepest": 121,
+      "previous_tokens": 43341,
+      "reason": "previous_prefix_changed",
+      "blocks": 138,
+      "breakpoints": [
+        59,
+        60,
+        137
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        118
+      ],
+      "prompt_estimate": 51591,
+      "read_estimate": 23715,
+      "covered_estimate": 51591
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:20:06.526596Z",
+      "percentage": 8.317700386047363,
+      "window_size": 1000000,
+      "context_tokens": 83177
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:20:06.571014Z",
+      "provider_usage": false,
+      "context_tokens": 83177,
+      "fallback_input": 39700,
+      "input": 0,
+      "output": 102,
+      "cache_write": 44888,
+      "cache_read": 38187,
+      "prompt_estimate": 51591,
+      "covered_estimate": 51591,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:20:07.348160Z",
+      "alias": 2,
+      "previous_age_secs": 38,
+      "common_blocks": 137,
+      "changed_kind": "message_other",
+      "previous_deepest": 137,
+      "previous_tokens": 51591,
+      "reason": "previous_prefix_changed",
+      "blocks": 142,
+      "breakpoints": [
+        59,
+        60,
+        141
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        122
+      ],
+      "prompt_estimate": 52188,
+      "read_estimate": 23715,
+      "covered_estimate": 52188
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:20:20.476178Z",
+      "percentage": 8.418100357055664,
+      "window_size": 1000000,
+      "context_tokens": 84181
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:20:20.477294Z",
+      "provider_usage": false,
+      "context_tokens": 84181,
+      "fallback_input": 40175,
+      "input": 0,
+      "output": 455,
+      "cache_write": 45680,
+      "cache_read": 38046,
+      "prompt_estimate": 52188,
+      "covered_estimate": 52188,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:23:51.540977Z",
+      "alias": 2,
+      "previous_age_secs": 224,
+      "common_blocks": 141,
+      "changed_kind": "message_other",
+      "previous_deepest": 141,
+      "previous_tokens": 52188,
+      "reason": "previous_prefix_changed",
+      "blocks": 146,
+      "breakpoints": [
+        59,
+        60,
+        145
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        126
+      ],
+      "prompt_estimate": 52725,
+      "read_estimate": 23715,
+      "covered_estimate": 52725
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:23:56.814342Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:23:59.155674Z",
+      "percentage": 8.545999526977539,
+      "window_size": 1000000,
+      "context_tokens": 85459
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:23:59.170532Z",
+      "provider_usage": false,
+      "context_tokens": 85459,
+      "fallback_input": 40193,
+      "input": 0,
+      "output": 125,
+      "cache_write": 46952,
+      "cache_read": 38382,
+      "prompt_estimate": 52725,
+      "covered_estimate": 52725,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:23:59.707559Z",
+      "alias": 3,
+      "previous_age_secs": 274,
+      "common_blocks": 1,
+      "changed_kind": "system",
+      "previous_deepest": 15,
+      "previous_tokens": 41852,
+      "reason": "previous_prefix_changed",
+      "blocks": 23,
+      "breakpoints": [
+        1,
+        3,
+        19,
+        20
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "prompt_estimate": 42428,
+      "read_estimate": 0,
+      "covered_estimate": 42376
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:01.620815Z",
+      "percentage": 6.709499835968018,
+      "window_size": 1000000,
+      "context_tokens": 67094
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:02.809586Z",
+      "alias": 2,
+      "previous_age_secs": 11,
+      "common_blocks": 145,
+      "changed_kind": "message_other",
+      "previous_deepest": 145,
+      "previous_tokens": 52725,
+      "reason": "previous_prefix_changed",
+      "blocks": 150,
+      "breakpoints": [
+        59,
+        60,
+        149
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        130
+      ],
+      "prompt_estimate": 53608,
+      "read_estimate": 23715,
+      "covered_estimate": 53608
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:11.270917Z",
+      "percentage": 8.684399604797363,
+      "window_size": 1000000,
+      "context_tokens": 86843
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:24:11.289266Z",
+      "provider_usage": false,
+      "context_tokens": 86843,
+      "fallback_input": 40211,
+      "input": 0,
+      "output": 70,
+      "cache_write": 48387,
+      "cache_read": 38386,
+      "prompt_estimate": 53608,
+      "covered_estimate": 53608,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:12.198475Z",
+      "alias": 3,
+      "previous_age_secs": 13,
+      "common_blocks": 21,
+      "changed_kind": "message_text",
+      "previous_deepest": 20,
+      "previous_tokens": 42376,
+      "reason": "previous_prefix_available",
+      "blocks": 24,
+      "breakpoints": [
+        1,
+        3,
+        20,
+        21
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        1,
+        2
+      ],
+      "prompt_estimate": 42498,
+      "read_estimate": 42376,
+      "covered_estimate": 42446
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:13.656650Z",
+      "percentage": 6.722799777984619,
+      "window_size": 1000000,
+      "context_tokens": 67227
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:14.907139Z",
+      "alias": 2,
+      "previous_age_secs": 12,
+      "common_blocks": 149,
+      "changed_kind": "message_other",
+      "previous_deepest": 149,
+      "previous_tokens": 53608,
+      "reason": "previous_prefix_changed",
+      "blocks": 153,
+      "breakpoints": [
+        59,
+        60,
+        152
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        133
+      ],
+      "prompt_estimate": 54476,
+      "read_estimate": 23715,
+      "covered_estimate": 54476
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:23.993180Z",
+      "percentage": 8.848000526428223,
+      "window_size": 1000000,
+      "context_tokens": 88480
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:24:23.999546Z",
+      "provider_usage": false,
+      "context_tokens": 88480,
+      "fallback_input": 40229,
+      "input": 0,
+      "output": 278,
+      "cache_write": 49805,
+      "cache_read": 38397,
+      "prompt_estimate": 54476,
+      "covered_estimate": 54476,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:24.463856Z",
+      "alias": 3,
+      "previous_age_secs": 12,
+      "common_blocks": 22,
+      "changed_kind": "message_text",
+      "previous_deepest": 21,
+      "previous_tokens": 42446,
+      "reason": "previous_prefix_available",
+      "blocks": 25,
+      "breakpoints": [
+        1,
+        3,
+        21,
+        22
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        2,
+        3
+      ],
+      "prompt_estimate": 42565,
+      "read_estimate": 42446,
+      "covered_estimate": 42513
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:25.892487Z",
+      "percentage": 6.738399505615234,
+      "window_size": 1000000,
+      "context_tokens": 67383
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:27.012393Z",
+      "alias": 2,
+      "previous_age_secs": 13,
+      "common_blocks": 152,
+      "changed_kind": "message_other",
+      "previous_deepest": 152,
+      "previous_tokens": 54476,
+      "reason": "previous_prefix_changed",
+      "blocks": 157,
+      "breakpoints": [
+        59,
+        60,
+        156
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        137
+      ],
+      "prompt_estimate": 55689,
+      "read_estimate": 23715,
+      "covered_estimate": 55689
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:29.907066Z",
+      "percentage": 8.995299339294434,
+      "window_size": 1000000,
+      "context_tokens": 89952
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:24:29.910800Z",
+      "provider_usage": false,
+      "context_tokens": 89952,
+      "fallback_input": 40247,
+      "input": 0,
+      "output": 17,
+      "cache_write": 51636,
+      "cache_read": 38299,
+      "prompt_estimate": 55689,
+      "covered_estimate": 55689,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:30.722706Z",
+      "alias": 2,
+      "previous_age_secs": 3,
+      "common_blocks": 156,
+      "changed_kind": "message_other",
+      "previous_deepest": 156,
+      "previous_tokens": 55689,
+      "reason": "previous_prefix_changed",
+      "blocks": 160,
+      "breakpoints": [
+        59,
+        60,
+        159
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        140
+      ],
+      "prompt_estimate": 138828,
+      "read_estimate": 23715,
+      "covered_estimate": 138828
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:38.247430Z",
+      "percentage": 9.217100143432615,
+      "window_size": 1000000,
+      "context_tokens": 92171
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:24:38.250668Z",
+      "provider_usage": false,
+      "context_tokens": 92171,
+      "fallback_input": 40265,
+      "input": 0,
+      "output": 137,
+      "cache_write": 76312,
+      "cache_read": 15722,
+      "prompt_estimate": 138828,
+      "covered_estimate": 138828,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:39.028354Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 159,
+      "changed_kind": "message_other",
+      "previous_deepest": 159,
+      "previous_tokens": 138828,
+      "reason": "previous_prefix_changed",
+      "blocks": 164,
+      "breakpoints": [
+        59,
+        60,
+        163
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        144
+      ],
+      "prompt_estimate": 139262,
+      "read_estimate": 23715,
+      "covered_estimate": 139262
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:47.262934Z",
+      "percentage": 9.30270004272461,
+      "window_size": 1000000,
+      "context_tokens": 93027
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:24:47.270209Z",
+      "provider_usage": false,
+      "context_tokens": 93027,
+      "fallback_input": 40337,
+      "input": 0,
+      "output": 260,
+      "cache_write": 76970,
+      "cache_read": 15797,
+      "prompt_estimate": 139262,
+      "covered_estimate": 139262,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:47.898272Z",
+      "alias": 3,
+      "previous_age_secs": 23,
+      "common_blocks": 23,
+      "changed_kind": "message_text",
+      "previous_deepest": 22,
+      "previous_tokens": 42513,
+      "reason": "previous_prefix_available",
+      "blocks": 26,
+      "breakpoints": [
+        1,
+        3,
+        22,
+        23
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        3,
+        4
+      ],
+      "prompt_estimate": 42660,
+      "read_estimate": 42513,
+      "covered_estimate": 42608
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:50.350426Z",
+      "percentage": 6.758099555969238,
+      "window_size": 1000000,
+      "context_tokens": 67580
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:24:51.813049Z",
+      "alias": 2,
+      "previous_age_secs": 12,
+      "common_blocks": 163,
+      "changed_kind": "message_other",
+      "previous_deepest": 163,
+      "previous_tokens": 139262,
+      "reason": "previous_prefix_changed",
+      "blocks": 168,
+      "breakpoints": [
+        59,
+        60,
+        167
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        148
+      ],
+      "prompt_estimate": 140176,
+      "read_estimate": 23715,
+      "covered_estimate": 140176
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:24:58.045150Z",
+      "percentage": 9.449599266052246,
+      "window_size": 1000000,
+      "context_tokens": 94495
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:24:58.053360Z",
+      "provider_usage": false,
+      "context_tokens": 94495,
+      "fallback_input": 40355,
+      "input": 0,
+      "output": 112,
+      "cache_write": 78415,
+      "cache_read": 15968,
+      "prompt_estimate": 140176,
+      "covered_estimate": 140176,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:25:00.535771Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 167,
+      "changed_kind": "message_other",
+      "previous_deepest": 167,
+      "previous_tokens": 140176,
+      "reason": "previous_prefix_changed",
+      "blocks": 172,
+      "breakpoints": [
+        59,
+        60,
+        171
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        152
+      ],
+      "prompt_estimate": 140412,
+      "read_estimate": 23715,
+      "covered_estimate": 140412
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:25:09.835664Z",
+      "percentage": 9.507899284362791,
+      "window_size": 1000000,
+      "context_tokens": 95078
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:25:09.844559Z",
+      "provider_usage": false,
+      "context_tokens": 95078,
+      "fallback_input": 40428,
+      "input": 0,
+      "output": 233,
+      "cache_write": 78826,
+      "cache_read": 16019,
+      "prompt_estimate": 140412,
+      "covered_estimate": 140412,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:25:10.723134Z",
+      "alias": 2,
+      "previous_age_secs": 10,
+      "common_blocks": 171,
+      "changed_kind": "message_other",
+      "previous_deepest": 171,
+      "previous_tokens": 140412,
+      "reason": "previous_prefix_changed",
+      "blocks": 176,
+      "breakpoints": [
+        59,
+        60,
+        175
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        156
+      ],
+      "prompt_estimate": 140738,
+      "read_estimate": 23715,
+      "covered_estimate": 140738
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:25:17.170310Z",
+      "percentage": 9.55780029296875,
+      "window_size": 1000000,
+      "context_tokens": 95578
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:25:17.173885Z",
+      "provider_usage": false,
+      "context_tokens": 95578,
+      "fallback_input": 40446,
+      "input": 0,
+      "output": 201,
+      "cache_write": 79306,
+      "cache_read": 16071,
+      "prompt_estimate": 140738,
+      "covered_estimate": 140738,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:25:18.223226Z",
+      "alias": 2,
+      "previous_age_secs": 8,
+      "common_blocks": 175,
+      "changed_kind": "message_other",
+      "previous_deepest": 175,
+      "previous_tokens": 140738,
+      "reason": "previous_prefix_changed",
+      "blocks": 180,
+      "breakpoints": [
+        59,
+        60,
+        179
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        160
+      ],
+      "prompt_estimate": 141023,
+      "read_estimate": 23715,
+      "covered_estimate": 141023
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:25:21.689340Z",
+      "percentage": 9.571499824523926,
+      "window_size": 1000000,
+      "context_tokens": 95714
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:25:21.698015Z",
+      "provider_usage": false,
+      "context_tokens": 95714,
+      "fallback_input": 40464,
+      "input": 0,
+      "output": 10,
+      "cache_write": 79610,
+      "cache_read": 16094,
+      "prompt_estimate": 141023,
+      "covered_estimate": 141023,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:25:22.762072Z",
+      "alias": 3,
+      "previous_age_secs": 35,
+      "common_blocks": 24,
+      "changed_kind": "message_text",
+      "previous_deepest": 23,
+      "previous_tokens": 42608,
+      "reason": "previous_prefix_available",
+      "blocks": 28,
+      "breakpoints": [
+        1,
+        3,
+        24,
+        25
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        5,
+        6
+      ],
+      "prompt_estimate": 43064,
+      "read_estimate": 42608,
+      "covered_estimate": 43012
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:25:24.211899Z",
+      "percentage": 6.853499889373779,
+      "window_size": 1000000,
+      "context_tokens": 68534
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:25:25.123006Z",
+      "alias": 2,
+      "previous_age_secs": 7,
+      "common_blocks": 179,
+      "changed_kind": "message_other",
+      "previous_deepest": 179,
+      "previous_tokens": 141023,
+      "reason": "previous_prefix_changed",
+      "blocks": 183,
+      "breakpoints": [
+        59,
+        60,
+        182
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        163
+      ],
+      "prompt_estimate": 141136,
+      "read_estimate": 23715,
+      "covered_estimate": 141136
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:25:43.945467Z",
+      "percentage": 9.651400566101074,
+      "window_size": 1000000,
+      "context_tokens": 96514
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:25:43.954064Z",
+      "provider_usage": false,
+      "context_tokens": 96514,
+      "fallback_input": 40536,
+      "input": 0,
+      "output": 516,
+      "cache_write": 79868,
+      "cache_read": 16130,
+      "prompt_estimate": 141136,
+      "covered_estimate": 141136,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:28:45.732299Z",
+      "alias": 2,
+      "previous_age_secs": 200,
+      "common_blocks": 182,
+      "changed_kind": "message_other",
+      "previous_deepest": 182,
+      "previous_tokens": 141136,
+      "reason": "previous_prefix_changed",
+      "blocks": 186,
+      "breakpoints": [
+        59,
+        60,
+        184
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        165
+      ],
+      "prompt_estimate": 141610,
+      "read_estimate": 23715,
+      "covered_estimate": 141546
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:28:53.787773Z",
+      "percentage": 9.676600456237791,
+      "window_size": 1000000,
+      "context_tokens": 96766
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:28:53.791248Z",
+      "provider_usage": false,
+      "context_tokens": 96766,
+      "fallback_input": 41254,
+      "input": 44,
+      "output": 115,
+      "cache_write": 80421,
+      "cache_read": 16186,
+      "prompt_estimate": 141610,
+      "covered_estimate": 141546,
+      "read_estimate": 23715
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:30:08.285963Z",
+      "alias": 2,
+      "previous_age_secs": 83,
+      "common_blocks": 185,
+      "changed_kind": "message_other",
+      "previous_deepest": 184,
+      "previous_tokens": 141546,
+      "reason": "previous_prefix_available",
+      "blocks": 187,
+      "breakpoints": [
+        59,
+        60,
+        186
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        167
+      ],
+      "prompt_estimate": 141572,
+      "read_estimate": 141546,
+      "covered_estimate": 141572
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:30:26.166531Z",
+      "percentage": 9.761099815368652,
+      "window_size": 1000000,
+      "context_tokens": 97610
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:30:26.171581Z",
+      "provider_usage": false,
+      "context_tokens": 97610,
+      "fallback_input": 41206,
+      "input": 0,
+      "output": 528,
+      "cache_write": 18,
+      "cache_read": 97064,
+      "prompt_estimate": 141572,
+      "covered_estimate": 141572,
+      "read_estimate": 141546
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:30:28.129628Z",
+      "alias": 2,
+      "previous_age_secs": 20,
+      "common_blocks": 186,
+      "changed_kind": "message_other",
+      "previous_deepest": 186,
+      "previous_tokens": 141572,
+      "reason": "previous_prefix_changed",
+      "blocks": 193,
+      "breakpoints": [
+        59,
+        60,
+        192
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        171
+      ],
+      "prompt_estimate": 142179,
+      "read_estimate": 141546,
+      "covered_estimate": 142179
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:30:33.946714Z",
+      "percentage": 9.767799377441406,
+      "window_size": 1000000,
+      "context_tokens": 97677
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:30:33.968018Z",
+      "provider_usage": false,
+      "context_tokens": 97677,
+      "fallback_input": 41224,
+      "input": 0,
+      "output": 37,
+      "cache_write": 435,
+      "cache_read": 97205,
+      "prompt_estimate": 142179,
+      "covered_estimate": 142179,
+      "read_estimate": 141546
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:30:37.316185Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 192,
+      "changed_kind": "message_other",
+      "previous_deepest": 192,
+      "previous_tokens": 142179,
+      "reason": "previous_prefix_changed",
+      "blocks": 198,
+      "breakpoints": [
+        59,
+        60,
+        197
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        174
+      ],
+      "prompt_estimate": 142323,
+      "read_estimate": 141546,
+      "covered_estimate": 142323
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:30:41.650208Z",
+      "percentage": 9.793700218200684,
+      "window_size": 1000000,
+      "context_tokens": 97937
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:30:41.662689Z",
+      "provider_usage": false,
+      "context_tokens": 97937,
+      "fallback_input": 41242,
+      "input": 0,
+      "output": 98,
+      "cache_write": 534,
+      "cache_read": 97305,
+      "prompt_estimate": 142323,
+      "covered_estimate": 142323,
+      "read_estimate": 141546
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:30:42.294884Z",
+      "alias": 3,
+      "previous_age_secs": 320,
+      "common_blocks": 26,
+      "changed_kind": "message_text",
+      "previous_deepest": 25,
+      "previous_tokens": 43012,
+      "reason": "previous_entry_expired",
+      "blocks": 30,
+      "breakpoints": [
+        1,
+        3,
+        26,
+        27
+      ],
+      "lookback_starts": [
+        0,
+        0,
+        7,
+        8
+      ],
+      "prompt_estimate": 43209,
+      "read_estimate": 0,
+      "covered_estimate": 43157
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:30:44.107805Z",
+      "percentage": 6.884499549865723,
+      "window_size": 1000000,
+      "context_tokens": 68844
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:30:46.011909Z",
+      "alias": 2,
+      "previous_age_secs": 9,
+      "common_blocks": 197,
+      "changed_kind": "message_other",
+      "previous_deepest": 197,
+      "previous_tokens": 142323,
+      "reason": "previous_prefix_changed",
+      "blocks": 202,
+      "breakpoints": [
+        59,
+        60,
+        201
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        178
+      ],
+      "prompt_estimate": 142838,
+      "read_estimate": 141546,
+      "covered_estimate": 142838
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:30:51.119961Z",
+      "percentage": 9.862700462341309,
+      "window_size": 1000000,
+      "context_tokens": 98627
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:30:51.124762Z",
+      "provider_usage": false,
+      "context_tokens": 98627,
+      "fallback_input": 41304,
+      "input": 0,
+      "output": 79,
+      "cache_write": 891,
+      "cache_read": 97657,
+      "prompt_estimate": 142838,
+      "covered_estimate": 142838,
+      "read_estimate": 141546
+    },
+    {
+      "kind": "cache",
+      "time": "2026-10-10T12:30:52.212272Z",
+      "alias": 2,
+      "previous_age_secs": 6,
+      "common_blocks": 201,
+      "changed_kind": "message_other",
+      "previous_deepest": 201,
+      "previous_tokens": 142838,
+      "reason": "previous_prefix_changed",
+      "blocks": 206,
+      "breakpoints": [
+        59,
+        60,
+        205
+      ],
+      "lookback_starts": [
+        40,
+        41,
+        182
+      ],
+      "prompt_estimate": 143337,
+      "read_estimate": 141546,
+      "covered_estimate": 143337
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:31:20.198699Z",
+      "percentage": 10.078399658203123,
+      "window_size": 1000000,
+      "context_tokens": 100783
+    },
+    {
+      "kind": "usage",
+      "time": "2026-10-10T12:31:20.201135Z",
+      "provider_usage": false,
+      "context_tokens": 100783,
+      "fallback_input": 41322,
+      "input": 0,
+      "output": 281,
+      "cache_write": 1256,
+      "cache_read": 99246,
+      "prompt_estimate": 143337,
+      "covered_estimate": 143337,
+      "read_estimate": 141546
+    },
+    {
+      "kind": "context",
+      "time": "2026-10-10T12:33:49.225878Z",
+      "percentage": 0.6815000176429749,
+      "window_size": 1000000,
+      "context_tokens": 6815
+    }
+  ],
+  "sub2api": {
+    "account_id": 94,
+    "count": 148,
+    "user_usd": 131.1394,
+    "account_usd": 78.0738,
+    "samples": [
+      {
+        "ts": "2026-10-10T12:30:52.213306411+00:00",
+        "input": 0,
+        "output": 281,
+        "write": 1256,
+        "read": 99246,
+        "user_usd": 0.053338656
+      },
+      {
+        "ts": "2026-10-10T12:30:46.012869892+00:00",
+        "input": 0,
+        "output": 79,
+        "write": 891,
+        "read": 97657,
+        "user_usd": 0.042951552000000004
+      },
+      {
+        "ts": "2026-10-10T12:30:37.316718261+00:00",
+        "input": 0,
+        "output": 98,
+        "write": 534,
+        "read": 97305,
+        "user_usd": 0.04047288
+      },
+      {
+        "ts": "2026-10-10T12:30:28.130451362+00:00",
+        "input": 0,
+        "output": 37,
+        "write": 435,
+        "read": 97205,
+        "user_usd": 0.03755808
+      },
+      {
+        "ts": "2026-10-10T12:30:08.287046879+00:00",
+        "input": 0,
+        "output": 528,
+        "write": 18,
+        "read": 97064,
+        "user_usd": 0.050505504
+      },
+      {
+        "ts": "2026-10-10T12:28:45.733589254+00:00",
+        "input": 44,
+        "output": 115,
+        "write": 80421,
+        "read": 16186,
+        "user_usd": 0.685134576
+      },
+      {
+        "ts": "2026-10-10T12:25:25.124103828+00:00",
+        "input": 0,
+        "output": 516,
+        "write": 79868,
+        "read": 16130,
+        "user_usd": 0.6936484799999999
+      },
+      {
+        "ts": "2026-10-10T12:25:18.224254299+00:00",
+        "input": 0,
+        "output": 10,
+        "write": 79610,
+        "read": 16094,
+        "user_usd": 0.674467584
+      },
+      {
+        "ts": "2026-10-10T12:25:10.724144240+00:00",
+        "input": 0,
+        "output": 201,
+        "write": 79306,
+        "read": 16071,
+        "user_usd": 0.678323856
+      },
+      {
+        "ts": "2026-10-10T12:25:00.536837436+00:00",
+        "input": 0,
+        "output": 233,
+        "write": 78826,
+        "read": 16019,
+        "user_usd": 0.675349584
+      },
+      {
+        "ts": "2026-10-10T12:24:51.814136990+00:00",
+        "input": 0,
+        "output": 112,
+        "write": 78415,
+        "read": 15968,
+        "user_usd": 0.667814448
+      },
+      {
+        "ts": "2026-10-10T12:24:39.029477186+00:00",
+        "input": 0,
+        "output": 260,
+        "write": 76970,
+        "read": 15797,
+        "user_usd": 0.6605917920000001
+      },
+      {
+        "ts": "2026-10-10T12:24:30.723992056+00:00",
+        "input": 0,
+        "output": 137,
+        "write": 76312,
+        "read": 15722,
+        "user_usd": 0.650906592
+      },
+      {
+        "ts": "2026-10-10T12:24:27.013655717+00:00",
+        "input": 0,
+        "output": 17,
+        "write": 51636,
+        "read": 38299,
+        "user_usd": 0.44718206399999993
+      },
+      {
+        "ts": "2026-10-10T12:24:14.907716529+00:00",
+        "input": 0,
+        "output": 278,
+        "write": 49805,
+        "read": 38397,
+        "user_usd": 0.440604192
+      }
+    ],
+    "rate_boundary": "Previously verified rates reproduce displayed Opus fees, rate tooltip not reopened."
+  },
+  "monitor_assessment": "New confirming evidence:20:28 breakpoint184 before unstable final block persists at20:30:08 (common185), enables read estimate141546 versus23715. Five subsequent calls retain this stable anchor even as newer endpoints change; billed writes18/435/534/891/1256. No deployment/config changes. Sonnet320second gap shows expired entry, confirming distinct TTL mechanism. Notify stable-anchor finding without claiming exact mutated field or completed fix.",
+  "boundaries": "Identity alias can interleave request variants; correlate timestamps/estimates/tokens, no shared request ID. Context window actual value unverified. Credits separate."
+}

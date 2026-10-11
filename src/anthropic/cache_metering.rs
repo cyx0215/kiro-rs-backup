@@ -411,6 +411,7 @@ impl RemoteCacheStore for FakeRemoteStore {
 /// 进程内提示词缓存（带可选 Redis 共享层）
 pub struct CacheMeter {
     inner: Mutex<Inner>,
+    diagnostics: Mutex<DiagnosticHistory>,
     persist_path: Option<PathBuf>,
     remote: Option<Arc<dyn RemoteCacheStore>>,
     /// 计量模拟总开关（运行时可由 Admin API 切换，无需重启）。
@@ -423,6 +424,114 @@ struct Inner {
     entries: HashMap<u64, CacheEntry>,
     /// 自上次落盘后是否有变化
     dirty: bool,
+}
+
+#[derive(Default)]
+struct DiagnosticHistory {
+    next_alias: u64,
+    frames: HashMap<u64, DiagnosticFrame>,
+}
+
+struct DiagnosticFrame {
+    alias: u64,
+    at: i64,
+    global_hash: u64,
+    hashes: Vec<u64>,
+    deepest: usize,
+    deepest_tokens: u32,
+    breakpoint_details: HashMap<usize, DiagnosticBlock>,
+}
+
+// Fingerprints stay in memory; only fixed labels, equality flags and sizes are logged.
+struct DiagnosticBlock {
+    kind: &'static str,
+    role: &'static str,
+    source: &'static str,
+    content_hash: u64,
+    normalized_hash: u64,
+    text_hash: Option<u64>,
+    bytes: usize,
+    fields: Vec<Option<u64>>,
+}
+
+const DIAGNOSTIC_FIELDS: [&str; 10] = [
+    "type", "text", "thinking", "signature", "id", "name", "input",
+    "tool_use_id", "content", "is_error",
+];
+
+fn diagnostic_block(block: &PromptBlock) -> DiagnosticBlock {
+    let signature: serde_json::Value = serde_json::from_slice(&block.signature).unwrap_or_default();
+    let content = &signature["content"];
+    let kind = if content.is_string() {
+        "string"
+    } else {
+        match content["type"].as_str() {
+            Some("text") => "text",
+            Some("tool_use") => "tool_use",
+            Some("tool_result") => "tool_result",
+            Some("thinking") => "thinking",
+            Some("redacted_thinking") => "redacted_thinking",
+            Some("image") => "image",
+            _ => "other",
+        }
+    };
+    let role = match signature["role"].as_str() {
+        Some("user") => "user",
+        Some("assistant") => "assistant",
+        None => "none",
+        _ => "other",
+    };
+    let text = content.as_str().or_else(|| {
+        (kind == "text").then(|| content["text"].as_str()).flatten()
+    });
+    let normalized = if let Some(s) = content.as_str() {
+        serde_json::json!({"type": "text", "text": s})
+    } else {
+        content.clone()
+    };
+    let raw = serde_json::to_vec(content).unwrap_or_default();
+    DiagnosticBlock {
+        kind, role,
+        source: if block.cache_control.is_some() { "explicit" } else { "automatic" },
+        content_hash: diagnostic_hash(&raw),
+        normalized_hash: diagnostic_hash(&serde_json::to_vec(&normalized).unwrap_or_default()),
+        text_hash: text.map(|s| diagnostic_hash(s.as_bytes())),
+        bytes: text.map_or(raw.len(), str::len),
+        fields: DIAGNOSTIC_FIELDS.iter().map(|field| content.get(*field).map(|v|
+            diagnostic_hash(&serde_json::to_vec(v).unwrap_or_default()))).collect(),
+    }
+}
+
+#[derive(Debug)]
+struct PrefixDiagnostic {
+    alias: u64,
+    previous_age_secs: Option<i64>,
+    common_blocks: usize,
+    changed_kind: &'static str,
+    previous_deepest: Option<usize>,
+    previous_tokens: Option<u32>,
+    reason: &'static str,
+    previous_kind: &'static str,
+    current_kind: &'static str,
+    previous_role: &'static str,
+    current_role: &'static str,
+    previous_source: &'static str,
+    content_equal: Option<bool>,
+    normalized_equal: Option<bool>,
+    text_equal: Option<bool>,
+    previous_bytes: Option<usize>,
+    current_bytes: Option<usize>,
+    changed_fields: u32,
+}
+
+pub(crate) fn billing_diagnostics_enabled() -> bool {
+    std::env::var("KIRO_BILLING_DIAGNOSTICS").as_deref() == Ok("1")
+}
+
+fn diagnostic_hash(bytes: &[u8]) -> u64 {
+    use sha2::{Digest, Sha256};
+    let digest = Sha256::digest(bytes);
+    u64::from_be_bytes(digest[..8].try_into().unwrap())
 }
 
 impl CacheMeter {
@@ -457,6 +566,7 @@ impl CacheMeter {
         }
         Self {
             inner: Mutex::new(inner),
+            diagnostics: Mutex::new(DiagnosticHistory::default()),
             persist_path,
             remote,
             enabled: std::sync::atomic::AtomicBool::new(true),
@@ -676,6 +786,9 @@ enum LookbackGroup {
 #[derive(Debug, Clone)]
 struct PromptBlock {
     signature: Vec<u8>,
+    /// Equivalent text shorthand uses the same cache key as a text block.
+    /// Keep the raw signature above for opt-in structural diagnostics.
+    canonical_signature: Option<Vec<u8>>,
     tokens: u32,
     cache_control: Option<CacheControl>,
     invalid_cache_control: bool,
@@ -685,11 +798,126 @@ struct PromptBlock {
     is_current_turn_input: bool,
 }
 
+impl PromptBlock {
+    fn cache_signature(&self) -> &[u8] {
+        self.canonical_signature.as_deref().unwrap_or(&self.signature)
+    }
+}
+
 /// 识别出的断点
 #[derive(Debug, Clone, Copy)]
 struct Breakpoint {
     block_idx: usize,
     ttl_secs: i64,
+}
+
+impl CacheMeter {
+    // Retain only bounded in-memory fingerprints; logs contain structural numbers only.
+    fn diagnose_prefix(
+        &self,
+        identity: u64,
+        global_hash: u64,
+        blocks: &[PromptBlock],
+        hashes: &[u64],
+        tokens: &[u32],
+        breakpoints: &[Breakpoint],
+    ) -> PrefixDiagnostic {
+        let now = now_secs();
+        let mut history = self.diagnostics.lock();
+        let previous = history.frames.remove(&identity);
+        let alias = previous.as_ref().map(|p| p.alias).unwrap_or_else(|| {
+            history.next_alias += 1;
+            history.next_alias
+        });
+        let mut result = PrefixDiagnostic {
+            alias,
+            previous_age_secs: previous.as_ref().map(|p| now - p.at),
+            common_blocks: 0,
+            changed_kind: "none",
+            previous_deepest: previous.as_ref().map(|p| p.deepest),
+            previous_tokens: previous.as_ref().map(|p| p.deepest_tokens),
+            reason: "first_observation",
+            previous_kind: "unknown", current_kind: "unknown",
+            previous_role: "unknown", current_role: "unknown",
+            previous_source: "unknown", content_equal: None,
+            normalized_equal: None, text_equal: None,
+            previous_bytes: None, current_bytes: None, changed_fields: 0,
+        };
+        if let Some(previous) = previous {
+            result.common_blocks = hashes.iter().zip(&previous.hashes)
+                .take_while(|(a, b)| a == b).count();
+            if previous.global_hash != global_hash {
+                result.changed_kind = "global_options";
+                result.reason = "global_options_changed";
+            } else {
+                if result.common_blocks < hashes.len().min(previous.hashes.len()) {
+                    let current = diagnostic_block(&blocks[result.common_blocks]);
+                    result.current_kind = current.kind;
+                    result.current_role = current.role;
+                    result.current_bytes = Some(current.bytes);
+                    if let Some(old) = previous.breakpoint_details.get(&result.common_blocks) {
+                        result.previous_kind = old.kind;
+                        result.previous_role = old.role;
+                        result.previous_source = old.source;
+                        result.previous_bytes = Some(old.bytes);
+                        result.content_equal = Some(old.content_hash == current.content_hash);
+                        result.normalized_equal = Some(old.normalized_hash == current.normalized_hash);
+                        result.text_equal = old.text_hash.zip(current.text_hash).map(|(a,b)| a == b);
+                        for (idx, (a,b)) in old.fields.iter().zip(&current.fields).enumerate() {
+                            if a != b { result.changed_fields |= 1 << idx; }
+                        }
+                    }
+                    let signature: serde_json::Value = serde_json::from_slice(
+                        &blocks[result.common_blocks].signature,
+                    ).unwrap_or_default();
+                    result.changed_kind = match signature["section"].as_str() {
+                        Some("tool") => "tool_definition",
+                        Some("system") => "system",
+                        _ => match signature["content"]["type"].as_str() {
+                            Some("thinking" | "redacted_thinking") => "message_thinking",
+                            Some("tool_use") => "message_tool_use",
+                            Some("tool_result") => "message_tool_result",
+                            Some("text") => "message_text",
+                            _ => "message_other",
+                        },
+                    };
+                }
+                let old_hash = previous.hashes[previous.deepest];
+                result.reason = match hashes.iter().position(|h| *h == old_hash) {
+                    None => "previous_prefix_changed",
+                    Some(idx) => {
+                        let entries = self.inner.lock();
+                        match entries.entries.get(&old_hash) {
+                            Some(entry) if entry.expires_at <= now => "previous_entry_expired",
+                            None => "previous_entry_missing",
+                            Some(_) if !breakpoints.iter().any(|bp|
+                                idx >= lookback_start_index(blocks, bp.block_idx)
+                                    && idx <= bp.block_idx) => "outside_lookback",
+                            Some(_) => "previous_prefix_available",
+                        }
+                    }
+                };
+            }
+        }
+        if hashes.len() <= 4096 {
+            if history.frames.len() >= 64 {
+                if let Some(oldest) = history.frames.iter().min_by_key(|(_, p)| p.at)
+                    .map(|(key, _)| *key) {
+                    history.frames.remove(&oldest);
+                }
+            }
+            let deepest = breakpoints.last().unwrap().block_idx;
+            history.frames.insert(identity, DiagnosticFrame {
+                alias, at: now, global_hash, hashes: hashes.to_vec(),
+                deepest, deepest_tokens: tokens[deepest],
+                breakpoint_details: breakpoints.iter().map(|bp|
+                    (bp.block_idx, diagnostic_block(&blocks[bp.block_idx]))).collect(),
+            });
+        } else {
+            result.reason = "diagnostic_block_limit";
+        }
+        result
+    }
 }
 
 /// 从请求体提取按 tools → system → messages 严格顺序拼接的 prompt blocks
@@ -704,6 +932,7 @@ fn extract_blocks(req: &MessagesRequest) -> Vec<PromptBlock> {
             let serialized = serde_json::to_string(&content).unwrap_or_default();
             blocks.push(PromptBlock {
                 signature: prompt_block_signature("tool", None, &content),
+                canonical_signature: None,
                 tokens: estimate_tokens(&serialized).max(0) as u32,
                 cache_control: t.cache_control.clone(),
                 invalid_cache_control: false,
@@ -721,6 +950,7 @@ fn extract_blocks(req: &MessagesRequest) -> Vec<PromptBlock> {
             let content = without_cache_control(&value);
             blocks.push(PromptBlock {
                 signature: prompt_block_signature("system", None, &content),
+                canonical_signature: None,
                 tokens: estimate_tokens(&sys.text).max(0) as u32,
                 cache_control: sys.cache_control.clone(),
                 invalid_cache_control: false,
@@ -747,6 +977,10 @@ fn extract_blocks(req: &MessagesRequest) -> Vec<PromptBlock> {
                 let content = serde_json::Value::String(s.clone());
                 blocks.push(PromptBlock {
                     signature: prompt_block_signature("message", Some(&msg.role), &content),
+                    canonical_signature: Some(prompt_block_signature(
+                        "message", Some(&msg.role),
+                        &serde_json::json!({"type": "text", "text": s}),
+                    )),
                     tokens: estimate_tokens(s).max(0) as u32,
                     cache_control: None,
                     invalid_cache_control: false,
@@ -773,6 +1007,7 @@ fn extract_blocks(req: &MessagesRequest) -> Vec<PromptBlock> {
                     };
                     blocks.push(PromptBlock {
                         signature: prompt_block_signature("message", Some(&msg.role), &content),
+                        canonical_signature: None,
                         tokens: block_tokens(&content),
                         cache_control,
                         invalid_cache_control,
@@ -923,7 +1158,7 @@ pub async fn compute_cache_usage(
     let mut current_cum: u32 = 0;
 
     for b in &blocks {
-        hash_frame(&mut hasher, &b.signature);
+        hash_frame(&mut hasher, b.cache_signature());
         current_cum = current_cum.saturating_add(b.tokens);
         cum_tokens.push(current_cum);
 
@@ -934,6 +1169,13 @@ pub async fn compute_cache_usage(
     }
 
     // Lookup: 从每个断点向后检查最多 20 个 block，寻找此前真正写入过的最长前缀
+    let diagnostic = billing_diagnostics_enabled().then(|| {
+        let identity = serde_json::to_vec(&(seed, &req.model)).unwrap_or_default();
+        cache.diagnose_prefix(
+            diagnostic_hash(&identity), diagnostic_hash(&request_global_cache_context(req)),
+            &blocks, &cum_hashes, &cum_tokens, &breakpoints,
+        )
+    });
     let mut max_read_tokens: u32 = 0;
 
     for bp in &breakpoints {
@@ -964,6 +1206,34 @@ pub async fn compute_cache_usage(
                 break;
             }
         }
+    }
+
+    if let Some(diagnostic) = diagnostic {
+        let indices: Vec<usize> = breakpoints.iter().map(|bp| bp.block_idx).collect();
+        let starts: Vec<usize> = breakpoints.iter()
+            .map(|bp| lookback_start_index(&blocks, bp.block_idx)).collect();
+        tracing::info!(
+            alias = diagnostic.alias,
+            previous_age_secs = ?diagnostic.previous_age_secs,
+            common_blocks = diagnostic.common_blocks,
+            changed_kind = diagnostic.changed_kind,
+            previous_deepest = ?diagnostic.previous_deepest,
+            previous_tokens = ?diagnostic.previous_tokens,
+            reason = diagnostic.reason,
+            blocks = blocks.len(), breakpoints = ?indices, lookback_starts = ?starts,
+            prompt_estimate = prompt_total_est, read_estimate = max_read_tokens,
+            covered_estimate = cum_tokens[breakpoints.last().unwrap().block_idx],
+            previous_kind = diagnostic.previous_kind, current_kind = diagnostic.current_kind,
+            previous_role = diagnostic.previous_role, current_role = diagnostic.current_role,
+            previous_source = diagnostic.previous_source,
+            content_equal = ?diagnostic.content_equal,
+            normalized_equal = ?diagnostic.normalized_equal, text_equal = ?diagnostic.text_equal,
+            previous_bytes = ?diagnostic.previous_bytes, current_bytes = ?diagnostic.current_bytes,
+            changed_fields = diagnostic.changed_fields,
+            top_level_auto = req.cache_control.is_some(),
+            explicit_breakpoints = ?indices.iter().filter(|idx| blocks[**idx].cache_control.is_some()).collect::<Vec<_>>(),
+            "billing_cache_diagnostic"
+        );
     }
 
     // Record: 仅在实际断点处写入 entry，每个 entry 保留自身的 TTL
@@ -1037,7 +1307,7 @@ pub fn compute_cache_usage_sync(
     let mut current_cum: u32 = 0;
 
     for b in &blocks {
-        hash_frame(&mut hasher, &b.signature);
+        hash_frame(&mut hasher, b.cache_signature());
         current_cum = current_cum.saturating_add(b.tokens);
         cum_tokens.push(current_cum);
 
@@ -1360,6 +1630,147 @@ mod tests {
         assert!(cr2 > 0, "second call read>0, cr={}", cr2);
         assert_eq!(in2 + cc2 + cr2, total, "互斥口径必须自洽");
         assert_eq!(cc1, cr2);
+    }
+
+    #[test]
+    fn prefix_diagnostic_distinguishes_changes_expiry_and_lookback() {
+        use super::super::types::Message;
+        fn observe(cache: &CacheMeter, req: &MessagesRequest, global: u64) -> PrefixDiagnostic {
+            use sha2::{Digest, Sha256};
+            let blocks = extract_blocks(req);
+            let mut hasher = Sha256::new();
+            let mut hashes = Vec::new();
+            let mut tokens = Vec::new();
+            let mut total = 0;
+            for block in &blocks {
+                hash_frame(&mut hasher, block.cache_signature());
+                let digest = hasher.clone().finalize();
+                let hash = u64::from_be_bytes(digest[..8].try_into().unwrap());
+                hashes.push(hash);
+                total += block.tokens;
+                tokens.push(total);
+            }
+            let breakpoints = resolve_breakpoints(&blocks, None);
+            let report = cache.diagnose_prefix(1, global, &blocks, &hashes, &tokens, &breakpoints);
+            for bp in &breakpoints {
+                cache.record_entry(hashes[bp.block_idx], tokens[bp.block_idx], bp.ttl_secs);
+            }
+            report
+        }
+        let mut req = build_request_with_system_breakpoint();
+        req.system = None;
+        req.messages = vec![Message {
+            role: "user".into(),
+            content: serde_json::json!([{
+                "type":"text", "text":"stable history",
+                "cache_control":{"type":"ephemeral"}
+            }]),
+        }];
+        let cache = CacheMeter::new(None);
+        assert_eq!(observe(&cache, &req, 1).reason, "first_observation");
+        assert_eq!(observe(&cache, &req, 1).reason, "previous_prefix_available");
+        for entry in cache.inner.lock().entries.values_mut() {
+            entry.expires_at = now_secs() - 1;
+        }
+        assert_eq!(observe(&cache, &req, 1).reason, "previous_entry_expired");
+
+        req.messages[0].content[0]["text"] = serde_json::json!("changed history");
+        let report = observe(&cache, &req, 1);
+        assert_eq!(report.reason, "previous_prefix_changed");
+        assert_eq!(report.common_blocks, 0);
+        assert_eq!(report.changed_kind, "message_text");
+        assert_eq!(observe(&cache, &req, 2).reason, "global_options_changed");
+
+        let cache = CacheMeter::new(None);
+        observe(&cache, &req, 1);
+        let mut extended = req;
+        extended.messages[0].content[0].as_object_mut().unwrap().remove("cache_control");
+        for idx in 0..20 {
+            extended.messages.push(Message {
+                role: "assistant".into(),
+                content: serde_json::json!([{"type":"text", "text":format!("new {idx}")}]),
+            });
+        }
+        extended.messages.last_mut().unwrap().content[0]["cache_control"] =
+            serde_json::json!({"type":"ephemeral"});
+        let report = observe(&cache, &extended, 1);
+        assert_eq!(report.common_blocks, 1);
+        assert_eq!(report.reason, "outside_lookback");
+    }
+
+    #[test]
+    fn diagnostic_distinguishes_text_representation_from_real_changes() {
+        let mut req = build_request_with_system_breakpoint();
+        req.system = None;
+        req.tools = None;
+        req.messages = vec![super::super::types::Message {
+            role: "user".into(),
+            content: serde_json::json!([{
+                "type":"text", "text":"same content", "cache_control":{"type":"ephemeral"}
+            }]),
+        }];
+        let block = diagnostic_block(&extract_blocks(&req)[0]);
+        assert_eq!(block.source, "explicit");
+        req.messages[0].content = serde_json::json!("same content");
+        let shorthand = diagnostic_block(&extract_blocks(&req)[0]);
+        assert_eq!(shorthand.kind, "string");
+        assert_eq!(block.kind, "text");
+        assert_ne!(block.content_hash, shorthand.content_hash);
+        assert_eq!(block.normalized_hash, shorthand.normalized_hash);
+        assert_eq!(block.text_hash, shorthand.text_hash);
+        req.messages[0].content = serde_json::json!("different content");
+        let changed = diagnostic_block(&extract_blocks(&req)[0]);
+        assert_ne!(block.normalized_hash, changed.normalized_hash);
+        req.messages[0].role = "assistant".into();
+        assert_ne!(block.role, diagnostic_block(&extract_blocks(&req)[0]).role);
+    }
+
+    #[tokio::test]
+    async fn equivalent_text_representation_reuses_previous_breakpoint() {
+        use super::super::types::{CacheControl, Message};
+        let text = "stable request text ".repeat(400);
+        for first_is_string in [false, true] {
+            let cache = CacheMeter::new(None);
+            let mut req = build_request_with_system_breakpoint();
+            req.system = None;
+            req.messages[0].content = if first_is_string {
+                serde_json::json!(text)
+            } else {
+                serde_json::json!([{"type":"text","text":text,
+                    "cache_control":{"type":"ephemeral"}}])
+            };
+            if first_is_string {
+                req.cache_control = Some(CacheControl {
+                    cache_type: "ephemeral".into(), ttl: None,
+                });
+            }
+            let first = compute_cache_usage(&cache, &req, 101).await;
+            assert_eq!(first.cache_read, 0);
+            req.cache_control = None;
+            req.messages[0].content = if first_is_string {
+                serde_json::json!([{"type":"text","text":text}])
+            } else {
+                serde_json::json!(text)
+            };
+            req.messages.push(Message { role: "assistant".into(), content: serde_json::json!("reply") });
+            req.messages.push(Message { role: "user".into(), content: serde_json::json!([
+                {"type":"text","text":"continue","cache_control":{"type":"ephemeral"}}
+            ]) });
+            let second = compute_cache_usage(&cache, &req, 101).await;
+            assert_eq!(second.cache_read, first.cache_covered_est,
+                "same text and role must reuse the existing breakpoint across string/text forms");
+            req.messages[0].role = "assistant".into();
+            assert_eq!(compute_cache_usage(&cache, &req, 101).await.cache_read, 0,
+                "a different role is not equivalent");
+            req.messages[0].role = "user".into();
+            req.messages[0].content = serde_json::json!([{"type":"text","text":text,
+                "additional_semantics":true}]);
+            assert_eq!(compute_cache_usage(&cache, &req, 101).await.cache_read, 0,
+                "do not discard unrecognized structured fields");
+            req.messages[0].content = serde_json::json!(format!("{text} changed"));
+            assert_eq!(compute_cache_usage(&cache, &req, 101).await.cache_read, 0,
+                "a real text change invalidates the prefix");
+        }
     }
 
     #[test]

@@ -1024,8 +1024,8 @@ function CredentialCardImpl({
                 }`}
               >
                 {balance.remaining < 0
-                  ? `-$${formatNumber(Math.abs(balance.remaining))}`
-                  : `$${formatNumber(balance.remaining)}`}
+                  ? `-${formatNumber(Math.abs(balance.remaining))} credits`
+                  : `${formatNumber(balance.remaining)} credits`}
               </span>
               <span className="text-muted-foreground text-[11px]">
                 {balance.usagePercentage.toFixed(0)}%
@@ -1335,8 +1335,8 @@ function CredentialCardImpl({
                         }`}
                       >
                         {balance.remaining < 0
-                          ? `-$${formatNumber(Math.abs(balance.remaining))}`
-                          : `$${formatNumber(balance.remaining)}`}
+                          ? `-${formatNumber(Math.abs(balance.remaining))} credits`
+                          : `${formatNumber(balance.remaining)} credits`}
                       </div>
                     </div>
                     <div className="text-right font-mono">
@@ -1352,8 +1352,8 @@ function CredentialCardImpl({
                   <Progress value={balance.usagePercentage} className="h-1.5 bg-muted" />
 
                   <div className="grid grid-cols-2 gap-1 text-[11px] font-mono text-muted-foreground pt-1 border-t border-border/30">
-                    <div>已用: ${formatNumber(balance.currentUsage)}</div>
-                    <div className="text-right">上限: ${formatNumber(balance.usageLimit)}</div>
+                    <div>已用: {formatNumber(balance.currentUsage)} credits</div>
+                    <div className="text-right">上限: {formatNumber(balance.usageLimit)} credits</div>
                   </div>
 
                   {balance.nextResetAt && (

@@ -1,0 +1,50 @@
+{
+  "observed_at": "2026-10-10T09:37:00.613725+00:00",
+  "account_id": 94,
+  "account_name": "kiro-billing-test-20261010",
+  "server_count": 41,
+  "server_statuses": {
+    "success": 41
+  },
+  "server_credits": 79.78786758630183,
+  "delta_since_saved_snapshot": {
+    "count": 6,
+    "credits": 14.650071353897175
+  },
+  "sub2api": {
+    "filtered_count": 42,
+    "user_usd_rounded": 107.0553,
+    "account_usd_rounded": 63.738,
+    "includes_earlier_test_calls": true
+  },
+  "samples": [
+    {
+      "server_start_beijing": "2026-10-10 17:30:35",
+      "sub2api_time_beijing": "2026-10-10 17:30:45",
+      "model": "claude-opus-5-5",
+      "input": 24,
+      "output": 49,
+      "cache_write": 0,
+      "cache_read": 631877,
+      "credits": 2.113554149253732,
+      "ui_user_usd": 0.214118,
+      "ui_account_usd": 0.127451,
+      "calculated_account_usd": 0.12745140000000002,
+      "calculated_user_usd": 0.21411835200000004
+    },
+    {
+      "server_start_beijing": "2026-10-10 17:30:12",
+      "sub2api_time_beijing": "2026-10-10 17:30:24",
+      "input": 24,
+      "output": 67,
+      "cache_write": 622270,
+      "cache_read": 9616,
+      "ui_user_usd": 5.232711,
+      "ui_account_usd": 3.114709,
+      "calculated_account_usd": 3.1147092,
+      "calculated_user_usd": 5.232711456
+    }
+  ],
+  "validation_boundary": "Visible token values rounded in list. Exact server tokens reproduce visible fees at 6 decimal places using previously verified effective rates ($4/$20/$5/$0.2 per million) and 1.68 multiplier; rate tooltip not re-observed this round. No shared request ID verification; no request bodies collected. Same cache classification concern already reported, no new alert.",
+  "notification": "none; new calls successful and sampled fees consistent"
+}

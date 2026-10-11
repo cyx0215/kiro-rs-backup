@@ -1,0 +1,19 @@
+services:
+  billing-test:
+    image: kiro-rs:billing-test-20261010
+    container_name: kiro-rs-billing-test-20261010
+    labels:
+      io.kiro.deployment: billing-test
+      io.kiro.build: local-patch-20261010
+    ports:
+      - "127.0.0.1:8993:8990"
+    volumes:
+      - ./data:/app/config
+    mem_limit: 384m
+    cpus: 0.5
+    restart: "no"
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"

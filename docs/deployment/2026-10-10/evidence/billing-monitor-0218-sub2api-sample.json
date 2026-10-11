@@ -1,0 +1,10 @@
+{
+  "observed_at": "2026-10-10T18:19:16.148Z",
+  "total": 441,
+  "complete": false,
+  "page": 1,
+  "page_size": 20,
+  "largest_observed_usage_id": 418791,
+  "source": "Account-94 page GET; no first-page IDs newer than prior 418791 baseline",
+  "items": []
+}

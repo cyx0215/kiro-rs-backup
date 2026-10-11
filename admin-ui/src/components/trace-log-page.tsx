@@ -674,7 +674,7 @@ function TokenAndCachePanel({ rec }: { rec: TraceRecord }) {
         </div>
 
         <div className="rounded-md bg-secondary/40 p-2">
-          <div className="text-[11px] text-muted-foreground">真实计费 (Credit)</div>
+          <div className="text-[11px] text-muted-foreground">上游用量 (Credits)</div>
           <div className="font-mono text-[14px] font-semibold tabular-nums text-sky-600 dark:text-sky-400">
             {credit > 0 ? credit.toFixed(4) : '—'}
           </div>
@@ -961,9 +961,9 @@ function useTraceColumns(): ConsoleColumn<TraceRecord>[] {
       },
       {
         id: 'credits',
-        header: '费用',
+        header: 'Credits',
         align: 'right',
-        hint: 'credit —— 上游 metering 的真实计费',
+        hint: 'Kiro credits（上游 metering 用量单位）',
         cell: (r) => (
           <span className="console-num">
             {r.credits != null && r.credits > 0 ? r.credits.toFixed(4) : '—'}

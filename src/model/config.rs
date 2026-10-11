@@ -283,6 +283,11 @@ pub struct Config {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub cache_metering_enabled: Option<bool>,
 
+    /// Start ordinary SSE usage at zero for consumers that ignore final zero input.
+    /// Final message_delta remains authoritative; interrupted streams may be undercounted.
+    #[serde(default)]
+    pub sub2api_usage_compat: bool,
+
     /// 是否启用请求链路追踪（写 traces.db）。默认 true。
     ///
     /// 关闭后：不再写入 trace 记录、不走 TraceSink，但 `GET /api/admin/traces`
@@ -478,6 +483,7 @@ impl Default for Config {
             tool_compatibility_mode: default_tool_compatibility_mode(),
             default_endpoint: default_endpoint(),
             cache_metering_enabled: None,
+            sub2api_usage_compat: false,
             trace_enabled: default_trace_enabled(),
             trace_retention_days: default_trace_retention_days(),
             usage_log_retention_days: default_usage_log_retention_days(),
@@ -605,6 +611,16 @@ mod tests {
         assert!(!config.quota_reset_recovery_enabled);
         let config: Config = serde_json::from_str(r#"{"quotaResetRecoveryEnabled":true}"#).unwrap();
         assert!(config.quota_reset_recovery_enabled);
+    }
+
+    #[test]
+    fn sub2api_usage_compat_defaults_off_and_accepts_opt_in() {
+        let config: Config = serde_json::from_str("{}").unwrap();
+        assert!(!config.sub2api_usage_compat);
+        assert!(!Config::default().sub2api_usage_compat);
+        let config: Config = serde_json::from_str(r#"{"sub2apiUsageCompat":true}"#).unwrap();
+        assert!(config.sub2api_usage_compat);
+        assert_eq!(serde_json::to_value(config).unwrap()["sub2apiUsageCompat"], true);
     }
 
     #[test]
