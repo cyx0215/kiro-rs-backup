@@ -1839,9 +1839,8 @@ pub async fn count_tokens(
 
 /// POST /cc/v1/messages
 ///
-/// Claude Code 兼容端点，与 /v1/messages 的区别在于：
-/// - 流式响应会等待 kiro 端返回 contextUsageEvent 后再发送 message_start
-/// - message_start 中的 input_tokens 是从 contextUsageEvent 计算的准确值
+/// Claude Code 兼容端点，流式请求与 /v1/messages 一样实时转发增量。
+/// message_start 用量为初始估算，message_delta 与服务端结算使用最终用量。
 pub async fn post_messages_cc(
     State(state): State<AppState>,
     Extension(key_ctx): Extension<KeyContext>,
@@ -2018,7 +2017,8 @@ pub async fn post_messages_cc(
     };
 
     if payload.stream {
-        // 流式响应（缓冲模式）
+        // 流式响应：立即转发上游增量事件。首个 message_start 使用本地
+        // 估算值，最终用量仍由上游事件和 settlement 结算。
         let tracer = std::sync::Arc::new(RequestTracer::new(
             &state,
             RequestTraceOptions {
@@ -2027,18 +2027,19 @@ pub async fn post_messages_cc(
                 is_stream: true,
             },
         ));
-        handle_stream_request_buffered(
+        handle_stream_request(
             provider,
             &request_body,
             &payload.model,
+            total_input_tokens,
             thinking_enabled,
             tool_name_map,
             known_tool_names,
             hook,
-            total_input_tokens,
             cache_usage,
             tracer,
             key_ctx.group.clone(),
+            state.sub2api_usage_compat,
         )
         .await
     } else {
@@ -2067,69 +2068,6 @@ pub async fn post_messages_cc(
         )
         .await
     }
-}
-
-/// 处理流式请求（缓冲版本）
-///
-/// 与 `handle_stream_request` 不同，此函数会缓冲所有事件直到流结束，
-/// 然后用从 contextUsageEvent 计算的正确 input_tokens 生成 message_start 事件。
-async fn handle_stream_request_buffered(
-    provider: std::sync::Arc<crate::kiro::provider::KiroProvider>,
-    request_body: &str,
-    model: &str,
-    thinking_enabled: bool,
-    tool_name_map: std::collections::HashMap<String, String>,
-    known_tool_names: std::collections::HashSet<String>,
-    hook: UsageRecordHook,
-    fallback_input_tokens: i32,
-    cache_usage: super::cache_metering::CacheUsage,
-    tracer: std::sync::Arc<RequestTracer>,
-    group: Option<String>,
-) -> Response {
-    // 调用 Kiro API（支持多凭据故障转移）
-    let call_result = match provider
-        .call_api_stream(request_body, Some(tracer.as_ref()), group.as_deref())
-        .await
-    {
-        Ok(resp) => resp,
-        Err(e) => {
-            hook.record(0, fallback_input_tokens, 0, 0, 0, 0.0, "error");
-            tracer.finalize(
-                "error",
-                last_attempt_outcome(&tracer),
-                Some(&e.to_string()),
-                None,
-                TraceUsage::zero(),
-            );
-            return map_provider_error(e);
-        }
-    };
-    tracer.mark_upstream_headers_received();
-    let response = call_result.response;
-    let credential_id = call_result.credential_id;
-
-    // 创建缓冲流处理上下文
-    let mut ctx = BufferedStreamContext::new(
-        model,
-        fallback_input_tokens,
-        thinking_enabled,
-        tool_name_map,
-        known_tool_names,
-    );
-    ctx.set_cache_usage(cache_usage);
-
-    // 创建缓冲 SSE 流
-    let stream = create_buffered_sse_stream(response, ctx, hook, credential_id, tracer);
-
-    // 返回 SSE 响应
-    Response::builder()
-        .status(StatusCode::OK)
-        .header(header::CONTENT_TYPE, "text/event-stream")
-        .header(header::CACHE_CONTROL, "no-cache")
-        .header("x-accel-buffering", "no")
-        .header(header::CONNECTION, "keep-alive")
-        .body(Body::from_stream(stream))
-        .unwrap()
 }
 
 /// 创建缓冲 SSE 事件流
