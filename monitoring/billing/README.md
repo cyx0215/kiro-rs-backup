@@ -79,8 +79,9 @@ python -B monitoring/billing/src/billing_monitor/runner.py --mode traces-only --
 ```
 
 Open `http://127.0.0.1:8994/report.html`. Collection starts immediately and then
-waits 15 minutes after each completed cycle. Refresh the page to see the latest
-snapshot. `/status.json` contains PID, mode, last run time, result and report
+waits 15 minutes after each completed cycle. New runner instances serve a dynamic
+dashboard that reads sanitized snapshots every five seconds without reloading.
+`/status.json` contains PID, mode, last run time, result and report
 freshness. Only report.html, latest.json and status.json are served; no directory
 listing or historical/raw data is exposed. A failure does not terminate the
 loop, and repeated alert suppression uses the CLI's source-specific state.
@@ -100,3 +101,32 @@ Run all 43 offline/local regression tests with:
 ```powershell
 python -B -m unittest discover -s monitoring/billing/tests -p 'test_*.py'
 ```
+
+## Dynamic dashboard without restarting collection
+
+The current full collector on port 8994 retains its credential in memory.
+To upgrade the display without interrupting that process, start a separate
+read-only dashboard on port 8995:
+
+```powershell
+python -B monitoring/billing/src/billing_monitor/runner.py --dashboard-only --port 8995 --output-dir .local-test/billing-monitor
+```
+
+Open `http://127.0.0.1:8995/report.html`. This process never collects, requires
+no administrator credential, and never writes the collector status. It serves
+only the dashboard and existing latest/status JSON snapshots on loopback.
+The live dashboard is separate from the static HTML export, so the old
+collector can keep overwriting its report without reverting the new UI.
+
+Features: automatic five-second reads, pause/resume, manual display refresh,
+data age and stale/error indicators, grouped alerts, model/ID search, and
+pairing filters. Display refresh does not trigger collection or inference.
+The current collector still waits 15 minutes between cycles. A fresh HTTP
+connection does not mean fresh collected data. Reports older than 20 minutes
+or explicitly marked stale/unavailable show a warning. Filters survive updates.
+
+The dashboard is a local background process, not a Windows service; it does
+not start at boot. Its current PID is saved separately in
+`.local-test/billing-monitor/dashboard.pid`. Verify process identity before
+stopping it. The existing collector PID remains in `runner.pid`.
+The expanded suite has 45 offline/local regression tests.

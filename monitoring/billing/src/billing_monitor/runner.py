@@ -53,7 +53,7 @@ def run_cycle(output_dir, mode, token_env="SUB2API_ADMIN_TOKEN", auth_type="bear
     return status
 
 
-def handler_for(output_dir):
+def handler_for(output_dir, dynamic=False):
     """Serve only the three sanitized current snapshots; never list the directory."""
     allowed = {
         "/report.html": ("report.html", "text/html; charset=utf-8"),
@@ -81,7 +81,9 @@ def handler_for(output_dir):
                 return
             name, content_type = allowed[route]
             try:
-                data = (output_dir / name).read_bytes()
+                path = (pathlib.Path(__file__).with_name("dashboard.html")
+                        if dynamic and name == "report.html" else output_dir / name)
+                data = path.read_bytes()
             except OSError:
                 self.send_error(404)
                 return
@@ -110,6 +112,8 @@ def parser():
     result.add_argument("--port", type=int, default=8994)
     result.add_argument("--output-dir", type=pathlib.Path, default=DEFAULT_OUTPUT)
     result.add_argument("--once", action="store_true", help="Collect once without starting an HTTP server")
+    result.add_argument("--dashboard-only", action="store_true",
+                        help="Serve the live dashboard from existing sanitized snapshots; do not collect")
     return result
 
 
@@ -117,7 +121,9 @@ def main(argv=None):
     args = parser().parse_args(argv)
     if args.interval_seconds < 60 or not 1 <= args.port <= 65535:
         raise SystemExit("interval must be at least 60 seconds and port must be valid")
-    if args.mode == "full" and not os.environ.get(args.token_env):
+    if args.once and args.dashboard_only:
+        raise SystemExit("--once and --dashboard-only cannot be combined")
+    if not args.dashboard_only and args.mode == "full" and not os.environ.get(args.token_env):
         raise SystemExit("full mode requires an administrator credential in the configured environment variable")
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -125,7 +131,7 @@ def main(argv=None):
         return run_cycle(output_dir, args.mode, args.token_env, args.auth_type)["exit_code"]
 
     # Bind first: a second process cannot run the same dashboard/collector loop.
-    server = ThreadingHTTPServer(("127.0.0.1", args.port), handler_for(output_dir))
+    server = ThreadingHTTPServer(("127.0.0.1", args.port), handler_for(output_dir, dynamic=True))
     server.daemon_threads = True
     stop = threading.Event()
 
@@ -143,13 +149,15 @@ def main(argv=None):
             stop.wait(args.interval_seconds)
 
     thread = threading.Thread(target=worker, name="billing-monitor-collector", daemon=True)
-    thread.start()
+    if not args.dashboard_only:
+        thread.start()
     try:
         server.serve_forever(poll_interval=0.5)
     finally:
         stop.set()
         server.server_close()
-        thread.join(timeout=1)
+        if thread.is_alive():
+            thread.join(timeout=1)
     return 0
 
 

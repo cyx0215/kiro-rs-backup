@@ -16,6 +16,44 @@ from billing_monitor import runner
 
 
 class RunnerTests(unittest.TestCase):
+    def test_dynamic_dashboard_is_independent_of_generated_report(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            (root / "report.html").write_text("old-static-report")
+            (root / "latest.json").write_text('{"generation":1}')
+            server = ThreadingHTTPServer(("127.0.0.1", 0), runner.handler_for(root, dynamic=True))
+            thread = threading.Thread(target=server.serve_forever, daemon=True)
+            thread.start()
+            opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+            base = "http://127.0.0.1:" + str(server.server_port)
+            try:
+                with opener.open(base + "/report.html", timeout=5) as response:
+                    self.assertIn(b"fetchJSON('/latest.json')", response.read())
+                # The unchanged collector may overwrite its static report every cycle.
+                (root / "report.html").write_text("new-static-report")
+                (root / "latest.json").write_text('{"generation":2}')
+                with opener.open(base + "/latest.json", timeout=5) as response:
+                    self.assertEqual(json.load(response), {"generation": 2})
+                with opener.open(base + "/report.html", timeout=5) as response:
+                    self.assertNotIn(b"new-static-report", response.read())
+                with self.assertRaises(urllib.error.HTTPError):
+                    opener.open(base + "/runner.py", timeout=5)
+            finally:
+                server.shutdown()
+                server.server_close()
+                thread.join(timeout=5)
+
+    def test_dashboard_only_neither_collects_nor_requires_credentials(self):
+        with tempfile.TemporaryDirectory() as directory, \
+                mock.patch.dict(runner.os.environ, {}, clear=True), \
+                mock.patch.object(runner, "run_cycle") as collect, \
+                mock.patch.object(runner, "ThreadingHTTPServer") as server:
+            self.assertEqual(runner.main(["--mode", "full", "--dashboard-only",
+                                          "--output-dir", directory]), 0)
+            collect.assert_not_called()
+            server.return_value.serve_forever.assert_called_once()
+            self.assertFalse((pathlib.Path(directory) / "status.json").exists())
+
     def test_cycle_keeps_sanitized_reports_and_does_not_log_cli_output(self):
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)
