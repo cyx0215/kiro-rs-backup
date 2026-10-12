@@ -3,6 +3,8 @@
   "port": 8990,
   "apiKey": "sk-your-api-key",
   "tlsBackend": "rustls",
+  "upstreamConnectTimeoutSecs": 15,
+  "upstreamReadTimeoutSecs": 120,
   "region": "us-east-1",
   "adminApiKey": "sk-admin-your-secret-key",
   "defaultEndpoint": "ide",

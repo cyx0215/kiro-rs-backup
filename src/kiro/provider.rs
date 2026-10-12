@@ -12,9 +12,12 @@ use std::time::{Duration, Instant};
 use tokio::time::sleep;
 
 use crate::admin::trace_db::{TraceAttempt, TraceRoute, TraceSink, outcome, truncate_snippet};
-use crate::http_client::{ProxyConfig, build_client};
+use crate::http_client::{ProxyConfig, build_client_with_timeouts};
 use crate::kiro::endpoint::{KiroEndpoint, RequestContext};
-use crate::kiro::error::{UpstreamContextOverflowError, UpstreamRateLimitError};
+use crate::kiro::error::{
+    UpstreamContextOverflowError, UpstreamModelUnavailableError, UpstreamRateLimitError,
+    UpstreamTimeoutError,
+};
 use crate::kiro::machine_id;
 use crate::kiro::model::credentials::KiroCredentials;
 use crate::kiro::token_manager::MultiTokenManager;
@@ -141,6 +144,8 @@ pub struct KiroProvider {
     /// `ListAvailableProfiles`。命中真实 ARN 的账号会把 ARN 持久化进凭据，之后
     /// 通过 `streaming_profile_arn()` 直接命中，不再进入解析路径。
     profile_resolution_attempted: Mutex<HashSet<u64>>,
+    /// Short per-model cooldowns prevent concurrent clients from amplifying overload.
+    model_cooldowns: Mutex<HashMap<String, Instant>>,
 }
 
 impl KiroProvider {
@@ -168,8 +173,15 @@ impl KiroProvider {
         let tls_backend = token_manager.config().tls_backend;
         let proxy = token_manager.proxy();
         // 预热：构建全局代理对应的 Client（作为受保护的常驻条目）
-        let initial_client = build_client(proxy.as_ref(), 720, tls_backend)
-            .expect("创建 HTTP 客户端失败");
+        let config = token_manager.config();
+        let initial_client = build_client_with_timeouts(
+            proxy.as_ref(),
+            720,
+            tls_backend,
+            config.upstream_connect_timeout_secs,
+            config.upstream_read_timeout_secs,
+        )
+        .expect("创建 HTTP 客户端失败");
         let client_cache = ClientCache::new(proxy.clone(), initial_client, CLIENT_CACHE_CAP);
 
         Self {
@@ -179,6 +191,7 @@ impl KiroProvider {
             endpoints,
             default_endpoint,
             profile_resolution_attempted: Mutex::new(HashSet::new()),
+            model_cooldowns: Mutex::new(HashMap::new()),
         }
     }
 
@@ -192,7 +205,14 @@ impl KiroProvider {
         if let Some(client) = cache.get(&effective) {
             return Ok(client);
         }
-        let client = build_client(effective.as_ref(), 720, self.tls_backend)?;
+        let config = self.token_manager.config();
+        let client = build_client_with_timeouts(
+            effective.as_ref(),
+            720,
+            self.tls_backend,
+            config.upstream_connect_timeout_secs,
+            config.upstream_read_timeout_secs,
+        )?;
         cache.insert(effective, client.clone());
         Ok(client)
     }
@@ -489,8 +509,7 @@ impl KiroProvider {
             let base = client
                 .post(&url)
                 .body(body)
-                .header("content-type", endpoint.content_type())
-                .header("Connection", "close");
+                .header("content-type", endpoint.content_type());
             let request = endpoint.decorate_mcp(base, &rctx);
 
             let response = match request.send().await {
@@ -746,6 +765,20 @@ impl KiroProvider {
         // 尝试从请求体中提取模型与会话标识
         let (model, session_id) = Self::extract_routing_hints(request_body);
 
+        if let Some(model) = model.as_ref() {
+            let now = Instant::now();
+            let mut cooldowns = self.model_cooldowns.lock();
+            cooldowns.retain(|_, until| *until > now);
+            if let Some(until) = cooldowns.get(&model.to_ascii_lowercase()) {
+                let remaining = until.saturating_duration_since(now);
+                let seconds = remaining.as_secs() + u64::from(remaining.subsec_nanos() > 0);
+                return Err(UpstreamModelUnavailableError {
+                    retry_after: seconds.max(1).to_string(),
+                }
+                .into());
+            }
+        }
+
         for attempt in 0..max_retries {
             let attempt_start = Instant::now();
             // 获取调用上下文（绑定 index、credentials、token）；同一会话优先沿用上一轮凭据
@@ -840,8 +873,7 @@ impl KiroProvider {
             let base = client
                 .post(&url)
                 .body(body)
-                .header("content-type", endpoint.content_type())
-                .header("Connection", "close");
+                .header("content-type", endpoint.content_type());
             let request = endpoint.decorate_api(base, &rctx);
 
             // 打印实际发送的请求头（RUST_LOG=debug 时输出，便于排查问题）
@@ -864,6 +896,9 @@ impl KiroProvider {
                         sink, attempt, ctx.id, endpoint_name, None,
                         outcome::NETWORK_ERROR, Some(&e.to_string()), attempt_start,
                     );
+                    if e.is_timeout() {
+                        return Err(UpstreamTimeoutError { source: e }.into());
+                    }
                     // 凭据专属代理故障时，重试同一凭据无意义，应跳过该凭据换下一个。
                     // 没有专属代理时（直连或仅全局代理），切换凭据不解决问题，保持重试。
                     let has_own_proxy = ctx.credentials.proxy_url.as_deref()
@@ -907,8 +942,68 @@ impl KiroProvider {
                 });
             }
 
+            let retry_after = UpstreamRateLimitError::from_headers(response.headers());
             // 失败响应：读取 body 用于日志/错误信息
-            let body = response.text().await.unwrap_or_default();
+            let body = match response.text().await {
+                Ok(body) => body,
+                Err(error) => {
+                    Self::emit_attempt(
+                        sink, attempt, ctx.id, endpoint_name, Some(status.as_u16()),
+                        outcome::NETWORK_ERROR, Some(&error.to_string()), attempt_start,
+                    );
+                    if error.is_timeout() {
+                        return Err(UpstreamTimeoutError { source: error }.into());
+                    }
+                    return Err(error.into());
+                }
+            };
+
+            if status.is_server_error()
+                && serde_json::from_str::<serde_json::Value>(&body)
+                    .ok()
+                    .and_then(|value| {
+                        value
+                            .get("reason")
+                            .and_then(|v| v.as_str())
+                            .map(str::to_owned)
+                    })
+                    .as_deref()
+                    == Some("MODEL_TEMPORARILY_UNAVAILABLE")
+            {
+                Self::emit_attempt(
+                    sink,
+                    attempt,
+                    ctx.id,
+                    endpoint_name,
+                    Some(status.as_u16()),
+                    outcome::TRANSIENT,
+                    Some(&body),
+                    attempt_start,
+                );
+                let delay = retry_after.retry_after().unwrap_or("5").to_string();
+                let seconds = delay
+                    .parse::<u64>()
+                    .ok()
+                    .or_else(|| {
+                        httpdate::parse_http_date(&delay).ok().map(|date| {
+                            date.duration_since(std::time::SystemTime::now())
+                                .unwrap_or_default()
+                                .as_secs()
+                                .saturating_add(1)
+                        })
+                    })
+                    .unwrap_or(5)
+                    .max(1);
+                if let Some(model) = model.as_ref() {
+                    let mut cooldowns = self.model_cooldowns.lock();
+                    let now = Instant::now();
+                    cooldowns.retain(|_, until| *until > now);
+                    if let Some(until) = now.checked_add(Duration::from_secs(seconds)) {
+                        cooldowns.insert(model.to_ascii_lowercase(), until);
+                    }
+                }
+                return Err(UpstreamModelUnavailableError { retry_after: delay }.into());
+            }
 
             // 402 Payment Required 且额度用尽：禁用凭据并故障转移
             if status.as_u16() == 402 && endpoint.is_monthly_request_limit(&body) {

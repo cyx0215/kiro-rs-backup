@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file. The format
 loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Gateway reliability and latency
+
+- Stream CC and Chat Completions content immediately, preserving final usage and tool arguments.
+- Reuse upstream connections; add configurable connection and idle read deadlines.
+- Return model overloads with 503 and Retry-After without repeated internal attempts.
+- Decode non-streaming answers incrementally; report empty, corrupt, truncated, and interrupted responses as errors.
+- Record first-token latency from content rather than metadata.
+- Add TDD regressions and a repeatable before/after latency benchmark. See `docs/gateway-performance.md`.
+
 ## [0.9.1] - 2026-10-08
 
 主题：**凭据调度与额度恢复、账号级 429 故障转移、Codex 压缩缓存复用，以及模型上下文、Token 计量和流式链路修复**。本版汇总 `v0.9.0` 之后合并的 9 个 PR；新增配置均有默认值，现有配置、凭据与请求日志无需手动迁移。

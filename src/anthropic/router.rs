@@ -107,7 +107,7 @@ pub fn create_router_with_shared_provider(
         ));
 
     // 需要认证的 /cc/v1 路由（Claude Code 兼容端点）
-    // 流式响应与 /v1 一样实时转发；最终用量在 message_delta 中结算。
+    // 与 /v1 的区别：流式内容即时发送，最终用量由 message_delta 更正
     let cc_v1_routes = Router::new()
         .route("/messages", post(post_messages_cc))
         .route("/messages/count_tokens", post(count_tokens))

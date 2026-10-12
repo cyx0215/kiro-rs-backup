@@ -108,6 +108,14 @@ pub struct Config {
     #[serde(default = "default_tls_backend")]
     pub tls_backend: TlsBackend,
 
+    /// Deadline for establishing an upstream API connection.
+    #[serde(default = "default_upstream_connect_timeout_secs")]
+    pub upstream_connect_timeout_secs: u64,
+
+    /// Maximum silence while waiting for headers or the next upstream body read.
+    #[serde(default = "default_upstream_read_timeout_secs")]
+    pub upstream_read_timeout_secs: u64,
+
     /// 外部 count_tokens API 地址（可选）
     #[serde(default)]
     pub count_tokens_api_url: Option<String>,
@@ -359,6 +367,13 @@ fn default_tls_backend() -> TlsBackend {
     TlsBackend::Rustls
 }
 
+fn default_upstream_connect_timeout_secs() -> u64 {
+    15
+}
+fn default_upstream_read_timeout_secs() -> u64 {
+    120
+}
+
 fn default_load_balancing_mode() -> String {
     "priority".to_string()
 }
@@ -453,6 +468,8 @@ impl Default for Config {
             system_version: default_system_version(),
             node_version: default_node_version(),
             tls_backend: default_tls_backend(),
+            upstream_connect_timeout_secs: default_upstream_connect_timeout_secs(),
+            upstream_read_timeout_secs: default_upstream_read_timeout_secs(),
             count_tokens_api_url: None,
             count_tokens_api_key: None,
             count_tokens_auth_type: default_count_tokens_auth_type(),
@@ -559,6 +576,25 @@ impl Config {
 #[cfg(test)]
 mod tests {
     use super::Config;
+
+    #[test]
+    fn upstream_deadlines_default_for_existing_configs() {
+        let config: Config = serde_json::from_str("{}").unwrap();
+        assert_eq!(config.upstream_connect_timeout_secs, 15);
+        assert_eq!(config.upstream_read_timeout_secs, 120);
+        assert_eq!(Config::default().upstream_connect_timeout_secs, 15);
+        assert_eq!(Config::default().upstream_read_timeout_secs, 120);
+    }
+
+    #[test]
+    fn upstream_deadlines_accept_explicit_values() {
+        let config: Config = serde_json::from_str(
+            r#"{"upstreamConnectTimeoutSecs":7,"upstreamReadTimeoutSecs":45}"#,
+        )
+        .unwrap();
+        assert_eq!(config.upstream_connect_timeout_secs, 7);
+        assert_eq!(config.upstream_read_timeout_secs, 45);
+    }
 
     #[test]
     fn model_cache_ttl_defaults_for_existing_configs() {

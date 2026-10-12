@@ -2656,136 +2656,6 @@ impl StreamContext {
     }
 }
 
-/// 缓冲流处理上下文 - 用于 /cc/v1/messages 流式请求
-///
-/// 与 `StreamContext` 不同，此上下文会缓冲所有事件直到流结束，
-/// 然后用从 `contextUsageEvent` 计算的正确 `input_tokens` 更正 `message_start` 事件。
-///
-/// 工作流程：
-/// 1. 使用 `StreamContext` 正常处理所有 Kiro 事件
-/// 2. 把生成的 SSE 事件缓存起来（而不是立即发送）
-/// 3. 流结束时，找到 `message_start` 事件并更新其 `input_tokens`
-/// 4. 一次性返回所有事件
-pub struct BufferedStreamContext {
-    /// 内部流处理上下文（复用现有的事件处理逻辑）
-    inner: StreamContext,
-    /// 缓冲的所有事件（包括 message_start、content_block_start 等）
-    event_buffer: Vec<SseEvent>,
-    /// 是否已经生成了初始事件
-    initial_events_generated: bool,
-}
-
-impl BufferedStreamContext {
-    /// 创建缓冲流上下文
-    pub fn new(
-        model: impl Into<String>,
-        estimated_input_tokens: i32,
-        thinking_enabled: bool,
-        tool_name_map: HashMap<String, String>,
-        known_tool_names: std::collections::HashSet<String>,
-    ) -> Self {
-        let inner = StreamContext::new_with_thinking(
-            model,
-            estimated_input_tokens,
-            thinking_enabled,
-            tool_name_map,
-            known_tool_names,
-        );
-        Self {
-            inner,
-            event_buffer: Vec::new(),
-            initial_events_generated: false,
-        }
-    }
-
-    /// 注入由 CacheMeter 计算的缓存覆盖情况（estimate 口径），最终上报时分摊。
-    pub fn set_cache_usage(&mut self, cache_usage: super::cache_metering::CacheUsage) {
-        self.inner.cache_usage = cache_usage;
-    }
-
-    /// 处理 Kiro 事件并缓冲结果
-    ///
-    /// 复用 StreamContext 的事件处理逻辑，但把结果缓存而不是立即发送。
-    pub fn process_and_buffer(&mut self, event: &crate::kiro::model::events::Event) {
-        // 首次处理事件时，先生成初始事件（message_start 等）
-        if !self.initial_events_generated {
-            let initial_events = self.inner.generate_initial_events();
-            self.event_buffer.extend(initial_events);
-            self.initial_events_generated = true;
-        }
-
-        // 处理事件并缓冲结果
-        let events = self.inner.process_kiro_event(event);
-        self.event_buffer.extend(events);
-    }
-
-    /// 完成流处理并返回所有事件
-    ///
-    /// 此方法会：
-    /// 1. 生成最终事件（message_delta, message_stop）
-    /// 2. 用正确的 input_tokens 更正 message_start 事件
-    /// 3. 返回所有缓冲的事件
-    pub fn finish_and_get_all_events(&mut self) -> Vec<SseEvent> {
-        // 如果从未处理过事件，也要生成初始事件
-        if !self.initial_events_generated {
-            let initial_events = self.inner.generate_initial_events();
-            self.event_buffer.extend(initial_events);
-            self.initial_events_generated = true;
-        }
-
-        // 互斥口径分摊：total 真值 − 缓存覆盖 = 未缓存 input（与 inner 收尾一致）。
-        let (final_input_tokens, cache_creation, cache_read) = self.inner.resolved_usage();
-
-        // 生成最终事件（StreamContext 内部会用同样的优先级与分摊）
-        let final_events = self.inner.generate_final_events();
-        self.event_buffer.extend(final_events);
-
-        // 更正 message_start 事件中的 input_tokens 与 cache_* 字段
-        for event in &mut self.event_buffer {
-            if event.event == "message_start" {
-                if let Some(message) = event.data.get_mut("message") {
-                    if let Some(usage) = message.get_mut("usage") {
-                        usage["input_tokens"] = serde_json::json!(final_input_tokens);
-                        usage["cache_creation_input_tokens"] = serde_json::json!(cache_creation);
-                        usage["cache_read_input_tokens"] = serde_json::json!(cache_read);
-                    }
-                }
-            }
-        }
-
-        std::mem::take(&mut self.event_buffer)
-    }
-
-    /// 取出最终用量（在 finish_and_get_all_events 之后调用）
-    ///
-    /// 返回顺序：(input_tokens, output_tokens, cache_creation_tokens, cache_read_tokens, credits)
-    pub fn final_usage(&self) -> (i32, i32, i32, i32, f64) {
-        let (input, creation, read) = self.inner.resolved_usage();
-        (
-            input,
-            self.inner.resolved_output_tokens(),
-            creation,
-            read,
-            self.inner.credits,
-        )
-    }
-
-    /// 上游是否下发了精确 tokenUsage；配合 [`Self::cache_usage`] 推断 usage 来源。
-    pub fn has_provider_usage(&self) -> bool {
-        self.inner.provider_token_usage.is_some()
-    }
-
-    /// 本地 CacheMeter 的覆盖情况
-    pub fn cache_usage(&self) -> &super::cache_metering::CacheUsage {
-        &self.inner.cache_usage
-    }
-
-    /// 工具调用 JSON 错误信息（转发内部 StreamContext）。缓冲流据此记 error。
-    pub fn tool_json_error_message(&self) -> Option<String> {
-        self.inner.tool_json_error_message()
-    }
-}
-
 /// 简单的 token 估算（中英文字符混合）
 ///
 /// 公开供 cache_meter 等模块复用同一估算口径。
@@ -2878,31 +2748,6 @@ mod tests {
                 }
             }
         }
-    }
-
-    #[test]
-    fn buffered_stream_starts_with_final_zero_input() {
-        let mut ctx = BufferedStreamContext::new(
-            "test-model",
-            100,
-            false,
-            HashMap::new(),
-            test_known_tools(),
-        );
-        ctx.set_cache_usage(crate::anthropic::cache_metering::CacheUsage {
-            cache_read: 100,
-            cache_covered_est: 100,
-            prompt_total_est: 100,
-        });
-        let events = ctx.finish_and_get_all_events();
-        let start = &events
-            .iter()
-            .find(|e| e.event == "message_start")
-            .unwrap()
-            .data;
-        assert_eq!(start["message"]["usage"]["input_tokens"], json!(0));
-        assert_eq!(start["message"]["usage"]["cache_read_input_tokens"], json!(100));
-        assert_eq!(ctx.final_usage().0, 0);
     }
 
     // ---- ToolJsonAccumulator: 流式半截 / 非法工具调用 JSON ----
@@ -5783,7 +5628,7 @@ mod tests {
     }
 
     #[test]
-    fn buffered_stream_reports_the_same_provider_usage_in_events_and_final_usage() {
+    fn live_stream_reports_final_provider_usage_without_delaying_initial_event() {
         use crate::kiro::model::events::MetadataEvent;
 
         let usage = TokenUsage {
@@ -5792,27 +5637,28 @@ mod tests {
             cache_read_input_tokens: 7,
             cache_write_input_tokens: 4,
         };
-        let mut ctx = BufferedStreamContext::new(
+        let mut ctx = StreamContext::new_with_thinking(
             "claude-opus-4-7",
             100,
             false,
             HashMap::new(),
             test_known_tools(),
         );
-        ctx.process_and_buffer(&Event::Metadata(MetadataEvent {
+        let mut events = ctx.generate_initial_events();
+        events.extend(ctx.process_kiro_event(&Event::Metadata(MetadataEvent {
             token_usage: Some(usage),
-        }));
-        let events = ctx.finish_and_get_all_events();
+        })));
+        events.extend(ctx.generate_final_events());
 
-        assert_eq!(ctx.final_usage(), (3, 11, 4, 7, 0.0));
+        assert_eq!(ctx.resolved_usage(), (3, 4, 7));
         let start_usage = &events
             .iter()
             .find(|event| event.event == "message_start")
             .unwrap()
             .data["message"]["usage"];
-        assert_eq!(start_usage["input_tokens"], json!(3));
-        assert_eq!(start_usage["cache_creation_input_tokens"], json!(4));
-        assert_eq!(start_usage["cache_read_input_tokens"], json!(7));
+        assert_eq!(start_usage["input_tokens"], json!(100));
+        assert_eq!(start_usage["cache_creation_input_tokens"], json!(0));
+        assert_eq!(start_usage["cache_read_input_tokens"], json!(0));
         let delta_usage = &events
             .iter()
             .find(|event| event.event == "message_delta")
