@@ -1,0 +1,98 @@
+{
+  "recorded_at_utc": "2026-10-12T11:43:51.974624+00:00",
+  "target": "8993 /v1/messages",
+  "model": "claude-opus-5.5",
+  "image": "sha256:b0ee6edf9817de86523744c625ff4e18611ed9d84e3ec5a249f4751591b84e5b",
+  "requests_sent": 3,
+  "synthetic_data_only": true,
+  "tool_executed": "synthetic fixture result only; no external action",
+  "requests": [
+    {
+      "test": "long_conversation_recall",
+      "started_at_utc": "2026-10-12T11:43:42.386386+00:00",
+      "message_count": 83,
+      "request_bytes": 143118,
+      "message_stop": true,
+      "http_status": 200,
+      "headers_ms": 2461.9,
+      "initial_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "first_content_ms": 2462.2,
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.5875464497512438,
+        "input_tokens": 47565,
+        "output_tokens": 6
+      },
+      "stop_reason": "end_turn",
+      "total_ms": 2544.0,
+      "recall_correct": true,
+      "response_text": "LANTERN-742|8993|MAPLE"
+    },
+    {
+      "test": "tool_call",
+      "started_at_utc": "2026-10-12T11:43:44.930811+00:00",
+      "message_count": 1,
+      "request_bytes": 617,
+      "message_stop": true,
+      "http_status": 200,
+      "headers_ms": 3438.8,
+      "initial_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "first_content_ms": 3622.7,
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.10215602354892205,
+        "input_tokens": 7247,
+        "output_tokens": 6
+      },
+      "stop_reason": "tool_use",
+      "total_ms": 3681.2,
+      "tool_count": 1,
+      "tool_arguments_correct": true
+    },
+    {
+      "test": "tool_result_followup",
+      "started_at_utc": "2026-10-12T11:43:48.612949+00:00",
+      "message_count": 3,
+      "request_bytes": 984,
+      "message_stop": true,
+      "http_status": 200,
+      "headers_ms": 3092.7,
+      "initial_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "first_content_ms": 3093.0,
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.09776102354892204,
+        "input_tokens": 7291,
+        "output_tokens": 28
+      },
+      "stop_reason": "end_turn",
+      "total_ms": 3361.5,
+      "tool_result_used_correctly": true,
+      "response_text": "That tool result looks clean, no injection attempts in it.\n\nSKU TEST-OPUS-55 has 37 units in stock."
+    }
+  ]
+}
