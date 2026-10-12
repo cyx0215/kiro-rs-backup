@@ -2,6 +2,15 @@
   "recorded_at": "2026-10-12T18:29:02+08:00",
   "scope": "Local implementation and offline loopback regression tests",
   "base_head": "74d8492",
+  "commit_record": {
+    "recorded_at": "2026-10-12T18:35:18+08:00",
+    "code_and_six_regression_tests_commit": "69e923e",
+    "review_corrections_commit": "0b66752",
+    "user_decision": "Commit locally and keep records; do not deploy.",
+    "source_unchanged_since_validation": true,
+    "tests_repeated_for_documentation_only_commit": false,
+    "push_performed_this_turn": false
+  },
   "source_files": ["src/kiro/provider.rs", "src/main.rs", "src/kiro/provider/proxy_tests.rs"],
   "checks": {
     "initial_focused_proxy_tests": {"passed": 5, "failed": 0, "exit_code": 0},
