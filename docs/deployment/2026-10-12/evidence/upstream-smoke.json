@@ -1,0 +1,62 @@
+{
+  "recorded_at_utc": "2026-10-12T11:41:41.194213+00:00",
+  "target": "8993 via server loopback over SSH",
+  "requests_sent": 2,
+  "requests": [
+    {
+      "path": "/v1/messages",
+      "model": "claude-sonnet-5.5",
+      "started_at_utc": "2026-10-12T11:41:39.443716+00:00",
+      "message_stop": true,
+      "text_matches_ok": true,
+      "http_status": 200,
+      "headers_ms": 1088.8,
+      "initial_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "first_text_ms": 1089.1,
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.01485725114427861,
+        "input_tokens": 1295,
+        "output_tokens": 1
+      },
+      "stop_reason": "end_turn",
+      "total_ms": 1115.0
+    },
+    {
+      "path": "/cc/v1/messages",
+      "model": "claude-sonnet-5.5",
+      "started_at_utc": "2026-10-12T11:41:40.559228+00:00",
+      "message_stop": true,
+      "text_matches_ok": true,
+      "http_status": 200,
+      "headers_ms": 633.7,
+      "initial_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "first_text_ms": 634.2,
+      "final_usage": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "credit_unit": "credit",
+        "credit_unit_plural": "credits",
+        "credit_usage": 0.014624415323383086,
+        "input_tokens": 1295,
+        "output_tokens": 1
+      },
+      "stop_reason": "end_turn",
+      "total_ms": 634.8
+    }
+  ],
+  "scope": "short text streaming only; no proxy changes or Sub2API billing verification"
+}

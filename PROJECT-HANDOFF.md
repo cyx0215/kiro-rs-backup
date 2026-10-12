@@ -2,6 +2,8 @@
 
 更新日期：2026-10-10（Asia/Shanghai）。这是部署讨论的脱敏摘要及文档索引，不是完整聊天逐字稿。
 
+2026-10-12 19:42补充：按用户“在本地调用测试”及“继续”授权，通过SSH在服务器回环地址对8993发送2次Sonnet 5.5真实短流式请求，/v1/messages与/cc/v1/messages均200、返回OK、message_stop完整、end_turn结束；首文本分别1089.1ms/634.2ms，总耗时1115.0ms/634.8ms。初始用量均0，最终input1295/output1，两次报告credit合计约0.029482。仅证明两个入口短文本可用，非长会话/工具/代理切换或Sub2API账单验证；未操作8992、未更改配置。见[脱敏调用结果](docs/deployment/2026-10-12/evidence/upstream-smoke.json)。
+
 2026-10-12 19:37补充：按用户再次明确授权，已将合并版本7d6bad3部署8993，镜像b0ee6edf9817，19:36:44启动；含上游#110/#112及本地计费兼容、代理热更新。管理页200、无认证模型401、认证模型/管理员账号读取200，配置与环境原样保留，实际balanced模式、4账号设置一致；8992容器/镜像/启动时间未变。旧镜像ba74e53a06cf和完整data备份保留在rollback-upstream-20261012T113613Z，回滚命令见[部署与回滚记录](docs/deployment/2026-10-12/UPSTREAM-DEPLOYMENT.md)。本轮未push、未发线上推理或改代理；19:37复验暂无新版完成trace，真实调用及账单待验证。下方“暂不部署”和旧运行基线为历史。
 
 2026-10-12 18:44补充：按用户“把上游的代码拉过来”要求，fetch并合并上游master 1ef319f（含#110/#112）到本地master，合并前faa24e7保留在本地分支codex/backup-before-upstream-2026-10-12。采用上游/cc实时流式与超时/过载处理，保留本地缓存计费、Sub2API兼容和代理热更新；适配新增网关测试，补/v1及/cc兼容开关集成回归。cargo test 820通过、0失败、1项延迟基准默认忽略；cargo clippy --all-targets退出0；前端bun run build通过。仅本地合并，不push、不部署、不重启、不改线上配置、不发线上推理。旧记录中“尚无fork”和旧检出信息已过时；origin为ZyphrZero/kiro.rs，fork为cyx0215/kiro-rs-backup。此前已回滚的/cc功能现在由上游实现承接，但不代表获得重新部署授权。详见[上游合并记录](docs/deployment/2026-10-12/UPSTREAM-MERGE.md)。
