@@ -1,0 +1,51 @@
+{
+  "completed_at_utc": "2026-10-12T11:36:46.118503+00:00",
+  "source_commit": "7d6bad3",
+  "image": "sha256:b0ee6edf9817de86523744c625ff4e18611ed9d84e3ec5a249f4751591b84e5b",
+  "previous_image": "sha256:ba74e53a06cf097c587f658ae6222047b404f9045f1c9e08f67c55bdbfdc359a",
+  "archive_sha256": "38e6a100ab3315dc7a4a5c43e675145a438656dfd0473f3eccd84e46ee5dba65",
+  "started_at": "2026-10-12T11:36:44.47243757Z",
+  "backup": "/home/deploy/kiro-billing-test-20261010/rollback-upstream-20261012T113613Z",
+  "active_compose": "/home/deploy/kiro-billing-test-20261010/compose.upstream-7d6bad3-20261012T113613Z.json",
+  "rollback_compose": "/home/deploy/kiro-billing-test-20261010/rollback-upstream-20261012T113613Z/compose.rollback.json",
+  "compose_project": "kiro-billing-test-20261010",
+  "production_unchanged": true,
+  "admin_status": 200,
+  "unauth_models_status": 401,
+  "authenticated_models_status": 200,
+  "runtime_credentials_status": 200,
+  "config_unchanged": true,
+  "environment_unchanged": true,
+  "sub2api_usage_compat": true,
+  "load_balancing_mode": "balanced",
+  "credentials": [
+    {
+      "id": 2,
+      "priority": 1,
+      "disabled": false
+    },
+    {
+      "id": 3,
+      "priority": 0,
+      "disabled": true
+    },
+    {
+      "id": 4,
+      "priority": 1,
+      "disabled": false
+    },
+    {
+      "id": 5,
+      "priority": 0,
+      "disabled": false
+    }
+  ],
+  "request_state_before": {
+    "observed_requests": 50,
+    "unmatched_requests": 0,
+    "quiet_seconds": 106.0,
+    "established_outgoing_connections": 1,
+    "match_basis": "model and start time within 20 seconds; no shared request ID"
+  },
+  "inference_tested": false
+}

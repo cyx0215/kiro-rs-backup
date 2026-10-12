@@ -1,0 +1,13 @@
+{
+  "checked_at_utc": "2026-10-12T11:37:28.840239+00:00",
+  "running": true,
+  "restart_count": 0,
+  "admin_status": 200,
+  "unauth_models_status": 401,
+  "production_unchanged": true,
+  "old_image_available": true,
+  "backup_config_matches_current": true,
+  "backup_permissions": "0o700",
+  "post_start_trace_counts": {},
+  "inference_sent_by_this_session": false
+}

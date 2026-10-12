@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-10-12T19:30:35.311070+08:00",
+  "source_commit": "7d6bad3622b5e42fcf876cf5921f0bd2eb908256",
+  "source_file_count": 187,
+  "source_copy_matches_worktree": true,
+  "archive_sha256": "38e6a100ab3315dc7a4a5c43e675145a438656dfd0473f3eccd84e46ee5dba65",
+  "archive_bytes": 13372928,
+  "linux_release_build": true,
+  "image_tag": "kiro-rs:upstream-7d6bad3-20261012"
+}
