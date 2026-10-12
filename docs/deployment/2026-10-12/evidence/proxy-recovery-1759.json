@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-10-12T17:59:00+08:00",
+  "scope": "8993",
+  "user_report": "Request appears successful after restarting with the new proxy.",
+  "existing_browser_test_result": {
+    "source": "Read-only current admin dialog accessibility state; no test button clicked by the agent.",
+    "dialog_credential_id": 5,
+    "model_id": "claude-opus-5.5",
+    "status": "success",
+    "actual_credential_id": 4,
+    "response_text": "OK",
+    "total_latency_ms": 2593,
+    "displayed_credit_usage": 0.02374,
+    "credit_unit": "credit"
+  },
+  "runtime_account_snapshot": {
+    "checked_at_utc": "2026-10-12T09:57:10.133747+00:00",
+    "available_accounts": 3,
+    "enabled_ids": [2, 4, 5],
+    "disabled": [{"id": 3, "reason": "QuotaExceeded"}],
+    "all_refresh_failure_counts_zero": true,
+    "all_accounts_without_throttle": true
+  },
+  "trace_check": {
+    "checked_at_utc": "2026-10-12T09:57:51.151702+00:00",
+    "latest_ordinary_trace_ts": "2026-10-12T09:43:46.273316896+00:00",
+    "interpretation": "The admin model test directly uses the provider and does not persist an ordinary trace, according to the inspected test_model implementation."
+  },
+  "inference_sent_by_agent": false,
+  "online_changes_made": false,
+  "boundaries": [
+    "Success covers the existing minimal Opus test displayed in the browser, not all models or all accounts.",
+    "The 2593 ms value is total test latency, not time to first token.",
+    "Displayed credits were observed but downstream billing was not reconciled.",
+    "No API keys, tokens, proxy authentication or raw logs were recorded."
+  ]
+}

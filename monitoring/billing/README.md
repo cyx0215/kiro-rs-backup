@@ -11,12 +11,15 @@ Usage diagnostics now flag local prompt estimates of at least 100,000 tokens
 that are at least twice the context estimate, only when provider_usage=false.
 This is a review signal about simulated token attribution, not a billing-error
 verdict. Missing/invalid fields are not treated as proof of normal metering.
-Events use the existing deduplication state. No scheduler is enabled.
+Events use the existing deduplication state. The local resident runner is
+available separately; it does not enable a Codex scheduled task.
 
 - `src/billing_monitor/cli.py`: command-line collection, reconciliation,
   alert de-duplication, and JSON/HTML reports.
 - `src/billing_monitor/collector.py`: sanitized SQLite collector sent over SSH
   on standard input.
+- `src/billing_monitor/runner.py`: sequential resident collection and an
+  allowlisted HTTP dashboard bound only to localhost.
 - `tests/test_billing_monitor.py`: offline standard-library regression tests.
 - `config/`: configuration boundaries; no new configuration-loading behavior.
 
@@ -65,3 +68,35 @@ Deployment records and existing evidence stay under `docs/deployment/2026-10-10/
 Runtime reports stay under the ignored `.local-test/billing-monitor/` directory.
 See [the operating guide](../../docs/deployment/2026-10-10/BILLING-MONITOR.md)
 for authentication, billing rules, exit codes, and verification limits.
+
+## Resident local monitor
+
+Start from the repository root (foreground command; the deployed instance was
+started as a hidden Windows background process):
+
+```powershell
+python -B monitoring/billing/src/billing_monitor/runner.py --mode traces-only --interval-seconds 900 --port 8994
+```
+
+Open `http://127.0.0.1:8994/report.html`. Collection starts immediately and then
+waits 15 minutes after each completed cycle. Refresh the page to see the latest
+snapshot. `/status.json` contains PID, mode, last run time, result and report
+freshness. Only report.html, latest.json and status.json are served; no directory
+listing or historical/raw data is exposed. A failure does not terminate the
+loop, and repeated alert suppression uses the CLI's source-specific state.
+
+This mode has no Sub2API invoice collection. For full mode, inject an existing
+admin credential into the launch environment and select `--mode full` with
+`--token-env` and `--auth-type`. No credential is accepted as a command argument.
+Changing the parent shell environment does not update a running process.
+The runner retains sanitized snapshots only and does not send external messages.
+
+The background process runs until it is stopped or Windows shuts down; no
+boot startup or service installation is configured. To stop it, verify the
+PID in `/status.json` belongs to this runner, then stop that process. A PID file
+under `.local-test/billing-monitor/runner.pid` records the launched instance.
+Run all 43 offline/local regression tests with:
+
+```powershell
+python -B -m unittest discover -s monitoring/billing/tests -p 'test_*.py'
+```

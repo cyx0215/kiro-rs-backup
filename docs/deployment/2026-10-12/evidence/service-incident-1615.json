@@ -1,0 +1,45 @@
+{
+  "observed_at": "2026-10-12T16:13:26+08:00",
+  "scope": ["8993", "8992 shared proxy configuration"],
+  "actions": ["read-only SSH container inspection", "read-only local health checks", "TCP reachability checks with a five-second timeout"],
+  "service_8993": {
+    "container_status": "running",
+    "restart_count": 0,
+    "image": "sha256:ba74e53a06cf097c587f658ae6222047b404f9045f1c9e08f67c55bdbfdc359a",
+    "cpu_percent": 0.0,
+    "memory": "22.95 MiB / 384 MiB",
+    "local_admin_http_status": 200,
+    "unauthenticated_models_http_status": 401
+  },
+  "model_trace_window": {
+    "window_start": "2026-10-12T15:30:00+08:00",
+    "window_end": "2026-10-12T16:10:00+08:00",
+    "15:30_to_15:40": {"count": 38, "success": 38, "upstream_status": 200},
+    "15:50_to_16:10": {"network_errors": 26, "interrupted": 2, "failed_records_with_upstream_http_status": 0},
+    "failure_models": ["claude-opus-5-5", "claude-sonnet-5-5"],
+    "typical_network_error_duration_seconds": 123
+  },
+  "balance_refresh": {
+    "window": "2026-10-12T15:47+08:00/2026-10-12T16:08+08:00",
+    "enabled_accounts": 3,
+    "refresh_cycles_observed": 5,
+    "result": "0 successes, 3 failures per cycle",
+    "cycle_duration_seconds": [92.2, 94.7]
+  },
+  "proxy_reachability": {
+    "configured_for_8993_and_8992": true,
+    "endpoint_identity": "redacted; same SHA-256 fingerprint across both configs",
+    "credential_material_recorded": false,
+    "hostname_dns_resolution": "success",
+    "configured_tcp_port": 443,
+    "configured_endpoint_tcp_attempts": ["timeout after 5 seconds", "timeout after 5 seconds"],
+    "independent_tcp_control": {"destination": "1.1.1.1:443", "result": "connected in approximately 0.01 seconds"},
+    "proxy_process_or_remote_service_health": "not checked"
+  },
+  "boundaries": [
+    "A configured proxy TCP timeout identifies a path failure but not whether the proxy service, firewall, route, or remote host is responsible.",
+    "No authenticated upstream model or balance request was sent for this investigation.",
+    "8992 uses the same configured proxy endpoint; its current user impact was not actively tested.",
+    "No restart, deployment, service configuration change, or proxy configuration change was made."
+  ]
+}

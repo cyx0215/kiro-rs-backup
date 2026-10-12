@@ -1,0 +1,748 @@
+{
+  "collected_at_utc": "2026-10-12T05:54:31.773019+00:00",
+  "instances": [
+    {
+      "name": "kiro-rs-billing-test-20261010",
+      "image": "sha256:e54e5be78a04abbb4fe7fda1748d75d0d22a6c981b1c1d8be9266665b1c8ffd2",
+      "started_at": "2026-10-12T05:03:28.185686994Z",
+      "running": true
+    },
+    {
+      "name": "kiro-rs-zyphrzero-test",
+      "image": "sha256:fd6f06cc18427faf6aa4b1088c2ce443088efca3ca67d2f23644bf48cd8a0256",
+      "started_at": "2026-10-08T19:16:52.637430452Z",
+      "running": true
+    }
+  ],
+  "opus_traces": [
+    {
+      "ts": "2026-10-12T04:41:23.732899219+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 44184,
+      "output_tokens": 90,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 36478,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:42:13.221847861+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 68313,
+      "output_tokens": 666,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 42855,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:42:31.600847954+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "interrupted",
+      "final_credential_id": 0,
+      "total_attempts": 0,
+      "duration_ms": 46639,
+      "output_tokens": 0,
+      "attempts": []
+    },
+    {
+      "ts": "2026-10-12T04:43:28.733678777+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 42040,
+      "output_tokens": 317,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 34295,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:43:45.260721987+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "interrupted",
+      "final_credential_id": 0,
+      "total_attempts": 0,
+      "duration_ms": 33259,
+      "output_tokens": 0,
+      "attempts": []
+    },
+    {
+      "ts": "2026-10-12T04:44:18.439485452+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 80588,
+      "output_tokens": 375,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 74438,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:45:50.606857823+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 63490,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 63468,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:47:00.421273938+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 46699,
+      "output_tokens": 916,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 27604,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:47:53.140496036+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 35308,
+      "output_tokens": 358,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 30883,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:48:37.744991287+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 36939,
+      "output_tokens": 507,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 25841,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:52:21.439716937+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 39460,
+      "output_tokens": 54,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 38672,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T04:53:44.166058131+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 3723,
+      "output_tokens": 1,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 3715,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:03:44.503718815+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "final_credential_id": 4,
+      "total_attempts": 1,
+      "duration_ms": 27752,
+      "output_tokens": 1,
+      "attempts": [
+        {
+          "credential_id": 4,
+          "http_status": 200,
+          "duration_ms": 27680,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:09:55.933233157+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 4,
+      "total_attempts": 4,
+      "duration_ms": 20215,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 5812,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 4880,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 5499,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 2433,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:11:23.552898512+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 4,
+      "total_attempts": 4,
+      "duration_ms": 20885,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 4607,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 5349,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 2339,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 6951,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:12:14.268323565+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 4,
+      "total_attempts": 4,
+      "duration_ms": 25202,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 5609,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 14268,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 2159,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 1513,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:12:53.319835956+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 4,
+      "total_attempts": 4,
+      "duration_ms": 29703,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 10727,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 8072,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 6126,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 3184,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:13:44.998814836+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "success",
+      "final_credential_id": 5,
+      "total_attempts": 1,
+      "duration_ms": 23128,
+      "output_tokens": 1,
+      "attempts": [
+        {
+          "credential_id": 5,
+          "http_status": 200,
+          "duration_ms": 23116,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:14:29.730604404+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 4,
+      "total_attempts": 4,
+      "duration_ms": 24175,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 4185,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 3778,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 10106,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 4451,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:14:31.704805287+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 4,
+      "total_attempts": 4,
+      "duration_ms": 13103,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 4064,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 2998,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 3315,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 1203,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:16:00.139696163+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 4,
+      "total_attempts": 3,
+      "duration_ms": 78417,
+      "output_tokens": 1213,
+      "attempts": [
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 7209,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 11117,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 200,
+          "duration_ms": 19965,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:19:38.035934276+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "success",
+      "final_credential_id": 2,
+      "total_attempts": 1,
+      "duration_ms": 17508,
+      "output_tokens": 79,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 200,
+          "duration_ms": 16364,
+          "model_temporarily_unavailable": false
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:23:44.114369302+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 0,
+      "final_status": "interrupted",
+      "final_credential_id": 0,
+      "total_attempts": 0,
+      "duration_ms": 29886,
+      "output_tokens": 0,
+      "attempts": []
+    },
+    {
+      "ts": "2026-10-12T05:23:56.941631379+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 5,
+      "total_attempts": 4,
+      "duration_ms": 17518,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 6199,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 1093,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 3798,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 4778,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:25:14.996658123+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 4,
+      "total_attempts": 4,
+      "duration_ms": 14812,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 3356,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 2337,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 3883,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 3705,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:26:03.664364718+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 5,
+      "total_attempts": 4,
+      "duration_ms": 18347,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 1563,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 8362,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 1087,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 5845,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:27:22.935849035+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 2,
+      "total_attempts": 4,
+      "duration_ms": 21731,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 2425,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 5499,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 8315,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 3907,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:28:45.596548956+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 5,
+      "total_attempts": 4,
+      "duration_ms": 12283,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 1713,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 4,
+          "http_status": 500,
+          "duration_ms": 3061,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 4555,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 1263,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    },
+    {
+      "ts": "2026-10-12T05:29:58.367635294+00:00",
+      "model": "claude-opus-5-5",
+      "is_stream": 1,
+      "final_status": "error",
+      "final_credential_id": 2,
+      "total_attempts": 4,
+      "duration_ms": 20721,
+      "output_tokens": 0,
+      "attempts": [
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 3179,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 5,
+          "http_status": 500,
+          "duration_ms": 5016,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 3336,
+          "model_temporarily_unavailable": true
+        },
+        {
+          "credential_id": 2,
+          "http_status": 500,
+          "duration_ms": 7566,
+          "model_temporarily_unavailable": true
+        }
+      ]
+    }
+  ]
+}

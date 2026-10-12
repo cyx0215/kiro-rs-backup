@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-10-12T18:10:13+08:00",
+  "scope": "Local implementation and offline loopback regression tests",
+  "base_head": "74d8492",
+  "source_files": ["src/kiro/provider.rs", "src/main.rs", "src/kiro/provider/proxy_tests.rs"],
+  "checks": {
+    "focused_proxy_tests": {"passed": 5, "failed": 0, "exit_code": 0},
+    "cargo_test": {"passed": 799, "failed": 0, "ignored": 0, "exit_code": 0},
+    "cargo_clippy": {"exit_code": 0, "warnings": 116, "previous_cc_clippy_log_warnings": 116},
+    "git_diff_whitespace_check": {"exit_code": 0}
+  },
+  "covered": [
+    "Global proxy changes reach model, streaming and MCP requests without rebuilding the provider",
+    "Same proxy address with new password or username uses updated proxy authentication",
+    "Enable and clear global proxy while preserving credential proxy and direct overrides",
+    "In-flight response completes after switching subsequent requests to a new proxy",
+    "Retry uses the proxy selected after a failed previous attempt"
+  ],
+  "online_actions": [],
+  "deployed": false,
+  "inference_sent": false,
+  "boundaries": [
+    "Tests used loopback HTTP stubs and synthetic credentials, not real accounts or proxies.",
+    "No production HTTPS CONNECT or billing validation was performed.",
+    "In-flight attempts retain their current connection until completion or existing timeout/retry behavior.",
+    "Future deployment must preserve the current 8993 rollback baseline rather than reintroduce unrelated local HEAD changes."
+  ]
+}

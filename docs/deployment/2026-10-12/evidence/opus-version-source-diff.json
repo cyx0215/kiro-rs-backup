@@ -1,0 +1,20 @@
+{
+  "collected_at": "2026-10-12T13:55:28.8315640+08:00",
+  "old_source": "C:\\Users\\Cyxan\\AppData\\Local\\Temp\\kiro-billing-fix-rebuild-20261010-2256\\source",
+  "new_source": "C:\\Users\\Cyxan\\AppData\\Local\\Temp\\kiro-cc-stream-20261012\\source",
+  "compared_paths": 185,
+  "changes": [
+    {
+      "path": "src\\anthropic\\handlers.rs",
+      "change": "modified",
+      "old_sha256": "B9D4FB631F7C3F606A797CD791D56CFBA16BE264396073296702AD7CA8A9881A",
+      "new_sha256": "20D0EBA8A2017B6E9880D683D189768875A84C7FFD4C48F3743E71B0A9F0372F"
+    },
+    {
+      "path": "src\\anthropic\\router.rs",
+      "change": "modified",
+      "old_sha256": "91EB701B12B9E7722F100AA6BDF4C9AA93835F92AB4A0BA0F5D3603AA707F4B8",
+      "new_sha256": "D439DEF083DE089DC84583E1B2D9B56A225CB3EA1F6A453C00F7E24B15D7657C"
+    }
+  ]
+}

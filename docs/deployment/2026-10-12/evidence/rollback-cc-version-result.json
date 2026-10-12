@@ -1,0 +1,50 @@
+{
+  "completed_at_utc": "2026-10-12T06:01:01.319952+00:00",
+  "previous_image": "sha256:e54e5be78a04abbb4fe7fda1748d75d0d22a6c981b1c1d8be9266665b1c8ffd2",
+  "image": "sha256:ba74e53a06cf097c587f658ae6222047b404f9045f1c9e08f67c55bdbfdc359a",
+  "started_at": "2026-10-12T06:00:59.647942614Z",
+  "backup": "/home/deploy/kiro-billing-test-20261010/before-version-rollback-20261012T060028Z",
+  "active_compose_overlay": "/home/deploy/kiro-billing-test-20261010/rollback-cc-20261012T050316Z/compose.rollback.yaml",
+  "production_unchanged": true,
+  "admin_status": 200,
+  "unauth_models_status": 401,
+  "authenticated_models_status": 200,
+  "runtime_credentials_status": 200,
+  "config_unchanged": true,
+  "mode": "priority",
+  "credentials": [
+    {
+      "id": 1,
+      "priority": 0,
+      "disabled": true
+    },
+    {
+      "id": 2,
+      "priority": 1,
+      "disabled": false
+    },
+    {
+      "id": 3,
+      "priority": 0,
+      "disabled": true
+    },
+    {
+      "id": 4,
+      "priority": 1,
+      "disabled": false
+    },
+    {
+      "id": 5,
+      "priority": 0,
+      "disabled": false
+    }
+  ],
+  "request_state_before": {
+    "observed_requests": 40,
+    "unmatched_requests": 0,
+    "quiet_seconds": 140.6,
+    "established_outgoing_connections": 1,
+    "match_basis": "model and start time within 20 seconds; no shared request ID"
+  },
+  "inference_tested": false
+}

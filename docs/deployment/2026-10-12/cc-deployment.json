@@ -1,0 +1,13 @@
+{
+  "time_utc": "20261012T050316Z",
+  "image": "sha256:e54e5be78a04abbb4fe7fda1748d75d0d22a6c981b1c1d8be9266665b1c8ffd2",
+  "previous_image": "sha256:ba74e53a06cf097c587f658ae6222047b404f9045f1c9e08f67c55bdbfdc359a",
+  "production_unchanged": true,
+  "admin_status": 200,
+  "unauth_models_status": 401,
+  "accounts_added": 1,
+  "accounts_updated": 4,
+  "accounts_total": 5,
+  "backup": "/home/deploy/kiro-billing-test-20261010/rollback-cc-20261012T050316Z",
+  "inference_tested": false
+}
