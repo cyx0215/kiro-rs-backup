@@ -10,10 +10,15 @@ project adheres to [Semantic Versioning](https://semver.org/).
 
 - Stream CC and Chat Completions content immediately, preserving final usage and tool arguments.
 - Reuse upstream connections; add configurable connection and idle read deadlines.
+- Make the overall upstream request deadline configurable via `upstreamTotalTimeoutSecs`. It still defaults to the previously hardcoded 720s, but an active stream cannot reset it, so that value also caps answer length: raise it where long agentic turns are truncated at twelve minutes, or set 0 to remove the ceiling and rely on the idle read deadline.
 - Return model overloads with 503 and Retry-After without repeated internal attempts.
 - Decode non-streaming answers incrementally; report empty, corrupt, truncated, and interrupted responses as errors.
 - Record first-token latency from content rather than metadata.
 - Add TDD regressions and a repeatable before/after latency benchmark. See `docs/gateway-performance.md`.
+
+### Fixes
+
+- Stop rejecting requests whose history contains a Claude Code `Read` call with `pages` (HTTP 400 `工具映射不支持: Claude Code Read.pages has no Kiro read_file equivalent`). The field has no Kiro `read_file` equivalent and only appears in replayed history the client cannot correct, so it is now dropped instead of failing the whole session.
 
 ## [0.9.1] - 2026-10-08
 

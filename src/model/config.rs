@@ -116,6 +116,13 @@ pub struct Config {
     #[serde(default = "default_upstream_read_timeout_secs")]
     pub upstream_read_timeout_secs: u64,
 
+    /// Deadline for a whole upstream API request, body included. An active
+    /// stream cannot reset it, so it also caps how long an answer may be.
+    /// Defaults to the previously hardcoded 720s; set 0 to disable it and
+    /// leave stalled upstreams to `upstream_read_timeout_secs`.
+    #[serde(default = "default_upstream_total_timeout_secs")]
+    pub upstream_total_timeout_secs: u64,
+
     /// 外部 count_tokens API 地址（可选）
     #[serde(default)]
     pub count_tokens_api_url: Option<String>,
@@ -291,10 +298,34 @@ pub struct Config {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub cache_metering_enabled: Option<bool>,
 
-    /// Start ordinary SSE usage at zero for consumers that ignore final zero input.
-    /// Final message_delta remains authoritative; interrupted streams may be undercounted.
-    #[serde(default)]
-    pub sub2api_usage_compat: bool,
+    /// prompt cache 计量模拟的条目上限。未设置时回落到 `KIRO_RS_CACHE_CAPACITY`
+    /// 环境变量，再回落到内置默认 262144。
+    ///
+    /// 选型公式：`C >= peak_req_per_sec * entries_per_req * TTL_secs`。
+    /// 生效值钳到 `[1024, 8388608]`。启动时固定，运行时不可改。
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cache_metering_capacity: Option<usize>,
+
+    /// 是否把 prompt cache 计量快照落到 `cache_metering.json`。未设置时回落到
+    /// `KIRO_RS_CACHE_PERSIST` 环境变量，再回落到默认**关闭**。
+    ///
+    /// 关闭后启动不读该文件、运行与退出都不写该文件，也不会删除已有文件。
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cache_metering_persist_enabled: Option<bool>,
+
+    /// prompt cache 计量快照的落盘间隔（秒）。未设置时回落到
+    /// `KIRO_RS_CACHE_FLUSH_INTERVAL_SECS` 环境变量，再回落到默认 300。
+    /// 生效值钳到 `[10, 3600]`。仅在落盘开启时有意义。
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cache_metering_flush_interval_secs: Option<u64>,
+
+    /// 是否开启 miss 归因（墓碑表，用于区分 `miss_evicted` / `miss_expired`）。
+    /// 未设置时回落到 `KIRO_RS_CACHE_MISS_DIAGNOSTICS` 环境变量，再回落到默认开启。
+    ///
+    /// 关闭后不建墓碑表（内存归零），`miss_evicted` 退化为 `miss_no_entry`，
+    /// 其余计数器与 `entries_len` 仍然输出。
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cache_metering_miss_diagnostics: Option<bool>,
 
     /// 是否启用请求链路追踪（写 traces.db）。默认 true。
     ///
@@ -372,6 +403,9 @@ fn default_upstream_connect_timeout_secs() -> u64 {
 }
 fn default_upstream_read_timeout_secs() -> u64 {
     120
+}
+fn default_upstream_total_timeout_secs() -> u64 {
+    720
 }
 
 fn default_load_balancing_mode() -> String {
@@ -470,6 +504,7 @@ impl Default for Config {
             tls_backend: default_tls_backend(),
             upstream_connect_timeout_secs: default_upstream_connect_timeout_secs(),
             upstream_read_timeout_secs: default_upstream_read_timeout_secs(),
+            upstream_total_timeout_secs: default_upstream_total_timeout_secs(),
             count_tokens_api_url: None,
             count_tokens_api_key: None,
             count_tokens_auth_type: default_count_tokens_auth_type(),
@@ -500,7 +535,10 @@ impl Default for Config {
             tool_compatibility_mode: default_tool_compatibility_mode(),
             default_endpoint: default_endpoint(),
             cache_metering_enabled: None,
-            sub2api_usage_compat: false,
+            cache_metering_capacity: None,
+            cache_metering_persist_enabled: None,
+            cache_metering_flush_interval_secs: None,
+            cache_metering_miss_diagnostics: None,
             trace_enabled: default_trace_enabled(),
             trace_retention_days: default_trace_retention_days(),
             usage_log_retention_days: default_usage_log_retention_days(),
@@ -586,6 +624,15 @@ mod tests {
         assert_eq!(Config::default().upstream_read_timeout_secs, 120);
     }
 
+    /// The default keeps the previously hardcoded deadline, so existing
+    /// deployments behave exactly as before this became configurable.
+    #[test]
+    fn upstream_total_timeout_defaults_to_previous_hardcoded_value() {
+        let config: Config = serde_json::from_str("{}").unwrap();
+        assert_eq!(config.upstream_total_timeout_secs, 720);
+        assert_eq!(Config::default().upstream_total_timeout_secs, 720);
+    }
+
     #[test]
     fn upstream_deadlines_accept_explicit_values() {
         let config: Config = serde_json::from_str(
@@ -594,6 +641,20 @@ mod tests {
         .unwrap();
         assert_eq!(config.upstream_connect_timeout_secs, 7);
         assert_eq!(config.upstream_read_timeout_secs, 45);
+    }
+
+    #[test]
+    fn upstream_total_timeout_accepts_explicit_value() {
+        let config: Config = serde_json::from_str(r#"{"upstreamTotalTimeoutSecs":1800}"#).unwrap();
+        assert_eq!(config.upstream_total_timeout_secs, 1800);
+    }
+
+    /// 0 is a meaningful setting, not a missing one: it turns the overall
+    /// deadline off for deployments that would rather let long answers finish.
+    #[test]
+    fn upstream_total_timeout_accepts_zero_to_disable() {
+        let config: Config = serde_json::from_str(r#"{"upstreamTotalTimeoutSecs":0}"#).unwrap();
+        assert_eq!(config.upstream_total_timeout_secs, 0);
     }
 
     #[test]
@@ -650,16 +711,6 @@ mod tests {
     }
 
     #[test]
-    fn sub2api_usage_compat_defaults_off_and_accepts_opt_in() {
-        let config: Config = serde_json::from_str("{}").unwrap();
-        assert!(!config.sub2api_usage_compat);
-        assert!(!Config::default().sub2api_usage_compat);
-        let config: Config = serde_json::from_str(r#"{"sub2apiUsageCompat":true}"#).unwrap();
-        assert!(config.sub2api_usage_compat);
-        assert_eq!(serde_json::to_value(config).unwrap()["sub2apiUsageCompat"], true);
-    }
-
-    #[test]
     fn account_rpm_limit_defaults_for_existing_configs() {
         let config: Config = serde_json::from_str("{}").unwrap();
         assert!(!config.account_rpm_limit_enabled);
@@ -679,8 +730,7 @@ mod tests {
 
     #[test]
     fn model_api_429_retry_accepts_explicitly_disabled() {
-        let config: Config =
-            serde_json::from_str(r#"{"modelApi429RetryEnabled":false}"#).unwrap();
+        let config: Config = serde_json::from_str(r#"{"modelApi429RetryEnabled":false}"#).unwrap();
         assert!(!config.model_api_429_retry_enabled);
     }
 

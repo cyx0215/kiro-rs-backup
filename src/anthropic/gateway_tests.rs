@@ -283,40 +283,6 @@ async fn gateway_cc_emits_content_before_upstream_finishes() {
 }
 
 #[tokio::test]
-async fn gateway_messages_and_cc_preserve_sub2api_usage_compat() {
-    for compat in [false, true] {
-        for endpoint in ["messages", "cc"] {
-            let mut f = fixture(Mode::Normal(Duration::ZERO)).await;
-            f.state.sub2api_usage_compat = compat;
-            let response = request(f.state.clone(), endpoint, true).await;
-            assert_eq!(response.status(), StatusCode::OK);
-            let bytes = to_bytes(response.into_body(), 1024 * 1024).await.unwrap();
-            let text = String::from_utf8_lossy(&bytes);
-            let events: Vec<serde_json::Value> = text
-                .lines()
-                .filter_map(|line| line.strip_prefix("data: "))
-                .map(|data| serde_json::from_str(data).unwrap())
-                .collect();
-            let start = events.iter().find(|e| e["type"] == "message_start").unwrap();
-            let initial = &start["message"]["usage"];
-            if compat {
-                assert_eq!(initial["input_tokens"], 0);
-                assert_eq!(initial["output_tokens"], 0);
-            } else {
-                assert!(initial["input_tokens"].as_i64().unwrap() > 0);
-                assert_eq!(initial["output_tokens"], 1);
-            }
-            let delta = events.iter().find(|e| e["type"] == "message_delta").unwrap();
-            assert_eq!(delta["usage"]["input_tokens"], 13);
-            assert_eq!(delta["usage"]["output_tokens"], 17);
-            assert_eq!(delta["usage"]["cache_read_input_tokens"], 3);
-            assert_eq!(delta["usage"]["cache_creation_input_tokens"], 2);
-            assert!(events.iter().any(|e| e["type"] == "message_stop"));
-        }
-    }
-}
-
-#[tokio::test]
 async fn gateway_chat_emits_content_before_upstream_finishes() {
     let f = fixture(Mode::Normal(Duration::from_millis(400))).await;
     let started = Instant::now();
