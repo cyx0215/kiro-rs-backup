@@ -1,0 +1,11 @@
+{
+  "recorded_at": "2026-10-14T02:25:01.0186422+08:00",
+  "source_commit": "62ae53467ec98403a5fe02d0317600820dd2e4b1",
+  "source_export": "git archive 62ae534, explicit source paths",
+  "archive_sha256": "1130243f13d2f97f898e2e3225d16bb1af746ce7b6ebd3ebfc822f07a81f4cd4",
+  "archive_bytes": 13379072,
+  "image_tag": "kiro-rs:production-62ae534-20261014",
+  "version": "0.9.1-upstream-proxy.20261014",
+  "linux_release_build": true,
+  "offline_version_check": true
+}

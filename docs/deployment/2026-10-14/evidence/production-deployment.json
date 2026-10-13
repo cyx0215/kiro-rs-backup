@@ -1,0 +1,51 @@
+{
+  "completed_at_utc": "2026-10-13T18:26:22.702283+00:00",
+  "source_commit": "62ae534",
+  "image": "sha256:8009e1a137d85c4d1404922acb589075265a076cbe52947f7128c847c7e95895",
+  "previous_image": "sha256:fd6f06cc18427faf6aa4b1088c2ce443088efca3ca67d2f23644bf48cd8a0256",
+  "archive_sha256": "1130243f13d2f97f898e2e3225d16bb1af746ce7b6ebd3ebfc822f07a81f4cd4",
+  "started_at": "2026-10-13T18:26:20.952904872Z",
+  "backup": "/home/deploy/kiro-zyphrzero-test/rollback-upstream-20261013T182549Z",
+  "active_compose": "/home/deploy/kiro-zyphrzero-test/compose.upstream-62ae534-20261013T182549Z.json",
+  "rollback_compose": "/home/deploy/kiro-zyphrzero-test/rollback-upstream-20261013T182549Z/compose.rollback.json",
+  "compose_project": "kiro-zyphrzero-test",
+  "test_8993_unchanged": true,
+  "admin_status": 200,
+  "unauth_models_status": 401,
+  "authenticated_models_status": 200,
+  "runtime_credentials_status": 200,
+  "config_unchanged": true,
+  "environment_unchanged": true,
+  "local_billing_compatibility_removed": true,
+  "load_balancing_mode": "balanced",
+  "credentials": [
+    {
+      "id": 2,
+      "priority": 0,
+      "disabled": false
+    },
+    {
+      "id": 3,
+      "priority": 0,
+      "disabled": false
+    },
+    {
+      "id": 4,
+      "priority": 0,
+      "disabled": false
+    },
+    {
+      "id": 5,
+      "priority": 0,
+      "disabled": false
+    }
+  ],
+  "request_state_before": {
+    "observed_requests": 0,
+    "unmatched_requests": 0,
+    "quiet_seconds": 1200.0,
+    "established_outgoing_connections": 0,
+    "match_basis": "model and start time within 20 seconds; no shared request ID"
+  },
+  "inference_tested": false
+}

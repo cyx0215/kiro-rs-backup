@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-10-13T18:26:45.258554+00:00",
+  "image": "sha256:8009e1a137d85c4d1404922acb589075265a076cbe52947f7128c847c7e95895",
+  "expected_image": true,
+  "running": true,
+  "restarts": 0,
+  "started_at": "2026-10-13T18:26:20.952904872Z",
+  "http_status": {
+    "admin": 200,
+    "unauthenticated_models": 401,
+    "authenticated_models": 200,
+    "admin_credentials": 200
+  },
+  "config_matches_stopped_backup": true,
+  "completed_natural_traces_since_start": {},
+  "inference_sent": false,
+  "rollback_image_available": true
+}

@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:1
+FROM oven/bun:1-alpine AS frontend-builder
+WORKDIR /app/admin-ui
+COPY admin-ui/package.json admin-ui/bun.lock ./
+RUN --mount=type=cache,target=/root/.bun/install/cache bun install --frozen-lockfile --ignore-scripts
+COPY admin-ui ./
+RUN bun run build
+
+FROM rust:1.92-alpine AS builder
+RUN apk add --no-cache musl-dev perl make
+WORKDIR /app
+COPY Cargo.toml Cargo.lock ./
+COPY src ./src
+COPY --from=frontend-builder /app/admin-ui/dist /app/admin-ui/dist
+# Build on the workstation. Cache dependencies and compiled objects between releases.
+ARG BUILD_JOBS=8
+ENV CARGO_PROFILE_RELEASE_LTO=false
+RUN --mount=type=cache,target=/usr/local/cargo/registry \
+    --mount=type=cache,target=/app/target \
+    cargo build --locked --release --no-default-features -j ${BUILD_JOBS} \
+    && cp target/release/kiro-rs /app/kiro-rs-built
+
+FROM alpine:3.21
+RUN apk add --no-cache ca-certificates
+WORKDIR /app
+ARG BUILD_VERSION=0.9.1-upstream-proxy.20261014
+LABEL org.opencontainers.image.version=$BUILD_VERSION io.kiro.deployment=production-8992 org.opencontainers.image.revision=62ae534
+COPY --from=builder /app/kiro-rs-built /app/kiro-rs
+EXPOSE 8990
+CMD ["./kiro-rs", "-c", "/app/config/config.json", "--credentials", "/app/config/credentials.json"]
