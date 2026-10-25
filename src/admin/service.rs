@@ -29,7 +29,7 @@ use crate::kiro::model::requests::kiro::KiroRequest;
 use crate::kiro::parser::decoder::EventStreamDecoder;
 use crate::kiro::provider::KiroProvider;
 use crate::kiro::token_manager::{
-    IdcReloginCredentials, MultiTokenManager, RefreshTokenInvalidError,
+    GlobalProxyUpdateError, IdcReloginCredentials, MultiTokenManager, RefreshTokenInvalidError,
 };
 use crate::model::config::Config;
 
@@ -1753,51 +1753,16 @@ impl AdminService {
         username: Option<String>,
         password: Option<Option<String>>,
     ) -> Result<(), AdminServiceError> {
-        if let Some(ref u) = url {
-            let normalized = u.to_ascii_lowercase();
-            let valid_prefix = [
-                "http://",
-                "https://",
-                "socks4://",
-                "socks4a://",
-                "socks5://",
-                "socks5h://",
-            ]
-            .iter()
-            .any(|scheme| normalized.starts_with(scheme));
-            if !valid_prefix {
-                return Err(AdminServiceError::InvalidCredential(
-                    "代理 URL 格式无效，需以 http://、https://、socks4://、socks4a://、socks5:// 或 socks5h:// 开头"
-                        .to_string(),
-                ));
-            }
-        }
-
-        let username_for_save = username.clone().filter(|s| !s.is_empty());
-        let current_password = self.token_manager.proxy().and_then(|proxy| proxy.password);
-        let password_for_save = match (url.as_ref(), password) {
-            (None, _) => None,
-            (Some(_), None) => current_password,
-            (Some(_), Some(value)) => value.filter(|s| !s.is_empty()),
-        };
-
-        let proxy = url.as_deref().map(|u| {
-            let mut cfg = ProxyConfig::new(u);
-            cfg.username = username_for_save.clone();
-            cfg.password = password_for_save.clone();
-            cfg
-        });
-        // 从磁盘加载最新 config 再写；持久化成功后才切换运行时代理，避免半更新。
-        let url_for_save = url;
         self.token_manager
-            .update_config_file(move |c| {
-                c.proxy_url = url_for_save;
-                c.proxy_username = username_for_save;
-                c.proxy_password = password_for_save;
+            .update_global_proxy(url, username, password)
+            .map_err(|error| match error {
+                GlobalProxyUpdateError::InvalidConfig => {
+                    AdminServiceError::InvalidCredential(error.to_string())
+                }
+                GlobalProxyUpdateError::Persistence(_) => {
+                    AdminServiceError::InternalError(error.to_string())
+                }
             })
-            .map_err(|error| AdminServiceError::InternalError(error.to_string()))?;
-        self.token_manager.set_global_proxy(proxy);
-        Ok(())
     }
 
     /// 获取所有自定义模型配置。

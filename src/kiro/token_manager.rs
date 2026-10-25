@@ -17,7 +17,7 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, AtomicU32, AtomicU64, Ordering};
 use std::time::{Duration as StdDuration, Instant};
 
-use crate::http_client::{ProxyConfig, build_client};
+use crate::http_client::{ProxyConfig, build_client, build_client_with_timeouts};
 use crate::kiro::error::UpstreamRateLimitError;
 use crate::kiro::kiro_version::USAGE_API_KIRO_VERSION;
 use crate::kiro::machine_id;
@@ -31,6 +31,43 @@ use crate::kiro::model::token_refresh::{
 use crate::kiro::model::usage_limits::UsageLimitsResponse;
 use crate::kiro::session_affinity::{RouteDecision, SessionAffinity, StickyOutcome};
 use crate::model::config::{ApiDomain, Config};
+
+#[cfg(test)]
+mod proxy_update_tests;
+
+#[derive(Debug, thiserror::Error)]
+#[error("{source}")]
+struct ConfigFileUpdateFailure {
+    stage: &'static str,
+    #[source]
+    source: anyhow::Error,
+}
+
+// Only these non-sensitive fields may be logged, never the source's Display
+// or Debug: configuration parse errors can contain user-supplied secrets.
+fn config_update_diagnostics(
+    error: &anyhow::Error,
+) -> (&'static str, Option<std::io::ErrorKind>, bool) {
+    let stage = error
+        .downcast_ref::<ConfigFileUpdateFailure>()
+        .map_or("unknown", |failure| failure.stage);
+    let io_kind = error.chain().find_map(|cause| {
+        cause
+            .downcast_ref::<std::io::Error>()
+            .map(std::io::Error::kind)
+    });
+    let invalid_json = error.chain().any(|cause| cause.is::<serde_json::Error>());
+    (stage, io_kind, invalid_json)
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum GlobalProxyUpdateError {
+    // Do not retain the parser error: it can contain URL-embedded credentials.
+    #[error("代理配置无效，请检查地址、端口和协议")]
+    InvalidConfig,
+    #[error("持久化代理配置失败")]
+    Persistence(#[source] anyhow::Error),
+}
 
 /// 检查 Token 是否在指定时间内过期
 pub(crate) fn is_token_expiring_within(
@@ -1584,12 +1621,23 @@ impl MultiTokenManager {
             return Ok(());
         };
         let _guard = self.config_write_lock.lock();
-        let mut fresh =
-            Config::load(path).with_context(|| format!("重新加载配置失败: {}", path.display()))?;
+        let mut fresh = Config::load(path)
+            .with_context(|| format!("重新加载配置失败: {}", path.display()))
+            .map_err(|source| ConfigFileUpdateFailure {
+                stage: "reload",
+                source,
+            })?;
         updater(&mut fresh);
         fresh
             .save()
             .with_context(|| format!("持久化配置失败: {}", path.display()))
+            .map_err(|source| {
+                ConfigFileUpdateFailure {
+                    stage: "save",
+                    source,
+                }
+                .into()
+            })
     }
 
     /// 获取全局代理配置的克隆（可安全跨锁使用）
@@ -1597,10 +1645,67 @@ impl MultiTokenManager {
         self.proxy.lock().clone()
     }
 
-    /// 设置全局代理配置（运行时修改，可传 None 清除）
-    pub fn set_global_proxy(&self, proxy: Option<ProxyConfig>) {
+    /// Merge, validate and persist before publishing. Omitted passwords retain
+    /// the last successful update's password; Some(None) explicitly clears it.
+    /// Client construction is offline validation, not a connectivity check.
+    pub fn update_global_proxy(
+        &self,
+        url: Option<String>,
+        username: Option<String>,
+        password: Option<Option<String>>,
+    ) -> Result<(), GlobalProxyUpdateError> {
+        // Same lock order as other runtime settings: update -> config file.
+        // Keep it through publication so concurrent updates cannot overtake
+        // each other or merge a password from an obsolete runtime snapshot.
+        let _update_guard = self.runtime_config_update_lock.lock();
+        let username = url.as_ref().and(username).filter(|s| !s.is_empty());
+        let password = match (url.as_ref(), password) {
+            (None, _) => None,
+            (Some(_), None) => self.proxy().and_then(|proxy| proxy.password),
+            (Some(_), Some(value)) => value.filter(|s| !s.is_empty()),
+        };
+        let proxy = url.as_ref().map(|url| ProxyConfig {
+            url: url.clone(),
+            username: username.clone(),
+            password: password.clone(),
+        });
+        if let Some(candidate) = &proxy {
+            let normalized = candidate.url.to_ascii_lowercase();
+            if ![
+                "http://",
+                "https://",
+                "socks4://",
+                "socks4a://",
+                "socks5://",
+                "socks5h://",
+            ]
+            .iter()
+            .any(|scheme| normalized.starts_with(scheme))
+            {
+                return Err(GlobalProxyUpdateError::InvalidConfig);
+            }
+            build_client_with_timeouts(
+                Some(candidate),
+                self.config.upstream_total_timeout_secs,
+                self.config.tls_backend,
+                self.config.upstream_connect_timeout_secs,
+                self.config.upstream_read_timeout_secs,
+            )
+            .map_err(|_| GlobalProxyUpdateError::InvalidConfig)?;
+        }
+        self.update_config_file(move |config| {
+            config.proxy_url = url;
+            config.proxy_username = username;
+            config.proxy_password = password;
+        })
+        .map_err(|error| {
+            let (stage, io_kind, invalid_json) = config_update_diagnostics(&error);
+            tracing::warn!(stage, ?io_kind, invalid_json, "持久化代理配置失败");
+            GlobalProxyUpdateError::Persistence(error)
+        })?;
         *self.proxy.lock() = proxy;
         self.invalidate_all_model_caches();
+        Ok(())
     }
 
     fn model_cache_ttl(&self) -> StdDuration {

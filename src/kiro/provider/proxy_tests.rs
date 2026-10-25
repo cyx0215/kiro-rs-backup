@@ -110,6 +110,35 @@ fn set_proxy(service: &AdminService, proxy: Option<ProxyConfig>) {
         .unwrap();
 }
 
+#[tokio::test]
+async fn invalid_hot_update_keeps_previous_model_and_mcp_proxy_working() {
+    let target = LocalServer::named("direct").await;
+    let old = LocalServer::named("old").await;
+    let (provider, service) = setup(&target, Some(old.proxy()));
+    assert_eq!(model_response(&provider).await, "old|");
+    assert!(
+        service
+            .set_global_proxy(Some("http://[".into()), None, Some(None))
+            .is_err()
+    );
+    assert_eq!(provider.token_manager.proxy(), Some(old.proxy()));
+    assert_eq!(model_response(&provider).await, "old|");
+    assert_eq!(
+        timeout(Duration::from_secs(5), async {
+            provider
+                .call_mcp("{}", None)
+                .await
+                .unwrap()
+                .text()
+                .await
+                .unwrap()
+        })
+        .await
+        .unwrap(),
+        "old|"
+    );
+}
+
 async fn model_response(provider: &KiroProvider) -> String {
     timeout(Duration::from_secs(5), async {
         provider

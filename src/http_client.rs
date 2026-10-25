@@ -110,7 +110,7 @@ fn client_builder(
         }
 
         builder = builder.proxy(proxy);
-        tracing::debug!("HTTP Client 使用代理: {}", proxy_config.url);
+        tracing::debug!("HTTP Client 使用代理");
     }
 
     Ok(builder)

@@ -851,8 +851,17 @@ pub struct SetGlobalProxyRequest {
     pub proxy_username: Option<String>,
     /// 代理认证密码（仅 proxy_url 不为 null 时有效）。省略表示保留现有密码，
     /// 显式 null 表示清除密码。
-    #[serde(default)]
+    #[serde(default, deserialize_with = "deserialize_proxy_password_patch")]
     pub proxy_password: Option<Option<String>>,
+}
+
+// Called only when the field is present. Preserve explicit null as Some(None),
+// while serde(default) leaves an omitted field as None.
+fn deserialize_proxy_password_patch<'de, D>(deserializer: D) -> Result<Option<Option<String>>, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    Option::<String>::deserialize(deserializer).map(Some)
 }
 
 // ============ 在线更新配置 ============
