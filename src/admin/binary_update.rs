@@ -17,6 +17,7 @@ use std::path::{Path, PathBuf};
 use sha2::{Digest, Sha256};
 
 use crate::admin::error::AdminServiceError;
+use crate::http_client::ProxyConfig;
 
 /// 单个下载体的最大字节数，避免 GitHub 异常返回时占满磁盘。
 /// kiro-rs musl 二进制实测 < 50 MB，留 200 MB 上限足够覆盖未来增长。
@@ -96,7 +97,7 @@ fn archive_filename(version: &str) -> Result<String, AdminServiceError> {
 /// 把 GitHub API 限流从匿名 60/h 提升到认证 5000/h。
 pub async fn download_release_binary(
     version: &str,
-    proxy: Option<&str>,
+    proxy: Option<&ProxyConfig>,
     github_token: Option<&str>,
     dest: &Path,
 ) -> Result<(), AdminServiceError> {
@@ -159,18 +160,18 @@ pub async fn download_release_binary(
 }
 
 pub(super) fn build_http_client(
-    proxy: Option<&str>,
+    proxy: Option<&ProxyConfig>,
 ) -> Result<reqwest::Client, AdminServiceError> {
     let mut builder = reqwest::Client::builder()
         .user_agent("kiro-rs-updater")
         .timeout(std::time::Duration::from_secs(180));
-    if let Some(url) = proxy.and_then(|u| {
-        let s = u.trim();
-        if s.is_empty() { None } else { Some(s) }
-    }) {
-        let proxy = reqwest::Proxy::all(url).map_err(|e| {
+    if let Some(config) = proxy.filter(|p| !p.url.trim().is_empty()) {
+        let mut proxy = reqwest::Proxy::all(config.url.trim()).map_err(|e| {
             AdminServiceError::InternalError(format!("代理配置无效: {}", e))
         })?;
+        if let (Some(username), Some(password)) = (&config.username, &config.password) {
+            proxy = proxy.basic_auth(username, password);
+        }
         builder = builder.proxy(proxy);
     }
     builder
@@ -470,4 +471,55 @@ pub fn schedule_self_exit(delay: std::time::Duration) {
         let _ = std::io::stdout().flush();
         std::process::exit(0);
     });
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use tokio::io::{AsyncReadExt, AsyncWriteExt};
+    use tokio::net::TcpListener;
+
+    async fn connect_request(auth: bool) -> String {
+        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+        let address = listener.local_addr().unwrap();
+        let server = tokio::spawn(async move {
+            let (mut socket, _) = listener.accept().await.unwrap();
+            let mut request = Vec::new();
+            loop {
+                let mut buf = [0; 1024];
+                let count = socket.read(&mut buf).await.unwrap();
+                assert!(count > 0);
+                request.extend_from_slice(&buf[..count]);
+                if request.windows(4).any(|part| part == b"\r\n\r\n") {
+                    break;
+                }
+            }
+            socket.write_all(b"HTTP/1.1 502 Bad Gateway\r\nContent-Length: 0\r\n\r\n").await.unwrap();
+            String::from_utf8(request).unwrap().to_ascii_lowercase()
+        });
+        let mut proxy = ProxyConfig::new(format!("http://{address}"));
+        if auth {
+            proxy = proxy.with_auth("user", "pass");
+        }
+        let client = build_http_client(Some(&proxy)).unwrap();
+        let _ = client.get("https://example.invalid/update")
+            .timeout(std::time::Duration::from_secs(3)).send().await;
+        tokio::time::timeout(std::time::Duration::from_secs(3), server)
+            .await.unwrap().unwrap()
+    }
+
+    #[tokio::test]
+    async fn updater_sends_separate_proxy_credentials_on_connect() {
+        let request = connect_request(true).await;
+        assert!(request.starts_with("connect example.invalid:443 "));
+        assert!(request.contains("proxy-authorization: basic dxnlcjpwyxnz\r\n"));
+        assert!(!request.contains("\r\nauthorization:"));
+    }
+
+    #[tokio::test]
+    async fn updater_supports_proxy_without_credentials() {
+        let request = connect_request(false).await;
+        assert!(request.starts_with("connect example.invalid:443 "));
+        assert!(!request.contains("proxy-authorization:"));
+    }
 }
